@@ -172,9 +172,9 @@ export const Contact = styled.div`
 `;
 
 export const Titulo = styled.h1`
-  font: 24px Georgia, 'Times New Roman', Times, serif !important;
+  font: 24px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #2e55a3 !important;
+  color: #135c58 !important;
   margin: 3rem auto 1rem !important;
   text-align: center;
 `;

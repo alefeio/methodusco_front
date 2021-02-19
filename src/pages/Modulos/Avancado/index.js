@@ -39,6 +39,8 @@ export default function Intermediario() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 0;
+
   async function finalizarProva() {
     try {
       await api.delete(`provasaluno/${prova.id}`);

@@ -29,7 +29,7 @@ export const Prod = styled.div`
     text-align: center;
 
     span {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
       margin-bottom: 5rem;
     }
@@ -37,7 +37,7 @@ export const Prod = styled.div`
     button {
       border: 0;
       padding: 1rem 2rem;
-      background: #004b85;
+      background: #135c58;
       border-radius: 4px;
       color: #fff;
       font-size: 2rem;
@@ -45,7 +45,7 @@ export const Prod = styled.div`
     }
 
     h2 {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
     }
 
@@ -62,7 +62,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font: 3rem Georgia, 'Times New Roman', Times, serif;
+        font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       }
     }
 
@@ -83,7 +83,7 @@ export const Prod = styled.div`
       flex-direction: row;
 
       a {
-        background: #004b85;
+        background: #135c58;
         color: #fff;
         border: 0;
         border-radius: 4px;
@@ -92,7 +92,7 @@ export const Prod = styled.div`
         transition: background 0.2s;
 
         &:hover {
-          background: ${darken(0.07, '#004b85')};
+          background: ${darken(0.07, '#135c58')};
         }
       }
     }
@@ -120,7 +120,7 @@ export const ListaProdutos = styled.ul`
     text-align: center;
     margin: ${(props) => props.margin * 2}rem auto;
     padding-top: ${(props) => props.padding / 2}rem;
-    font: 3rem Georgia, 'Times New Roman', Times, serif;
+    font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
     font-weight: normal;
     white-space: nowrap;
   }
@@ -133,7 +133,7 @@ export const ListaProdutos = styled.ul`
     text-align: center;
     margin: ${(props) => props.margin * 4}rem auto;
     padding-top: ${(props) => props.padding / 2}rem;
-    font: 3.5rem Georgia, 'Times New Roman', Times, serif;
+    font: 3.5rem 'Trebuchet MS', 'Times New Roman', Times, serif;
     color: green;
     white-space: nowrap;
   }
@@ -146,7 +146,7 @@ export const ListaProdutos = styled.ul`
     text-align: center;
     margin: ${(props) => props.margin * 2}rem auto;
     padding-top: ${(props) => props.margin * 1.2}rem;
-    font: 4rem Georgia, 'Times New Roman', Times, serif !important;
+    font: 4rem 'Trebuchet MS', 'Times New Roman', Times, serif !important;
     white-space: nowrap;
   }
 
@@ -156,7 +156,7 @@ export const ListaProdutos = styled.ul`
     white-space: nowrap;
 
     button {
-      background: #004b85;
+      background: #135c58;
       color: #fff;
       border: 0;
       border-radius: 4px;
@@ -164,7 +164,7 @@ export const ListaProdutos = styled.ul`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.07, '#004b85')};
+        background: ${darken(0.07, '#135c58')};
       }
     }
 
@@ -202,5 +202,26 @@ export const Strong = styled.strong`
 
   img {
     margin-left: 1rem;
+  }
+`;
+
+export const Voltar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #f0f1f4;
+
+  ul {
+    display: flex;
+  }
+
+  a {
+    color: #000;
+  }
+
+  small {
+    padding: 0.5rem 1rem;
+    color: #555;
   }
 `;

@@ -12,7 +12,7 @@ import {
 
 import Barra from '~/components/Barra';
 
-import { Prod, ListaProdutos, Strong } from './styles';
+import { Prod, ListaProdutos, Strong, Voltar } from './styles';
 
 import api from '~/services/api';
 
@@ -29,7 +29,7 @@ export default function Opcoesvariadas(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra, opcoes } = props;
+  const { ex, exercicio, pergunta, palavra, opcoes, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -55,7 +55,7 @@ export default function Opcoesvariadas(props) {
   }
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -85,7 +85,7 @@ export default function Opcoesvariadas(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -95,11 +95,13 @@ export default function Opcoesvariadas(props) {
       setContador(null);
       setConcluido(true);
 
-      // loadProva();
+      loadProva();
+
+      if (exercicio_id === 322) return setResultado(true);
 
       if (exercicio_id !== 322) {
         setTimeout(() => {
-          history.push(`/percepcaovisual/${exercicio + 1}`);
+          history.push(`/percepcaovisual/${exercicio + 1}/aula/${aula}`);
         }, 300);
       }
 
@@ -108,9 +110,11 @@ export default function Opcoesvariadas(props) {
       setContagem(true);
       setContador(null);
 
+      if (exercicio_id === 322) return setResultado(true);
+
       if (exercicio_id !== 322) {
         setTimeout(() => {
-          history.push(`/percepcaovisual/${exercicio + 1}`);
+          history.push(`/percepcaovisual/${exercicio + 1}/aula/${aula}`);
         }, 300);
       }
     }
@@ -124,7 +128,7 @@ export default function Opcoesvariadas(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -160,12 +164,37 @@ export default function Opcoesvariadas(props) {
 
   return (
     <>
-      <Barra
+      <Voltar>
+        <ul>
+          <li>
+            <Link to="/dashboard">
+              <small>Home</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to="/basico">
+              <small>Módulo Básico</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
+        </ul>
+
+        <a href="javascript:history.back()">
+          <small>&laquo; Voltar</small>
+        </a>
+      </Voltar>
+      {/* <Barra
         categoria="Leitura Dinâmica"
         modulo="Exercícios apostila"
         exercicio={exercicio_id}
         nota={prova && prova.nota}
-      />
+      /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -173,6 +202,11 @@ export default function Opcoesvariadas(props) {
         {apresentacao && (
           <div>
             <h2>{pergunta}</h2>
+          </div>
+        )}
+        {resultado && (
+          <div>
+            <h2>Resultado: {resultadoparcial.toFixed(1)}%</h2>
           </div>
         )}
         {!apresentacao && (
@@ -239,7 +273,7 @@ export default function Opcoesvariadas(props) {
               <small>*A nota deste exercício já foi contabilizada.</small>
             )} */}
 
-            {exercicio === 322 && (
+            {resultado && exercicio === 322 && (
               <div>
                 {/* {exercicio > 186 && (
               <Link to={`/percepcaovisual/${exercicio - 1}`}>Anterior</Link>

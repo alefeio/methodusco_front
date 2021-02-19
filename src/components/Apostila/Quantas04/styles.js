@@ -35,7 +35,7 @@ export const Prod = styled.div`
     }
 
     span {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
       margin-bottom: 5rem;
     }
@@ -43,14 +43,14 @@ export const Prod = styled.div`
     button {
       border: 0;
       padding: 1rem 2rem;
-      background: #004b85;
+      background: #135c58;
       border-radius: 4px;
       color: #fff;
       font-size: 2rem;
     }
 
     h2 {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
     }
 
@@ -67,7 +67,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font: 3rem Georgia, 'Times New Roman', Times, serif;
+        font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       }
     }
 
@@ -88,7 +88,7 @@ export const Prod = styled.div`
       flex-direction: row;
 
       a {
-        background: #004b85;
+        background: #135c58;
         color: #fff;
         border: 0;
         border-radius: 4px;
@@ -97,7 +97,7 @@ export const Prod = styled.div`
         transition: background 0.2s;
 
         &:hover {
-          background: ${darken(0.07, '#004b85')};
+          background: ${darken(0.07, '#135c58')};
         }
       }
     }
@@ -122,7 +122,7 @@ export const ListaProdutos = styled.ul`
   }
 
   strong {
-    font: 4rem Georgia, 'Times New Roman', Times, serif;
+    font: 4rem 'Trebuchet MS', 'Times New Roman', Times, serif;
   }
 
   li {
@@ -134,7 +134,7 @@ export const ListaProdutos = styled.ul`
     flex-wrap: nowrap;
 
     button {
-      background: #004b85;
+      background: #135c58;
       color: #fff;
       border: 0;
       border-radius: 4px;
@@ -142,7 +142,7 @@ export const ListaProdutos = styled.ul`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.07, '#004b85')};
+        background: ${darken(0.07, '#135c58')};
       }
     }
 
@@ -161,7 +161,7 @@ export const Palavra = styled.strong`
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 4rem Georgia, 'Times New Roman', Times, serif;
+  font: 4rem 'Trebuchet MS', 'Times New Roman', Times, serif;
   margin: 2rem;
 
   img {

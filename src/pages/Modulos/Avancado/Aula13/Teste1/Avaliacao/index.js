@@ -34,6 +34,8 @@ import {
   Voltar,
 } from './styles';
 
+const aula = 13;
+
 const hrInicio = Date.now();
 
 const titulo = 'É Possível Forjar um Líder?';
@@ -330,13 +332,13 @@ export default function Teste1avaliacao() {
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
 
-      toast.success('Teste 1 concluído com sucesso!');
+      toast.success('Teste 11 concluído com sucesso!');
       setTimeout(() => {
         setTesteconcluido(true);
         history.push('/avancado/teste1/resultado');
       }, 3000);
     } catch (error) {
-      toast.error('Erro ao concluir o Teste 1. Tente novamente!');
+      toast.error('Erro ao concluir o Teste 11. Tente novamente!');
     }
   }
 
@@ -396,7 +398,7 @@ export default function Teste1avaliacao() {
           </li>
           <li>|</li> */}
           <li>
-            <small>Teste 1</small>
+            <small>Teste 11</small>
           </li>
           {/* <li>|</li>
           <li>
@@ -431,18 +433,13 @@ export default function Teste1avaliacao() {
       <Prod visivel={visiv}>
         {!plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 1 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 11 - AVALIAÇÃO</Titulo>
             <br />
             <h2>
               {titulo && titulo}
               <small>
-                {cred1 && (
-                  <>
-                    {cred1} <br />
-                  </>
-                )}
-
-                {cred2 && cred2}
+                {cred1 && <>{cred1} </>}
+                {cred2 && <> - {cred2}</>}
               </small>
             </h2>
             {textos.map((t, i) => t && <p>{t}</p>)}
@@ -456,7 +453,7 @@ export default function Teste1avaliacao() {
         )}
         {plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 1 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 11 - AVALIAÇÃO</Titulo>
             <br />
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />

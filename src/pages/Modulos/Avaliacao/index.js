@@ -40,6 +40,8 @@ export default function Avaliacao() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 0;
+
   async function verificarTeste(prova) {
     const response = await api.put('teste', {
       numero: 0,

@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -38,6 +39,8 @@ export default function Aula07() {
   // const dadosProva = useSelector((state) => state.usuario.prova);
 
   const perf = useSelector((state) => state.usuario);
+
+  const aula = 7;
 
   async function finalizarProva() {
     try {
@@ -127,17 +130,17 @@ export default function Aula07() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Autoaceleração → aplicando nos textos.
+              <img src={icoPlay} /> Autoaceleração → aplicando nos textos
             </p>
             <br />
             <p>
               <strong>Prática</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Treinamentos leves e produtivos.
+              <img src={icoPlay} /> Explicando como realizar os exercícios
             </p>
             <p>
-              <strong>&raquo;</strong> Explicando como realizar os exercícios.
+              <strong>&raquo;</strong> Treinamentos curtos, intensos e espaçados
             </p>
             <div>
               <Default>
@@ -176,19 +179,19 @@ export default function Aula07() {
               <strong>Objetivos</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Romper paradigmas silábico/fonético nos
-              textos.
+              <strong>&raquo;</strong> Romper paradigmas da leitura silábica
+              fonética nos textos
             </p>
             <p>
               <strong>&raquo;</strong> Automatizar paradigmas da leitura
-              dinâmica nos textos.
+              dinâmica nos textos
             </p>
             <br />
             <p>
               <strong>Duração</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> 10 dias.
+              <strong>&raquo;</strong> 10 dias
             </p>
           </Box1>
         </div>

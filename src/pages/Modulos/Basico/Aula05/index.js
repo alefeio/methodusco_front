@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -22,6 +23,7 @@ import {
   Titulo2,
   Titulo3,
   Default,
+  Default2,
   Danger,
   Ladodireito,
   Box1,
@@ -32,6 +34,7 @@ export default function Aula05() {
   const [perfil, setPerfil] = useState();
   const [prova, setProva] = useState();
   const [provafinalizada, setProvafinalizada] = useState();
+  const [total, setTotal] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -39,15 +42,32 @@ export default function Aula05() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 5;
+
+  async function criarProva() {
+    const provas2 = await api.post(`provas2/${aula}`);
+
+    console.log('provas2 > ', provas2);
+
+    const response = await api.get(`provas2/${aula}`);
+
+    setProva(response.data);
+    dispatch(updateProvaRequest(response.data));
+  }
+
   async function finalizarProva() {
     try {
-      await api.delete(`provasaluno/${prova.id}`);
+      await api.delete(`provas2aluno/${prova.id}`);
 
-      const response = await api.get(`provasfinalizadas`);
+      const response = await api.get(`provas2finalizadas/${aula}`);
 
       setProva(null);
       dispatch(updateFimProvaRequest());
       setProvafinalizada(response.data);
+
+      setTotal(0);
+
+      criarProva();
 
       toast.success('Prova finalizada com sucesso!');
     } catch (error) {
@@ -56,7 +76,7 @@ export default function Aula05() {
   }
 
   async function loadProvas() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     console.log('Prova: ', response.data);
 
@@ -64,13 +84,64 @@ export default function Aula05() {
     dispatch(updateProvaRequest(response.data));
 
     const prova_id = response.data ? response.data.id : null;
+
+    let apr = 0;
+    let div = 0;
+
+    if (response.data.monitor03 > 0) {
+      apr += response.data.monitor03;
+      div += 1;
+    }
+
+    if (response.data.monitor04 > 0) {
+      apr += response.data.monitor04;
+      div += 1;
+    }
+
+    if (response.data.monitor05 > 0) {
+      apr += response.data.monitor05;
+      div += 1;
+    }
+
+    if (response.data.monitor06 > 0) {
+      apr += response.data.monitor06;
+      div += 1;
+    }
+
+    if (response.data.monitor07 > 0) {
+      apr += response.data.monitor07;
+      div += 1;
+    }
+
+    if (response.data.monitor08 > 0) {
+      apr += response.data.monitor08;
+      div += 1;
+    }
+
+    if (response.data.monitor09 > 0) {
+      apr += response.data.monitor09;
+      div += 1;
+    }
+
+    if (response.data.percepcao01 > 0) {
+      apr += response.data.percepcao01;
+      div += 1;
+    }
+
+    if (response.data.percepcao02 > 0) {
+      apr += response.data.percepcao02;
+      div += 1;
+    }
+
+    if (response.data.percepcao03 > 0) {
+      apr += response.data.percepcao03;
+      div += 1;
+    }
+
+    const tot = apr / div;
+
+    setTotal(tot);
   }
-
-  // function fazerProva() {
-  //   dispatch(updateEmProvaRequest());
-
-  //   loadProvas();
-  // }
 
   useEffect(() => {
     async function loadPerfil() {
@@ -81,12 +152,13 @@ export default function Aula05() {
   }, []);
 
   useEffect(() => {
+    criarProva();
     loadProvas();
   }, []);
 
   useEffect(() => {
     async function loadProvasFinalizadas() {
-      const response2 = await api.get(`provasfinalizadas`);
+      const response2 = await api.get(`provas2finalizadas/${aula}`);
 
       setProvafinalizada(response2.data);
     }
@@ -109,6 +181,10 @@ export default function Aula05() {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 05</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -127,45 +203,75 @@ export default function Aula05() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Pressupostos da leitura dinâmica.
+              <Link to="/video/aula05teoria">
+                <img src={icoPlay} /> Pressupostos da Leitura Dinâmica
+              </Link>
             </p>
             <br />
             <p>
               <strong>Prática</strong>
             </p>
             <p>
+              <img src={icoPlay} /> Explicando como realizar os exercícios
+            </p>
+            <p>
               <strong>&raquo;</strong> Treinamentos curtos, intensos e
-              intervalados.
+              intervalados
             </p>
             <div>
               <Default>
-                <Link to="/apostila/2">
+                <Link to="/apostila/2/aula/05">
                   Exerc. <span>02</span>
                 </Link>
               </Default>
               <Default>
-                <Link to="/apostila/332">
+                <Link to="/apostila/332/aula/05">
                   Exerc. <span>03</span>
                 </Link>
               </Default>
               <Default>
-                <Link to="/apostila/333">
+                <Link to="/apostila/333/aula/05">
                   Exerc. <span>04</span>
                 </Link>
               </Default>
               <Default>
-                <Link to="/apostila/334">
+                <Link to="/apostila/334/aula/05">
                   Exerc. <span>05</span>
                 </Link>
               </Default>
               <Default>
-                <Link to="/apostila/335">
+                <Link to="/apostila/335/aula/05">
                   Exerc. <span>06</span>
                 </Link>
               </Default>
               <Default>
-                <Link to="/apostila/336">
+                <Link to="/apostila/336/aula/05">
                   Exerc. <span>07</span>
+                </Link>
+              </Default>
+              <Default>
+                <Link to="/apostila/151/aula/05">
+                  Exerc. <span>08</span>
+                </Link>
+              </Default>
+              <Default>
+                <Link to="/apostila/337/aula/05">
+                  Exerc. <span>09</span>
+                </Link>
+              </Default>
+              <Default>
+                <Link to="/percepcaovisual/186/aula/05">
+                  Exerc. <span>10</span>
+                </Link>
+              </Default>
+              <Default>
+                <Link to="/percepcaovisual/208/aula/05">
+                  Exerc. <span>11</span>
+                </Link>
+              </Default>
+              <Default>
+                <Link to="/percepcaovisual/286/aula/05">
+                  Exerc. <span>12</span>
                 </Link>
               </Default>
             </div>
@@ -174,20 +280,58 @@ export default function Aula05() {
               <strong>Objetivos</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Romper paradigmas silábico/fonético.
+              <strong>&raquo;</strong> Romper paradigmas da leitura silábica
+              fonética
             </p>
             <p>
               <strong>&raquo;</strong> Automatizar paradigmas da leitura
-              dinâmica.
+              dinâmica
             </p>
             <br />
             <p>
               <strong>Duração</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> 5 dias.
+              <strong>&raquo;</strong> 5 dias
             </p>
           </Box1>
+          {prova && prova.nota > 0 && <Titulo>Treinamento atual:</Titulo>}
+          {prova && prova.nota === 0 && <Titulo>Novo Treinamento:</Titulo>}
+          {!prova && (
+            <Titulo3>
+              <Default2 onClick={criarProva}>Novo Treinamento</Default2>
+            </Titulo3>
+          )}
+          {prova && (
+            <Titulo3>
+              {`Id: ${prova.id}`}
+              {total > 0 && ` | Aproveitamento: ${total.toFixed(1)}%`}
+              <br />
+              <br />
+              {/* <Default onClick={fazerProva}>Acessar</Default> */}
+              <Danger onClick={finalizarProva}>Finalizar</Danger>
+            </Titulo3>
+          )}
+          <br />
+          <Titulo2>Treinamentos anteriores:</Titulo2>
+          <ModUl>
+            {provafinalizada &&
+              provafinalizada.map((p) => (
+                <li key={p.id}>{`Id: ${p.id} | Nota: ${(
+                  (p.monitor03 +
+                    p.monitor04 +
+                    p.monitor05 +
+                    p.monitor06 +
+                    p.monitor07 +
+                    p.monitor08 +
+                    p.monitor09 +
+                    p.percepcao01 +
+                    p.percepcao02 +
+                    p.percepcao03) /
+                  10
+                ).toFixed(1)}%`}</li>
+              ))}
+          </ModUl>
         </div>
       </Prod>
     </Container>

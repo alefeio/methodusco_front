@@ -31,7 +31,7 @@ export default function Quantas04(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra, opcoes } = props;
+  const { ex, exercicio, pergunta, palavra, opcoes, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -47,7 +47,7 @@ export default function Quantas04(props) {
   }
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -84,26 +84,28 @@ export default function Quantas04(props) {
 
   async function loadResposta(res) {
     try {
-      // await api.post('resposta', {
-      //   resposta: res,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: res,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContagem(true);
       setContador(null);
 
-      // loadProva();
+      loadProva();
+
+      if (exercicio_id === 59 || exercicio_id === 90) return setResultado(true);
 
       if (exercicio_id !== 59 && exercicio_id < 90) {
         setTimeout(() => {
-          history.push(`/apostila/${exercicio + 1}`);
+          history.push(`/apostila/${exercicio + 1}/aula/${aula}`);
         }, 300);
       }
 
@@ -112,9 +114,11 @@ export default function Quantas04(props) {
       setContagem(true);
       setContador(null);
 
+      if (exercicio_id === 59 || exercicio_id === 90) return setResultado(true);
+
       if (exercicio_id !== 59 && exercicio_id < 90) {
         setTimeout(() => {
-          history.push(`/apostila/${exercicio + 1}`);
+          history.push(`/apostila/${exercicio + 1}/aula/${aula}`);
         }, 300);
       }
     }
@@ -145,7 +149,7 @@ export default function Quantas04(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -196,8 +200,15 @@ export default function Quantas04(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -205,6 +216,11 @@ export default function Quantas04(props) {
         {apresentacao && (
           <div>
             <h2>{pergunta}</h2>
+          </div>
+        )}
+        {resultado && (
+          <div>
+            <h2>Resultado: {resultadoparcial.toFixed(1)}%</h2>
           </div>
         )}
         {!apresentacao && (
@@ -282,7 +298,7 @@ export default function Quantas04(props) {
                 )}
               </ListaProdutos>
             )}
-            {contador && !contagem && (
+            {contador > 0 && !contagem && (
               <nav>
                 <button onClick={() => loadResposta(1)}>1</button>
                 <button onClick={() => loadResposta(2)}>2</button>
@@ -310,13 +326,13 @@ export default function Quantas04(props) {
               <small>*A nota deste exercício já foi contabilizada.</small>
             )} */}
             <div>
-              {!contador && exercicio_id === 59 && (
+              {resultado && !contador && exercicio_id === 59 && (
                 <Strong>
                   Exercício Concluído{' '}
                   <img src={icoConcluido} alt="Exercício concluído" />
                 </Strong>
               )}
-              {!contador && exercicio_id === 90 && (
+              {resultado && !contador && exercicio_id === 90 && (
                 <Strong>
                   Exercício Concluído{' '}
                   <img src={icoConcluido} alt="Exercício concluído" />

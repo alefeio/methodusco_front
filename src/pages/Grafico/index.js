@@ -28,6 +28,7 @@ import {
   Voltar,
   Teste,
   Numeros,
+  Span,
 } from './styles';
 
 export default function Grafico(props) {
@@ -36,6 +37,7 @@ export default function Grafico(props) {
   const [provafinalizada, setProvafinalizada] = useState();
   const [porcentagem, setPorcentagem] = useState(0);
   const [testes, setTestes] = useState([]);
+  const [atual, setAtual] = useState();
 
   const id = parseInt(props.match.params.id);
 
@@ -44,6 +46,8 @@ export default function Grafico(props) {
   // const dadosProva = useSelector((state) => state.usuario.prova);
 
   const perf = useSelector((state) => state.usuario);
+
+  const aula = 0;
 
   async function finalizarProva() {
     try {
@@ -54,6 +58,12 @@ export default function Grafico(props) {
       setProva(null);
       dispatch(updateFimProvaRequest());
       setProvafinalizada(response.data);
+
+      setPorcentagem(null);
+      setTestes([]);
+
+      criarProva();
+      loadProvas();
 
       toast.success('Prova finalizada com sucesso!');
     } catch (error) {
@@ -70,6 +80,32 @@ export default function Grafico(props) {
     dispatch(updateProvaRequest(response.data));
 
     const prova_id = response.data ? response.data.id : null;
+
+    if (response.data) totalConcluido(response.data);
+  }
+
+  async function totalConcluido(prova) {
+    let pr = porcentagem;
+
+    if (prova.avaliacao) pr += 1;
+    if (prova.aula01) pr += 1;
+    if (prova.aula02) pr += 1;
+    if (prova.aula03) pr += 1;
+    if (prova.aula04) pr += 1;
+    if (prova.aula05) pr += 1;
+    if (prova.aula06) pr += 1;
+    if (prova.aula07) pr += 1;
+    if (prova.aula08) pr += 1;
+    if (prova.aula09) pr += 1;
+    if (prova.aula10) pr += 1;
+    if (prova.aula11) pr += 1;
+    if (prova.aula12) pr += 1;
+    if (prova.aula13) pr += 1;
+    if (prova.aula14) pr += 1;
+    if (prova.aula15) pr += 1;
+    if (prova.aula16) pr += 1;
+
+    setPorcentagem(((pr / 17) * 100).toFixed(1));
   }
 
   async function loadTestes() {
@@ -78,6 +114,17 @@ export default function Grafico(props) {
     console.log('Testes: ', response.data);
 
     setTestes(response.data);
+  }
+
+  async function criarProva() {
+    await api.post(`provas`);
+
+    const response = await api.get(`provas`);
+
+    setProva(response.data);
+    dispatch(updateProvaRequest(response.data));
+
+    // fazerProva();
   }
 
   useEffect(() => {
@@ -89,15 +136,18 @@ export default function Grafico(props) {
   }, []);
 
   useEffect(() => {
+    criarProva();
     loadProvas();
     loadTestes();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     async function loadProvasFinalizadas() {
       const response2 = await api.get(`provasfinalizadas`);
 
       setProvafinalizada(response2.data);
+
+      setAtual(response2.data.length + 1);
     }
 
     loadProvasFinalizadas();
@@ -126,8 +176,10 @@ export default function Grafico(props) {
         <div>
           <Titulo>AVALIANDO O SEU DESEMPENHO</Titulo>
           <Titulo2>
-            Gráfico demonstrativo em relação aos resultados dos 3 módulos
+            <small>Gráfico demonstrativo da</small> Prova {atual}{' '}
+            <small>em relação aos resultados dos 3 módulos</small>
           </Titulo2>
+          {/* <Titulo2>Gráfico: Prova {atual}</Titulo2> */}
 
           {testes.length ? (
             <Box1>
@@ -168,7 +220,7 @@ export default function Grafico(props) {
                 <Numeros> </Numeros>
               </div>
               {testes.map((t) => (
-                <Teste key={t.id} height={t.pcm / 2} bg="blue">
+                <Teste key={t.id} height={t.pcm / 2} bg="#135c58">
                   <span>
                     <p>{t.pcm}</p>
                   </span>
@@ -1107,12 +1159,77 @@ export default function Grafico(props) {
                   )}
                 </>
               )}
+
+              <Span left="10">Módulo Intermediário: 1 a 10</Span>
+              <Span left="50">Módulo Avançado: 11 a 20</Span>
             </Box1>
           ) : (
             <Box1>
-              <h2>Você ainda não fez testes.</h2>
+              <h2>Você não realizou testes.</h2>
             </Box1>
           )}
+
+          <Ladodireito>
+            <h2>Provas</h2>
+            <small>Clique nas provas para acessar o gráfico</small>
+            <br />
+            <br />
+
+            {!prova && <Default onClick={criarProva}>Iniciar teste</Default>}
+            {prova && provafinalizada && (
+              <>
+                <h2>
+                  {provafinalizada && (
+                    <Link
+                      to={`/grafico/${prova.id}`}
+                      onClick={() => {
+                        setPorcentagem(0);
+                        window.scrollTo(0, 0);
+                        setAtual(provafinalizada.length + 1);
+                      }}
+                    >
+                      Prova {provafinalizada.length + 1}
+                      {porcentagem > 0 && (
+                        <small>
+                          {' '}
+                          (progresso: {porcentagem ? porcentagem : 0}%)
+                        </small>
+                      )}
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => {
+                      finalizarProva();
+                      setPorcentagem(0);
+                    }}
+                  >
+                    Finalizar
+                  </button>
+                </h2>
+              </>
+            )}
+
+            {provafinalizada && provafinalizada.length && (
+              <ul>
+                {provafinalizada.map((p, i) => {
+                  return (
+                    <li key={p.id}>
+                      <Link
+                        to={`/grafico/${p.id}`}
+                        onClick={() => {
+                          setPorcentagem(0);
+                          window.scrollTo(0, 0);
+                          setAtual(i + 1);
+                        }}
+                      >
+                        Prova {i + 1}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </Ladodireito>
         </div>
       </Prod>
     </Container>

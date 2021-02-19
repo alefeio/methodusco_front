@@ -25,7 +25,7 @@ export default function Palavras(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra } = props;
+  const { ex, exercicio, pergunta, palavra, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -34,7 +34,7 @@ export default function Palavras(props) {
   const resp = useSelector((state) => state.usuario);
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -62,7 +62,7 @@ export default function Palavras(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -121,7 +121,10 @@ export default function Palavras(props) {
     if (i >= 111) {
       const c4 = setInterval(() => {
         if (i === palavra.length + 1) {
-          if (isMountedRef.current) loadResposta();
+          // if (isMountedRef.current) loadResposta();
+          setContador(null);
+          setConcluido(true);
+
           setContagem(false);
           isMountedRef.current = false;
           return clearInterval(c4);
@@ -143,7 +146,7 @@ export default function Palavras(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -188,12 +191,19 @@ export default function Palavras(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
           <small>&laquo; Voltar</small>
         </a>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -1100,7 +1110,10 @@ export default function Palavras(props) {
 
             {!contador && !contagem && exercicio === 332 && (
               <div>
-                <Link onClick={() => loadProximo()} to="/apostila/3">
+                <Link
+                  onClick={() => loadProximo()}
+                  to={`/apostila/3/aula/${aula}`}
+                >
                   Próximo &raquo;
                 </Link>
               </div>

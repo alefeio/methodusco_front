@@ -34,7 +34,7 @@ export default function Exercicio04(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra } = props;
+  const { ex, exercicio, pergunta, palavra, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -43,7 +43,7 @@ export default function Exercicio04(props) {
   const resp = useSelector((state) => state.usuario);
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -65,17 +65,17 @@ export default function Exercicio04(props) {
 
   async function loadResposta() {
     try {
-      // await api.post('resposta', {
-      //   resposta: 0,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: 0,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContador(null);
       setConcluido(true);
@@ -93,7 +93,11 @@ export default function Exercicio04(props) {
     setContagem(true);
     const c16 = setInterval(() => {
       if (i === palavra.length + 1) {
-        if (isMountedRef.current) loadResposta();
+        if (isMountedRef.current) {
+          // loadResposta();
+          setContador(null);
+          setConcluido(true);
+        }
         setContagem(false);
         isMountedRef.current = false;
         return clearInterval(c16);
@@ -114,7 +118,7 @@ export default function Exercicio04(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -159,12 +163,19 @@ export default function Exercicio04(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
           <small>&laquo; Voltar</small>
         </a>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -1100,7 +1111,10 @@ export default function Exercicio04(props) {
 
             {concluido && !contador && !contagem && (
               <div>
-                <Link onClick={() => loadProximo()} to="/apostila/37">
+                <Link
+                  onClick={() => loadProximo()}
+                  to={`/apostila/37/aula/${aula}`}
+                >
                   Próximo &raquo;
                 </Link>
               </div>

@@ -41,6 +41,8 @@ export default function Exercicios(props) {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 7;
+
   async function finalizarProva() {
     try {
       await api.delete(`provasaluno/${prova.id}`);

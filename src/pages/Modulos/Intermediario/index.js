@@ -66,12 +66,6 @@ export default function Intermediario() {
     const prova_id = response.data ? response.data.id : null;
   }
 
-  // function fazerProva() {
-  //   dispatch(updateEmProvaRequest());
-
-  //   loadProvas();
-  // }
-
   useEffect(() => {
     async function loadPerfil() {
       setPerfil(perf.perfil);

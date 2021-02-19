@@ -28,7 +28,7 @@ export default function Login() {
     <>
       {!logado ? (
         <div>
-          <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
+          <img src={logo} alt="Methodus - Curso Leitura Dinâmica OnlineDinâmica e Memorização" />
           <br />
           <p>Melhore a qualidade da sua leitura em 5 a 8 vezes.</p>
           <Form schema={schema} onSubmit={handleSubmit}>
@@ -43,7 +43,7 @@ export default function Login() {
         </div>
       ) : (
         <div>
-          <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
+          <img src={logo} alt="Methodus - Curso Leitura Dinâmica OnlineDinâmica e Memorização" />
           <br />
           <h2>Você está logado.</h2>
           <p>

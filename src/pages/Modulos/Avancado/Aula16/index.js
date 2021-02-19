@@ -39,6 +39,8 @@ export default function Aula16() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 16;
+
   async function finalizarProva() {
     try {
       await api.delete(`provasaluno/${prova.id}`);

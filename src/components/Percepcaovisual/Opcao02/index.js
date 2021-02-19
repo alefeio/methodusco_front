@@ -12,7 +12,7 @@ import {
 
 import Barra from '~/components/Barra';
 
-import { Prod, ListaProdutos, Strong } from './styles';
+import { Prod, ListaProdutos, Strong, Voltar } from './styles';
 
 import api from '~/services/api';
 
@@ -30,7 +30,7 @@ export default function Opcoes02(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra, opcoes } = props;
+  const { ex, exercicio, pergunta, palavra, opcoes, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -160,7 +160,7 @@ export default function Opcoes02(props) {
   }
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -190,7 +190,7 @@ export default function Opcoes02(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -200,8 +200,10 @@ export default function Opcoes02(props) {
       setContador(null);
       setConcluido(true);
 
+      if (exercicio_id === 206) return setResultado(true);
+
       setTimeout(() => {
-        history.push(`/percepcaovisual/${exercicio + 1}`);
+        history.push(`/percepcaovisual/${exercicio + 1}/aula/${aula}`);
       }, 300);
 
       // toast.success('Exercício concluído com sucesso!');
@@ -209,8 +211,10 @@ export default function Opcoes02(props) {
       setContagem(true);
       setContador(null);
 
+      if (exercicio_id === 206) return setResultado(true);
+
       setTimeout(() => {
-        history.push(`/percepcaovisual/${exercicio + 1}`);
+        history.push(`/percepcaovisual/${exercicio + 1}/aula/${aula}`);
       }, 300);
     }
   }
@@ -223,7 +227,7 @@ export default function Opcoes02(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -259,12 +263,37 @@ export default function Opcoes02(props) {
 
   return (
     <>
-      <Barra
+      <Voltar>
+        <ul>
+          <li>
+            <Link to="/dashboard">
+              <small>Home</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to="/basico">
+              <small>Módulo Básico</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
+        </ul>
+
+        <a href="javascript:history.back()">
+          <small>&laquo; Voltar</small>
+        </a>
+      </Voltar>
+      {/* <Barra
         categoria="Leitura Dinâmica"
         modulo="Exercícios de percepção visual"
         exercicio={exercicio_id}
         nota={prova && prova.nota}
-      />
+      /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -272,6 +301,11 @@ export default function Opcoes02(props) {
         {apresentacao && (
           <div>
             <h2>{pergunta}</h2>
+          </div>
+        )}
+        {resultado && (
+          <div>
+            <h2>Resultado: {resultadoparcial.toFixed(1)}%</h2>
           </div>
         )}
         {!apresentacao && (
@@ -337,7 +371,7 @@ export default function Opcoes02(props) {
             <small>*A nota deste exercício já foi contabilizada.</small>
           )} */}
 
-            {exercicio === 206 && (
+            {resultado && exercicio === 206 && (
               <div>
                 <Strong>
                   Exercício Concluído{' '}

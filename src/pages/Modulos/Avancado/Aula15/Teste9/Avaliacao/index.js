@@ -34,6 +34,8 @@ import {
   Voltar,
 } from './styles';
 
+const aula = 15;
+
 const hrInicio = Date.now();
 
 const titulo = 'Tire seu Diploma em Liderança';
@@ -296,13 +298,13 @@ export default function Teste19avaliacao() {
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
 
-      toast.success('Teste 9 concluído com sucesso!');
+      toast.success('Teste 19 concluído com sucesso!');
       setTimeout(() => {
         setTesteconcluido(true);
         history.push('/avancado/teste9/resultado');
       }, 3000);
     } catch (error) {
-      toast.error('O Teste 9 já foi finalizado!');
+      toast.error('O Teste 19 já foi finalizado!');
     }
   }
 
@@ -362,7 +364,7 @@ export default function Teste19avaliacao() {
           </li>
           <li>|</li> */}
           <li>
-            <small>Teste 9</small>
+            <small>Teste 19</small>
           </li>
           {/* <li>|</li>
           <li>
@@ -397,18 +399,13 @@ export default function Teste19avaliacao() {
       <Prod visivel={visiv}>
         {!plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 9 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 19 - AVALIAÇÃO</Titulo>
             <br />
             <h2>
               {titulo && titulo}
               <small>
-                {cred1 && (
-                  <>
-                    {cred1} <br />
-                  </>
-                )}
-
-                {cred2 && cred2}
+                {cred1 && <>{cred1} </>}
+                {cred2 && <> - {cred2}</>}
               </small>
             </h2>
             {textos.map((t, i) => t && <p>{t}</p>)}
@@ -422,7 +419,7 @@ export default function Teste19avaliacao() {
         )}
         {plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 9 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 19 - AVALIAÇÃO</Titulo>
             <br />
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />

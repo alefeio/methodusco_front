@@ -27,7 +27,7 @@ export const Barra = styled.div`
   }
 
   h3 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
     color: green !important;
   }
 `;
@@ -65,13 +65,13 @@ export const Prod = styled.div`
     }
 
     span {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
       font-weight: bold;
     }
 
     p {
-      font: 5rem Georgia, 'Times New Roman', Times, serif;
+      font: 5rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: red;
       margin-bottom: 2rem;
       font-weight: bold;
@@ -80,14 +80,14 @@ export const Prod = styled.div`
     button {
       border: 0;
       padding: 1rem 2rem;
-      background: #004b85;
+      background: #135c58;
       border-radius: 4px;
       color: #fff;
       font-size: 2rem;
     }
 
     h2 {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
     }
 
@@ -104,7 +104,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
 
         &:hover {
           text-decoration: underline;
@@ -130,7 +130,7 @@ export const Prod = styled.div`
 
     div {
       a {
-        background: #004b85;
+        background: #135c58;
         color: #fff;
         border: 0;
         border-radius: 4px;
@@ -139,7 +139,7 @@ export const Prod = styled.div`
         transition: background 0.2s;
 
         &:hover {
-          background: ${darken(0.07, '#004b85')};
+          background: ${darken(0.07, '#135c58')};
         }
       }
     }

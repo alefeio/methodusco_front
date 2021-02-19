@@ -27,7 +27,8 @@ export default function Chamado(props) {
 
   const socket = useMemo(
     () =>
-      socketio('http://localhost:3333', {
+      // socketio('http://localhost:3333', {
+      socketio('http://104.131.87.127', {
         query: {
           usuario_id: perf.perfil.id,
         },

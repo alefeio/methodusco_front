@@ -87,6 +87,8 @@ export default function Autoaceleracao(props) {
 
   const resp = useSelector((state) => state.usuario);
 
+  const aula = 0;
+
   async function loadResposta() {
     try {
       await api.post('resposta', {
@@ -95,7 +97,7 @@ export default function Autoaceleracao(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -155,7 +157,7 @@ export default function Autoaceleracao(props) {
     isMountedRef.current = true;
 
     async function loadProva() {
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -184,7 +186,7 @@ export default function Autoaceleracao(props) {
       setMaximo(max);
     }
 
-    if (isMountedRef.current) loadProva();
+    // if (isMountedRef.current) loadProva();
     loadExercicio();
 
     if (id === 322) {
@@ -214,6 +216,10 @@ export default function Autoaceleracao(props) {
     if (id === 328) {
       loadNumeros(5, 10);
       setContador(10);
+    }
+    if (id === 329) {
+      loadNumeros(18, 25);
+      setContador(25);
     }
 
     return () => {
@@ -311,14 +317,14 @@ export default function Autoaceleracao(props) {
             </Strong>
           )}
 
-          {!concluido && (
+          {/* {!concluido && (
             <small>
               *A nota será contabilizada após a conclusão do exercício.
             </small>
           )}
           {concluido && (
             <small>*A nota deste exercício já foi contabilizada.</small>
-          )}
+          )} */}
         </div>
       </Prod>
     </Container>

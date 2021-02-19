@@ -5,16 +5,38 @@ export const Container = styled.div`
 `;
 
 export const Ladodireito = styled.div`
-  background: #efefef;
   margin: 2rem auto !important;
   max-width: 60%;
   text-align: center;
   border-radius: 5px;
   padding: 2rem !important;
-  background: #f0f1f4;
-  color: green;
-  font-weight: bold;
-  font-size: 1.5rem;
+  border: 1px solid #333;
+
+  h2 {
+    color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  small {
+    margin: 0 0 2rem;
+  }
+
+  ul {
+    background: #efefef;
+    margin: 2rem !important;
+    padding: 1rem !important;
+  }
+
+  button {
+    margin: 1rem;
+    padding: 1rem;
+    background: red;
+    color: white;
+    border-radius: 4px;
+    border: 0;
+  }
 `;
 
 export const ModUl = styled.ul`
@@ -52,7 +74,7 @@ export const Prod = styled.div`
     padding: 0 2rem;
 
     h1 {
-      font: 28px Georgia, 'Times New Roman', Times, serif;
+      font: 28px 'Trebuchet MS', 'Times New Roman', Times, serif;
       text-transform: uppercase;
       color: green;
     }
@@ -71,7 +93,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
 
         a {
           display: flex;
@@ -112,7 +134,7 @@ export const Prod = styled.div`
 export const Default = styled.small`
   border: 0;
   padding: 0.8rem;
-  background: #004b85;
+  background: #135c58;
   border-radius: 4px;
   color: #fff;
   padding: 1.5rem;
@@ -141,25 +163,29 @@ export const Danger = styled.small`
 `;
 
 export const Titulo = styled.h1`
-  font: 24px Georgia, 'Times New Roman', Times, serif !important;
+  font: 24px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #2e55a3 !important;
+  color: #135c58 !important;
   margin: 3rem auto 1rem !important;
   text-align: center;
 `;
 
 export const Titulo2 = styled.h1`
-  font: 20px Georgia, 'Times New Roman', Times, serif !important;
+  font: 20px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #2e55a3 !important;
+  color: #135c58 !important;
   margin: 0 auto 3rem !important;
   text-align: center;
+
+  small {
+    color: black;
+  }
 `;
 
 export const Titulo3 = styled.h1`
-  font: 18px Georgia, 'Times New Roman', Times, serif !important;
+  font: 18px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #2e55a3 !important;
+  color: #135c58 !important;
   margin: 2rem 0 0 !important;
 `;
 
@@ -169,7 +195,7 @@ export const Box1 = styled.div`
   justify-content: center;
   margin: 2rem auto !important;
   text-align: center;
-  border: 1px solid #2e55a3;
+  border: 1px solid #135c58;
   padding: 0 !important;
   background: #efefef;
   position: relative;
@@ -221,6 +247,18 @@ export const Box1 = styled.div`
   }
 `;
 
+export const Span = styled.span`
+  position: absolute !important;
+  bottom: 1%;
+  left: ${(props) => props.left}%;
+  width: 45%;
+  font-size: 2rem;
+
+  @media (max-width: 720px) {
+  font-size: 1.5rem;
+  }
+`;
+
 export const Teste = styled.div`
   display: flex;
   flex-direction: column;
@@ -232,7 +270,7 @@ export const Teste = styled.div`
     background: #efefef;
     height: 50px;
     color: black;
-    border-top: 1px solid blue;
+    border-top: 1px solid #135c58;
     width: 100%;
     margin: 0 auto;
   }
@@ -268,10 +306,10 @@ export const Numeros = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   height: 50px;
-  background: blue;
+  background: #135c58;
   color: white;
   border-top: 1px solid white;
-  border-left: 1px solid blue;
+  border-left: 1px solid #135c58;
 
   :first-child {
     border-top: 0;
@@ -279,7 +317,7 @@ export const Numeros = styled.div`
 
   :last-child {
     background: #efefef;
-    border-top: 1px solid blue;
+    border-top: 1px solid #135c58;
   }
 
   @media (max-width: 720px) {

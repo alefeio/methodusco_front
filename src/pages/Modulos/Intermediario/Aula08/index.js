@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -38,6 +39,8 @@ export default function Aula08() {
   // const dadosProva = useSelector((state) => state.usuario.prova);
 
   const perf = useSelector((state) => state.usuario);
+
+  const aula = 8;
 
   async function finalizarProva() {
     try {
@@ -127,53 +130,50 @@ export default function Aula08() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Autoaceleração:
-              <>
-                <small>→ aplicando nos textos</small>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <small>→ com o timer</small>
-              </>
+              <img src={icoPlay} /> Autoaceleração:
             </p>
+            <ul>
+              <li>→ aplicando nos textos</li>
+              <li>→ com o timer</li>
+            </ul>
             <br />
             <p>
               <strong>Prática</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Treinamentos curtos, intensos e
-              intercalados.
+              <img src={icoPlay} /> Explicando como realizar os exercícios
             </p>
             <p>
-              <strong>&raquo;</strong> Explicando como realizar os exercícios
+              <strong>&raquo;</strong> Treinamentos curtos, intensos e espaçados
             </p>
             <p>
               do 1º dia ao 10º → 45” à 20”{' '}
               <Link to="/autoaceleracao/323">&gt;</Link> e 30” à 20”{' '}
-              <Link to="/autoaceleracao/324">&gt;</Link>.
+              <Link to="/autoaceleracao/324">&gt;</Link>
             </p>
             <p>
-              do 11º dia ao 20º → 30” à 20”{' '}
-              <Link to="/autoaceleracao/324">&gt;</Link> e 20” à 15”{' '}
-              <Link to="/autoaceleracao/325">&gt;</Link>.
+              do 11º dia ao 20º → 25” à 18”{' '}
+              <Link to="/autoaceleracao/329">&gt;</Link> e 20” à 15”{' '}
+              <Link to="/autoaceleracao/325">&gt;</Link>
             </p>
             <br />
             <p>
               <strong>Objetivos</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Romper paradigmas silábico/fonético nos
-              textos.
+              <strong>&raquo;</strong> Romper paradigmas da leitura silábica
+              fonética nos textos
             </p>
             <p>
               <strong>&raquo;</strong> Automatizar paradigmas da leitura
-              dinâmica nos textos.
+              dinâmica nos textos
             </p>
             <br />
             <p>
               <strong>Duração</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> 20 dias.
+              <strong>&raquo;</strong> 20 dias
             </p>
           </Box1>
         </div>

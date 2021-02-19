@@ -15,6 +15,10 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
+  img {
+    width: 100%;
+  }
+
   h2 {
     color: white;
     margin: 2rem 0 1rem;
@@ -22,7 +26,7 @@ export const Content = styled.div`
   }
 
   p {
-    color: black;
+    color: 999;
     font-size: 1.8rem;
 
     a {
@@ -60,7 +64,7 @@ export const Content = styled.div`
     button {
       margin: 5px 0 0;
       height: 44px;
-      background: #2e55a3;
+      background: #135c58;
       font-weight: bold;
       color: #fff;
       border: 0;
@@ -74,7 +78,7 @@ export const Content = styled.div`
     }
 
     a {
-      color: #2e55a3;
+      color: #fff;
       margin-top: 15px;
       font-size: 16px;
       opacity: 0.8;

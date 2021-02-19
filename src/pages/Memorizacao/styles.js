@@ -27,7 +27,7 @@ export const Barra = styled.div`
   }
 
   h3 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
     color: green !important;
   }
 `;
@@ -52,7 +52,7 @@ export const Prod = styled.div`
     text-align: center;
 
     a {
-      background: #004b85;
+      background: #135c58;
       color: #fff;
       border: 0;
       border-radius: 4px;
@@ -61,7 +61,7 @@ export const Prod = styled.div`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.07, '#004b85')};
+        background: ${darken(0.07, '#135c58')};
       }
     }
 
@@ -75,7 +75,7 @@ export const Prod = styled.div`
     }
 
     span {
-      font: 20rem Georgia, 'Times New Roman', Times, serif;
+      font: 20rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
       margin-bottom: 5rem;
       position: absolute;
@@ -84,14 +84,14 @@ export const Prod = styled.div`
     button {
       border: 0;
       padding: 1rem 2rem;
-      background: #004b85;
+      background: #135c58;
       border-radius: 4px;
       color: #fff;
       font-size: 2rem;
     }
 
     h1 {
-      font: 28px Georgia, 'Times New Roman', Times, serif;
+      font: 28px 'Trebuchet MS', 'Times New Roman', Times, serif;
       text-transform: uppercase;
       color: green;
     }
@@ -109,7 +109,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
 
         &:hover {
           text-decoration: underline;
@@ -186,7 +186,7 @@ export const Span = styled.span`
   left: ${(props) => props.left}%;
   top: ${(props) => props.top}%;
   font-size: ${(props) => props.size}rem !important;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
 
   @media (max-width: 720px) {
     left: ${(props) => props.left}%;

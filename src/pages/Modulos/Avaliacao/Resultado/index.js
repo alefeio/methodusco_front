@@ -44,6 +44,8 @@ export default function Resultado() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 0;
+
   async function pegarResultado(prova) {
     const response = await api.put('teste', {
       numero: 0,
@@ -177,6 +179,14 @@ export default function Resultado() {
             <Red> {plm}</Red> palavras por minuto, compreenderia e reteria
             <Red> {pcr}%</Red>.
           </p>
+
+          {prova && (
+            <div>
+              <Default>
+                <Link to={`/grafico/${prova.id}`}>Gráfico de Evolução</Link>
+              </Default>
+            </div>
+          )}
         </div>
       </Prod>
     </Container>

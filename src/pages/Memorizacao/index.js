@@ -144,6 +144,8 @@ export default function Memorizacao(props) {
 
   const id = parseInt(props.match.params.id);
 
+  const { aula } = props;
+
   const exercicio_id = id;
 
   const dispatch = useDispatch();
@@ -158,7 +160,7 @@ export default function Memorizacao(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -171,7 +173,7 @@ export default function Memorizacao(props) {
   }
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -253,7 +255,7 @@ export default function Memorizacao(props) {
   //       exercicio_id,
   //     });
 
-  //     const response = await api.get(`provas`);
+  //     const response = await api.get(`provas2/${aula}`);
 
   //     setProva(response.data);
   //     dispatch(updateProvaRequest(response.data));

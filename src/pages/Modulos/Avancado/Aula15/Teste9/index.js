@@ -40,6 +40,8 @@ export default function Teste19() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 15
+
   async function verificarTeste(prova) {
     const response = await api.put('teste', {
       numero: 19,
@@ -135,7 +137,7 @@ export default function Teste19() {
       </Voltar>
       <Prod>
         <div>
-          <Titulo>TESTE 9</Titulo>
+          <Titulo>TESTE 19</Titulo>
           <br />
           {testeconcluido ? (
             <>
@@ -153,7 +155,7 @@ export default function Teste19() {
           ) : (
             <>
               <p>
-                Agora você irá fazer o Teste 9, para avaliar o seu progresso ao
+                Agora você irá fazer o Teste 19, para avaliar o seu progresso ao
                 longo do curso. Este teste tem por objetivo medir a velocidade
                 (Palavras Lidas por Minuto - PLM), o quanto compreende
                 (Percentual de Compreensão e Retenção - PCR) e quantas (Palavras

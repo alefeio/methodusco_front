@@ -44,6 +44,8 @@ export default function Teste12resultado() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 13;
+
   async function pegarResultado(prova) {
     const response = await api.put('teste', {
       numero: 12,

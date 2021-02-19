@@ -30,7 +30,7 @@ export default function Exercicio08(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra, opcoes } = props;
+  const { ex, exercicio, pergunta, palavra, opcoes, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -60,7 +60,7 @@ export default function Exercicio08(props) {
   }
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -72,26 +72,28 @@ export default function Exercicio08(props) {
 
   async function loadResposta(res) {
     try {
-      // await api.post('resposta', {
-      //   resposta: res,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: res,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContagem(true);
       setContador(null);
       setConcluido(true);
 
-      // loadProva();
+      loadProva();
+
+      if (exercicio_id === 364) return setResultado(true);
 
       setTimeout(() => {
-        history.push(`/apostila/${exercicio + 1}`);
+        history.push(`/apostila/${exercicio + 1}/aula/${aula}`);
       }, 300);
 
       // toast.success('Exercício concluído com sucesso!');
@@ -99,25 +101,27 @@ export default function Exercicio08(props) {
       setContagem(true);
       setContador(null);
 
+      if (exercicio_id === 364) return setResultado(true);
+
       setTimeout(() => {
-        history.push(`/apostila/${exercicio + 1}`);
+        history.push(`/apostila/${exercicio + 1}/aula/${aula}`);
       }, 300);
     }
   }
 
   async function loadProximo() {
     try {
-      // await api.post('resposta', {
-      //   resposta: 100,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: 100,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContagem(true);
 
@@ -166,8 +170,15 @@ export default function Exercicio08(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -175,6 +186,11 @@ export default function Exercicio08(props) {
         {apresentacao && (
           <div>
             <h2>{pergunta}</h2>
+          </div>
+        )}
+        {resultado && (
+          <div>
+            <h2>Resultado: {resultadoparcial.toFixed(1)}%</h2>
           </div>
         )}
         {!apresentacao && (
@@ -209,7 +225,7 @@ export default function Exercicio08(props) {
                 <li> </li>
               </ListaProdutos>
             )}
-            {contador && !contagem && exercicio_id >= 337 && exercicio_id <= 356 && (
+            {contador > 0 && !contagem && exercicio_id >= 337 && exercicio_id <= 356 && (
               <>
                 <button onClick={() => loadResposta(1)}>1</button>
                 <button onClick={() => loadResposta(2)}>2</button>
@@ -219,7 +235,7 @@ export default function Exercicio08(props) {
                 <button onClick={() => loadResposta(6)}>6</button>
               </>
             )}
-            {contador && !contagem && exercicio_id >= 357 && (
+            {contador > 0 && !contagem && exercicio_id >= 357 && (
               <>
                 <button onClick={() => loadResposta(1)}>1</button>
                 <button onClick={() => loadResposta(2)}>2</button>
@@ -267,7 +283,7 @@ export default function Exercicio08(props) {
               </div>
             )} */}
             <div>
-              {!contador && concluido && !contador && (
+              {resultado && (
                 <Strong>
                   Exercício Concluído{' '}
                   <img src={icoConcluido} alt="Exercício concluído" />

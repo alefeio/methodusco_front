@@ -34,6 +34,8 @@ import {
   Voltar,
 } from './styles';
 
+const aula = 15;
+
 const hrInicio = Date.now();
 
 const titulo = 'À beira de um ataque de Nervos';
@@ -318,13 +320,13 @@ export default function Teste16avaliacao() {
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
 
-      toast.success('Teste 6 concluído com sucesso!');
+      toast.success('Teste 16 concluído com sucesso!');
       setTimeout(() => {
         setTesteconcluido(true);
         history.push('/avancado/teste6/resultado');
       }, 3000);
     } catch (error) {
-      toast.error('O Teste 6 já foi finalizado!');
+      toast.error('O Teste 16 já foi finalizado!');
     }
   }
 
@@ -384,7 +386,7 @@ export default function Teste16avaliacao() {
           </li>
           <li>|</li> */}
           <li>
-            <small>Teste 6</small>
+            <small>Teste 16</small>
           </li>
           <li>|</li>
           <li>
@@ -423,18 +425,13 @@ export default function Teste16avaliacao() {
       <Prod visivel={visiv}>
         {!plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 6 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 16 - AVALIAÇÃO</Titulo>
             <br />
             <h2>
               {titulo && titulo}
               <small>
-                {cred1 && (
-                  <>
-                    {cred1} <br />
-                  </>
-                )}
-
-                {cred2 && cred2}
+                {cred1 && <>{cred1} </>}
+                {cred2 && <> - {cred2}</>}
               </small>
             </h2>
             {textos.map((t, i) => t && <p>{t}</p>)}
@@ -448,7 +445,7 @@ export default function Teste16avaliacao() {
         )}
         {plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 6 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 16 - AVALIAÇÃO</Titulo>
             <br />
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />

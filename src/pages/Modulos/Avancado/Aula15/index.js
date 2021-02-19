@@ -39,6 +39,8 @@ export default function Aula15() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 15;
+
   async function finalizarProva() {
     try {
       await api.delete(`provasaluno/${prova.id}`);
@@ -130,23 +132,23 @@ export default function Aula15() {
               <strong>&raquo;</strong> Quanto mudou os paradigmas da leitura.
             </p>
             <p>
-              <strong>→ teste 06:</strong> P.L.M = 1250{' '}
+              <strong>→ teste 16:</strong> P.L.M = 1250{' '}
               <Link to="/avancado/teste6">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 07:</strong> P.L.M = 1300{' '}
+              <strong>→ teste 17:</strong> P.L.M = 1300{' '}
               <Link to="/avancado/teste7">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 08:</strong> P.L.M = 1350{' '}
+              <strong>→ teste 18:</strong> P.L.M = 1350{' '}
               <Link to="/avancado/teste8">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 09:</strong> P.L.M = 1400{' '}
+              <strong>→ teste 19:</strong> P.L.M = 1400{' '}
               <Link to="/avancado/teste9">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 10:</strong> P.L.M = 1450{' '}
+              <strong>→ teste 20:</strong> P.L.M = 1450{' '}
               <Link to="/avancado/teste10">&gt;</Link>
             </p>
             <p>

@@ -18,7 +18,7 @@ import Frases from '~/components/Apostila/Frases';
 
 import { Container } from './styles';
 
-export default function Percepcaovisual(props) {
+export default function Apostila(props) {
   const [exercicio, setExercicio] = useState();
   const [pergunta, setPergunta] = useState();
   const [palavra, setPalavra] = useState();
@@ -29,6 +29,7 @@ export default function Percepcaovisual(props) {
   const isMountedRef = useRef(null);
 
   const exercicio_id = parseInt(props.match.params.id);
+  const aula = parseInt(props.match.params.aula);
 
   function fExercicio(ex) {
     setExercicio(ex);
@@ -2728,7 +2729,37 @@ export default function Percepcaovisual(props) {
         'lucro',
         'busca',
         'recursos',
-        'inéditos'
+        'inéditos',
+        'aparelhos',
+        'dispositivos',
+        'enfrenta',
+        'problemas',
+        'primeiro',
+        'modelo',
+        'agregar',
+        'produtos',
+        'conferência',
+        'eletrônica',
+        'equipamentos',
+        'comerciais',
+        'sistema',
+        'instalação',
+        'período',
+        'crescimento',
+        'texto',
+        'escrever',
+        'fabricante',
+        'milhões',
+        'mudanças',
+        'drásticas',
+        'cores',
+        'vivas',
+        'computadores',
+        'servidores',
+        'futuro',
+        'trabalho',
+        'agressivas',
+        'estratégias'
       );
     if (exerc === 337)
       palavras(
@@ -3049,13 +3080,19 @@ export default function Percepcaovisual(props) {
   return (
     <Container>
       {exercicio_id === 1 && (
-        <Cores ex={exercicio} exercicio={exercicio_id} pergunta={pergunta} />
+        <Cores
+          ex={exercicio}
+          exercicio={exercicio_id}
+          pergunta={pergunta}
+          aula={aula}
+        />
       )}
       {exercicio_id === 2 && (
         <Exercicio02
           ex={exercicio}
           exercicio={exercicio_id}
           pergunta={pergunta}
+          aula={aula}
         />
       )}
       {exercicio_id === 332 && (
@@ -3064,6 +3101,7 @@ export default function Percepcaovisual(props) {
           exercicio={exercicio_id}
           pergunta={pergunta}
           palavra={cor}
+          aula={aula}
         />
       )}
       {((exercicio_id >= 3 && exercicio_id <= 18) ||
@@ -3075,6 +3113,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {((exercicio_id >= 19 && exercicio_id <= 36) ||
@@ -3086,6 +3125,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id === 333 && (
@@ -3094,6 +3134,7 @@ export default function Percepcaovisual(props) {
           exercicio={exercicio_id}
           pergunta={pergunta}
           palavra={cor}
+          aula={aula}
         />
       )}
       {((exercicio_id >= 37 && exercicio_id <= 59) ||
@@ -3104,6 +3145,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id >= 120 && exercicio_id <= 150 && (
@@ -3114,6 +3156,7 @@ export default function Percepcaovisual(props) {
           palavra={palavra}
           palavra2={palavra2}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id >= 151 && exercicio_id <= 163 && (
@@ -3123,6 +3166,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id >= 164 && exercicio_id <= 173 && (
@@ -3133,6 +3177,7 @@ export default function Percepcaovisual(props) {
           palavra={palavra}
           palavra2={palavra2}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id >= 174 && exercicio_id <= 177 && (
@@ -3142,6 +3187,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id === 334 && (
@@ -3150,6 +3196,7 @@ export default function Percepcaovisual(props) {
           exercicio={exercicio_id}
           pergunta={pergunta}
           palavra={cor}
+          aula={aula}
         />
       )}
       {exercicio_id === 335 && (
@@ -3158,6 +3205,7 @@ export default function Percepcaovisual(props) {
           exercicio={exercicio_id}
           pergunta={pergunta}
           palavra={cor}
+          aula={aula}
         />
       )}
       {exercicio_id === 336 && (
@@ -3166,6 +3214,7 @@ export default function Percepcaovisual(props) {
           exercicio={exercicio_id}
           pergunta={pergunta}
           palavra={cor}
+          aula={aula}
         />
       )}
       {exercicio_id >= 337 && exercicio_id <= 364 && (
@@ -3175,6 +3224,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
     </Container>

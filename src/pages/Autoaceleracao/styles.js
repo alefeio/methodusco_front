@@ -28,7 +28,7 @@ export const Barra = styled.div`
   }
 
   h3 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
     color: green !important;
   }
 `;
@@ -61,7 +61,7 @@ export const Prod = styled.div`
     width: 100%;
 
     span {
-      font: 20rem Georgia, 'Times New Roman', Times, serif;
+      font: 20rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
       margin-bottom: 5rem;
     }
@@ -69,14 +69,14 @@ export const Prod = styled.div`
     button {
       border: 0;
       padding: 1rem 2rem;
-      background: #004b85;
+      background: #135c58;
       border-radius: 4px;
       color: #fff;
       font-size: 2rem;
     }
 
     h1 {
-      font: 28px Georgia, 'Times New Roman', Times, serif;
+      font: 28px 'Trebuchet MS', 'Times New Roman', Times, serif;
       text-transform: uppercase;
       color: green;
     }
@@ -94,7 +94,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
 
         &:hover {
           text-decoration: underline;

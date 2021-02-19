@@ -34,6 +34,8 @@ import {
   Voltar,
 } from './styles';
 
+const aula = 13;
+
 const hrInicio = Date.now();
 
 const titulo = 'Aprenda a se Concentrar';
@@ -289,13 +291,13 @@ export default function Teste15avaliacao() {
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
 
-      toast.success('Teste 5 concluído com sucesso!');
+      toast.success('Teste 15 concluído com sucesso!');
       setTimeout(() => {
         setTesteconcluido(true);
         history.push('/avancado/teste5/resultado');
       }, 3000);
     } catch (error) {
-      toast.error('O Teste 5 já foi finalizado!');
+      toast.error('O Teste 15 já foi finalizado!');
     }
   }
 
@@ -355,7 +357,7 @@ export default function Teste15avaliacao() {
           </li>
           <li>|</li> */}
           <li>
-            <small>Teste 5</small>
+            <small>Teste 15</small>
           </li>
           {/* <li>|</li>
           <li>
@@ -390,18 +392,13 @@ export default function Teste15avaliacao() {
       <Prod visivel={visiv}>
         {!plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 5 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 15 - AVALIAÇÃO</Titulo>
             <br />
             <h2>
               {titulo && titulo}
               <small>
-                {cred1 && (
-                  <>
-                    {cred1} <br />
-                  </>
-                )}
-
-                {cred2 && cred2}
+                {cred1 && <>{cred1} </>}
+                {cred2 && <> - {cred2}</>}
               </small>
             </h2>
             {textos.map((t, i) => t && <p>{t}</p>)}
@@ -415,7 +412,7 @@ export default function Teste15avaliacao() {
         )}
         {plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 5 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 15 - AVALIAÇÃO</Titulo>
             <br />
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />

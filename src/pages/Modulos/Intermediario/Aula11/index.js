@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -38,6 +39,8 @@ export default function Aula11() {
   // const dadosProva = useSelector((state) => state.usuario.prova);
 
   const perf = useSelector((state) => state.usuario);
+
+  const aula = 11;
 
   async function finalizarProva() {
     try {
@@ -127,25 +130,30 @@ export default function Aula11() {
               <strong>Avaliação</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Quanto mudou os paradigmas da leitura.
+              <img src={icoPlay} /> Quanto mudaram os paradigmas da leitura.
             </p>
             <p>
-              <strong>→ teste 06:</strong> P.L.M = 750 <Link to="/intermediario/teste6">&gt;</Link>
+              <strong>→ teste 06:</strong> P.L.M = 750{' '}
+              <Link to="/intermediario/teste6">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 07:</strong> P.L.M = 800 <Link to="/intermediario/teste7">&gt;</Link>
+              <strong>→ teste 07:</strong> P.L.M = 800{' '}
+              <Link to="/intermediario/teste7">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 08:</strong> P.L.M = 850 <Link to="/intermediario/teste8">&gt;</Link>
+              <strong>→ teste 08:</strong> P.L.M = 850{' '}
+              <Link to="/intermediario/teste8">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 09:</strong> P.L.M = 900 <Link to="/intermediario/teste9">&gt;</Link>
+              <strong>→ teste 09:</strong> P.L.M = 900{' '}
+              <Link to="/intermediario/teste9">&gt;</Link>
             </p>
             <p>
-              <strong>→ teste 10:</strong> P.L.M = 950 <Link to="/intermediario/teste10">&gt;</Link>
+              <strong>→ teste 10:</strong> P.L.M = 950{' '}
+              <Link to="/intermediario/teste10">&gt;</Link>
             </p>
             <p>
-              <strong>&raquo;</strong> Avaliando o seu desempenho.
+              <img src={icoPlay} /> Avaliando o seu desempenho.
             </p>
           </Box1>
         </div>

@@ -19,6 +19,7 @@ export default function Percepcaovisual(props) {
   const isMountedRef = useRef(null);
 
   const exercicio_id = parseInt(props.match.params.id);
+  const aula = parseInt(props.match.params.aula);
 
   function fExercicio(ex) {
     setExercicio(ex);
@@ -1362,6 +1363,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id >= 203 && exercicio_id <= 206 && (
@@ -1371,6 +1373,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {(exercicio_id === 207 || exercicio_id === 241) && (
@@ -1379,6 +1382,7 @@ export default function Percepcaovisual(props) {
           exercicio={exercicio_id}
           pergunta={pergunta}
           cor={cor}
+          aula={aula}
         />
       )}
       {exercicio_id >= 208 && exercicio_id <= 240 && (
@@ -1388,6 +1392,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id >= 242 && exercicio_id <= 285 && (
@@ -1397,6 +1402,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
       {exercicio_id >= 286 && exercicio_id <= 322 && (
@@ -1406,6 +1412,7 @@ export default function Percepcaovisual(props) {
           pergunta={pergunta}
           palavra={palavra}
           opcoes={opcoes}
+          aula={aula}
         />
       )}
     </Container>

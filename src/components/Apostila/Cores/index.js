@@ -24,6 +24,7 @@ import {
 import api from '~/services/api';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import reiniciar from '~/assets/reiniciar.png';
 
 export default function Opcoes02(props) {
   const [contador, setContador] = useState(0);
@@ -41,7 +42,7 @@ export default function Opcoes02(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta } = props;
+  const { ex, exercicio, pergunta, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -50,7 +51,7 @@ export default function Opcoes02(props) {
   const resp = useSelector((state) => state.usuario);
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -78,7 +79,7 @@ export default function Opcoes02(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -400,6 +401,10 @@ export default function Opcoes02(props) {
         setCima(false);
         if (i > 61) {
           // if (isMountedRef.current) loadResposta();
+          setContagem(true);
+          setContador(null);
+          setConcluido(true);
+
           setContagem(false);
           isMountedRef.current = false;
           return clearInterval(c16);
@@ -418,7 +423,7 @@ export default function Opcoes02(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -463,12 +468,19 @@ export default function Opcoes02(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
           <small>&laquo; Voltar</small>
         </a>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -559,10 +571,15 @@ export default function Opcoes02(props) {
             )} */}
                 {exercicio < 207 && (
                   <>
-                    <Strong>
-                      Exercício Concluído{' '}
-                      <img src={icoConcluido} alt="Exercício concluído" />
-                    </Strong>
+                    <button
+                      onClick={() => {
+                        loadContador(1);
+                        setGrupo(100);
+                        isMountedRef.current = true;
+                      }}
+                    >
+                      <img src={reiniciar} alt="Reiniciar" />
+                    </button>
                     {/* <Link
                       onClick={() => loadProximo()}
                       to={`/apostila/${exercicio + 1}`}

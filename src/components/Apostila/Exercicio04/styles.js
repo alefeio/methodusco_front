@@ -29,7 +29,7 @@ export const Prod = styled.div`
     text-align: center;
 
     span {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
       margin-bottom: 5rem;
     }
@@ -37,14 +37,14 @@ export const Prod = styled.div`
     button {
       border: 0;
       padding: 1rem 2rem;
-      background: #004b85;
+      background: #135c58;
       border-radius: 4px;
       color: #fff;
       font-size: 2rem;
     }
 
     h2 {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
     }
 
@@ -61,7 +61,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font: 3rem Georgia, 'Times New Roman', Times, serif;
+        font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       }
     }
 
@@ -82,7 +82,7 @@ export const Prod = styled.div`
       flex-direction: row;
 
       a {
-        background: #004b85;
+        background: #135c58;
         color: #fff;
         border: 0;
         border-radius: 4px;
@@ -91,7 +91,7 @@ export const Prod = styled.div`
         transition: background 0.2s;
 
         &:hover {
-          background: ${darken(0.07, '#004b85')};
+          background: ${darken(0.07, '#135c58')};
         }
       }
     }
@@ -110,7 +110,7 @@ export const ListaProdutos = styled.ul`
   width: 100%;
 
   strong {
-    font: 4rem Georgia, 'Times New Roman', Times, serif;
+    font: 4rem 'Trebuchet MS', 'Times New Roman', Times, serif;
   }
 
   li {
@@ -122,7 +122,7 @@ export const ListaProdutos = styled.ul`
     flex-wrap: nowrap;
 
     button {
-      background: #004b85;
+      background: #135c58;
       color: #fff;
       border: 0;
       border-radius: 4px;
@@ -130,7 +130,7 @@ export const ListaProdutos = styled.ul`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.07, '#004b85')};
+        background: ${darken(0.07, '#135c58')};
       }
     }
 
@@ -161,7 +161,7 @@ export const Cima = styled.small`
   position: absolute;
   bottom: ${(props) => props.bottom}%;
   right: ${(props) => props.right}%;
-  font: 6rem Georgia, 'Times New Roman', Times, serif;
+  font: 6rem 'Trebuchet MS', 'Times New Roman', Times, serif;
   color: #41ad49;
   font-weight: bold;
 `;
@@ -170,7 +170,7 @@ export const Direita = styled.small`
   position: absolute;
   bottom: ${(props) => props.bottom}%;
   left: ${(props) => props.left}%;
-  font: 6rem Georgia, 'Times New Roman', Times, serif;
+  font: 6rem 'Trebuchet MS', 'Times New Roman', Times, serif;
   color: #41ad49;
   font-weight: bold;
 `;
@@ -179,7 +179,7 @@ export const Baixo = styled.small`
   position: absolute;
   top: ${(props) => props.top}%;
   left: ${(props) => props.left}%;
-  font: 6rem Georgia, 'Times New Roman', Times, serif;
+  font: 6rem 'Trebuchet MS', 'Times New Roman', Times, serif;
   color: #41ad49;
   font-weight: bold;
 `;

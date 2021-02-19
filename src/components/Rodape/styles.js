@@ -6,11 +6,11 @@ export const Rod = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #2e55a3;
+  color: #fff;
   padding: 20px 30px;
 
   span {
-    color: #000 !important;
+    color: #dedede !important;
   }
 
   @media (max-width: 720px) {

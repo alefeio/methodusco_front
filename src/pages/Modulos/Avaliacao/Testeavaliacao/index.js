@@ -34,6 +34,8 @@ import {
   Voltar,
 } from './styles';
 
+const aula = 0;
+
 const hrInicio = Date.now();
 
 const titulo = 'Do Ventre para o Cérebro';

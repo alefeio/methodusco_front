@@ -40,6 +40,8 @@ export default function Teste5() {
 
   const perf = useSelector((state) => state.usuario);
 
+  const aula = 9;
+
   async function verificarTeste(prova) {
     const response = await api.put('teste', {
       numero: 5,
@@ -154,11 +156,17 @@ export default function Teste5() {
             <>
               <p>
                 Agora você irá fazer o Teste 5, para avaliar o seu progresso ao
-                longo do curso. Este teste tem por objetivo medir a velocidade
-                (Palavras Lidas por Minuto - PLM), o quanto compreende
-                (Percentual de Compreensão e Retenção - PCR) e quantas (Palavras
-                Compreende por Minuto - PCM).
+                longo do curso.
               </p>
+              <p>Este teste tem por objetivo:</p>
+              <ul>
+                <li>medir a velocidade (Palavras Lidas por Minuto - PLM)</li>
+                <li>
+                  o quanto compreende (Percentual de Compreensão e Retenção -
+                  PCR)
+                </li>
+                <li>e quantas (Palavras Compreende por Minuto - PCM)</li>
+              </ul>
               <br />
               <p>
                 Ao clicar em <strong>Iniciar</strong>, você será direcionado ao

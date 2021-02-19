@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -38,6 +39,8 @@ export default function Aula10() {
   // const dadosProva = useSelector((state) => state.usuario.prova);
 
   const perf = useSelector((state) => state.usuario);
+
+  const aula = 10;
 
   async function finalizarProva() {
     try {
@@ -127,34 +130,36 @@ export default function Aula10() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Subvocalização = cordas vocais
+              <img src={icoPlay} /> Subvocalização = cordas vocais
             </p>
             <br />
             <p>
               <strong>Prática</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> treinamentos intensos, curtos e
-              intercalados.
+              <img src={icoPlay} /> Explicando como realizar os exercícios
             </p>
-            <p>
-              <strong>&raquo;</strong> Autoaceleração nos textos com timer
-            </p>
+
+            <ul>
+              <li>→ Treinamentos curtos, intensos e espaçados</li>
+              <li>→ Autoaceleração nos textos com timer</li>
+            </ul>
             <p>
               do 1º dia ao 15º → 30” à 20”{' '}
               <Link to="/autoaceleracao/324">&gt;</Link> e 20” à 15”{' '}
-              <Link to="/autoaceleracao/325">&gt;</Link>.
+              <Link to="/autoaceleracao/325">&gt;</Link>
             </p>
             <p>
               do 16º dia ao 30º → 20” à 10”{' '}
-              <Link to="/autoaceleracao/326">&gt;</Link>.
+              <Link to="/autoaceleracao/326">&gt;</Link>
             </p>
             <br />
             <p>
               <strong>Objetivos</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Romper paradigmas silábico/fonético.
+              <strong>&raquo;</strong> Romper paradigmas da leitura silábica
+              fonética
             </p>
             <p>
               <strong>&raquo;</strong> Automatizar paradigmas da leitura
@@ -165,7 +170,7 @@ export default function Aula10() {
               <strong>Duração</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> 30 dias.
+              <strong>&raquo;</strong> 30 dias
             </p>
           </Box1>
         </div>

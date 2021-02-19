@@ -50,14 +50,14 @@ export const Nav = styled.nav`
   ul li a {
     font-size: 16px;
     text-transform: uppercase;
-    color: #375ea1;
+    color: #fff;
     padding: 10px;
     margin: 0 2px;
     transition: 0.2s;
     font-weight: bold;
 
     &:hover {
-      color: ${darken(0.2, '#375ea1')};
+      color: ${darken(0.2, '#fff')};
     }
   }
 

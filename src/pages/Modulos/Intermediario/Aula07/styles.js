@@ -30,6 +30,7 @@ export const Prod = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding: 50px;
 
   div {
     width: 100%;
@@ -40,7 +41,7 @@ export const Prod = styled.div`
     }
 
     h1 {
-      font: 28px Georgia, 'Times New Roman', Times, serif;
+      font: 28px 'Trebuchet MS', 'Times New Roman', Times, serif;
       text-transform: uppercase;
       color: green;
     }
@@ -59,7 +60,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
 
         a {
           display: flex;
@@ -104,12 +105,6 @@ export const Prod = styled.div`
       padding: 0;
       margin: 0;
       border-left: 0;
-      display: flex;
-      flex-direction: column;
-
-      img {
-        width: 50%;
-      }
     }
   }
 `;
@@ -117,19 +112,58 @@ export const Prod = styled.div`
 export const Default = styled.small`
   border: 0;
   padding: 0.8rem;
-  background: #004b85;
-  border-radius: 4px;
+  /* border: 1px solid #ddd; */
+  background: #135c58;
   color: #fff;
-  padding: 1rem;
-  font-size: 1.2rem;
+  padding: 1.5rem;
+  font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
 
   a {
     color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  @media (max-width: 720px) {
+    padding: 3rem;
+    width: 90%;
+
+    a {
+      flex-direction: row;
+    }
+  }
+`;
+
+export const Default2 = styled.small`
+  border: 0;
+  /* border: 1px solid #ddd; */
+  background: #135c58;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-radius: 4px;
+  margin: 1rem;
+  cursor: pointer;
+
+  a {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 720px) {
+    padding: 3rem;
+    width: 90%;
+
+    a {
+      flex-direction: row;
+    }
   }
 `;
 
@@ -143,27 +177,41 @@ export const Danger = styled.small`
   cursor: pointer;
 `;
 
+
+
 export const Titulo = styled.h1`
-  font: 24px Georgia, 'Times New Roman', Times, serif !important;
+  font: 24px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #2e55a3 !important;
+  color: #135c58 !important;
   margin: 3rem auto 1rem !important;
   text-align: center;
 `;
 
 export const Titulo2 = styled.h1`
-  font: 20px Georgia, 'Times New Roman', Times, serif !important;
+  font: 20px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #2e55a3 !important;
-  margin: 0 auto 3rem !important;
+  color: #135c58 !important;
+  margin: 2rem auto 0 !important;
+  text-align: center;
+`;
+
+export const TituloVermelho = styled.h1`
+  font: 16px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
+  text-transform: none !important;
+  background: red;
+  color: #fff !important;
+  width: 50%;
+  margin: 0 auto !important;
+  padding: 1rem;
+  border-radius: 4px;
   text-align: center;
 `;
 
 export const Titulo3 = styled.h1`
-  font: 18px Georgia, 'Times New Roman', Times, serif !important;
+  font: 18px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #2e55a3 !important;
-  margin: 2rem 0 0 !important;
+  color: #000 !important;
+  margin: 2rem auto !important;
   text-align: center;
 `;
 
@@ -171,10 +219,7 @@ export const Box1 = styled.div`
   margin: 2rem auto !important;
   max-width: 60%;
   text-align: center;
-  border: 1px solid #2e55a3;
-  border-radius: 5px;
   padding: 2rem !important;
-  background: #f0f1f4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,17 +229,33 @@ export const Box1 = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   p {
     margin: 0.5rem 0;
+    text-align: left;
 
     a {
-      background: #2e55a3;
-      padding: 0.1rem 0.5rem;
+      padding: 0.3rem 0.7rem;
       margin: 0.2rem;
       border-radius: 3px;
-      color: #fff;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+    max-width: 90%;
+
+    div {
+      flex-direction: column;
     }
   }
 `;

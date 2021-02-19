@@ -100,6 +100,7 @@ import Aula16 from '../pages/Modulos/Avancado/Aula16';
 import Grafico from '../pages/Grafico';
 import Suporte from '../pages/Suporte';
 import Chamado from '../pages/Chamado';
+import Videos from '../pages/Videos';
 
 export default function Routes() {
   return (
@@ -109,11 +110,11 @@ export default function Routes() {
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/comtimer/:id" component={Comtimer} isPrivate />
       <Route
-        path="/percepcaovisual/:id"
+        path="/percepcaovisual/:id/aula/:aula"
         component={Percepcaovisual}
         isPrivate
       />
-      <Route path="/apostila/:id" component={Apostila} isPrivate />
+      <Route path="/apostila/:id/aula/:aula" component={Apostila} isPrivate />
       <Route path="/autoaceleracao/:id" component={Autoaceleracao} isPrivate />
       <Route path="/memorizacao/:id" component={Memorizacao} isPrivate />
       <Route path="/avaliacao" exact component={Avaliacao} isPrivate />
@@ -382,6 +383,7 @@ export default function Routes() {
       <Route path="/perfil" component={Perfil} isPrivate />
       <Route path="/suporte" component={Suporte} isPrivate />
       <Route path="/chamado/:id" component={Chamado} isPrivate />
+      <Route path="/video/:id" component={Videos} isPrivate />
     </Switch>
   );
 }

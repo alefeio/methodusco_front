@@ -34,6 +34,8 @@ import {
   Voltar,
 } from './styles';
 
+const aula = 15;
+
 const hrInicio = Date.now();
 
 const titulo = 'Tempos Modernos';
@@ -310,13 +312,13 @@ export default function Teste20avaliacao() {
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
 
-      toast.success('Teste 10 concluído com sucesso!');
+      toast.success('Teste 20 concluído com sucesso!');
       setTimeout(() => {
         setTesteconcluido(true);
         history.push('/avancado/teste10/resultado');
       }, 3000);
     } catch (error) {
-      toast.error('O Teste 10 já foi finalizado!');
+      toast.error('O Teste 20 já foi finalizado!');
     }
   }
 
@@ -376,7 +378,7 @@ export default function Teste20avaliacao() {
           </li>
           <li>|</li> */}
           <li>
-            <small>Teste 10</small>
+            <small>Teste 20</small>
           </li>
           {/* <li>|</li>
           <li>
@@ -411,18 +413,13 @@ export default function Teste20avaliacao() {
       <Prod visivel={visiv}>
         {!plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 10 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 20 - AVALIAÇÃO</Titulo>
             <br />
             <h2>
               {titulo && titulo}
               <small>
-                {cred1 && (
-                  <>
-                    {cred1} <br />
-                  </>
-                )}
-
-                {cred2 && cred2}
+                {cred1 && <>{cred1} </>}
+                {cred2 && <> - {cred2}</>}
               </small>
             </h2>
             {textos.map((t, i) => t && <p>{t}</p>)}
@@ -436,7 +433,7 @@ export default function Teste20avaliacao() {
         )}
         {plm && !testeconcluido && (
           <div>
-            <Titulo>TESTE 10 - AVALIAÇÃO</Titulo>
+            <Titulo>TESTE 20 - AVALIAÇÃO</Titulo>
             <br />
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />

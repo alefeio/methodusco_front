@@ -25,7 +25,7 @@ export default function Exercicio07(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra } = props;
+  const { ex, exercicio, pergunta, palavra, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -34,7 +34,7 @@ export default function Exercicio07(props) {
   const resp = useSelector((state) => state.usuario);
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -44,17 +44,17 @@ export default function Exercicio07(props) {
 
   async function loadResposta() {
     try {
-      // await api.post('resposta', {
-      //   resposta: 0,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: 0,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContador(null);
       setConcluido(true);
@@ -109,7 +109,11 @@ export default function Exercicio07(props) {
     if (i >= 51) {
       const c4 = setInterval(() => {
         if (i === palavra.length / 2 + 1) {
-          if (isMountedRef.current) loadResposta();
+          if (isMountedRef.current) {
+            // loadResposta();
+            setContador(null);
+            setConcluido(true);
+          }
           setContagem(false);
           isMountedRef.current = false;
           return clearInterval(c4);
@@ -131,7 +135,7 @@ export default function Exercicio07(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -176,22 +180,29 @@ export default function Exercicio07(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
         </div>
-        {/* {apresentacao && (
+        {apresentacao && (
           <div>
             <h2>{pergunta}</h2>
           </div>
-        )} */}
+        )}
         {!apresentacao && (
           <div>
             {contagem && contador >= 1 && (
               <ListaProdutos>
-                {contador >= 1 && contador <= 4 && (
+                {contador >= 1 && contador <= 6 && (
                   <>
                     <li>
                       {contador === 1 ? palavra[0] : <span>{palavra[0]}</span>}
@@ -213,10 +224,6 @@ export default function Exercicio07(props) {
                       <strong>*</strong>
                       {contador === 3 ? palavra[5] : <span>{palavra[5]}</span>}
                     </li>
-                  </>
-                )}
-                {contador >= 5 && contador <= 8 && (
-                  <>
                     <li>
                       {contador === 5 ? palavra[8] : <span>{palavra[8]}</span>}
                       <strong>*</strong>
@@ -235,19 +242,10 @@ export default function Exercicio07(props) {
                         <span>{palavra[11]}</span>
                       )}
                     </li>
-                    <li>
-                      {contador === 8 ? (
-                        palavra[14]
-                      ) : (
-                        <span>{palavra[14]}</span>
-                      )}
-                      <strong>*</strong>
-                      {contador === 8 ? (
-                        palavra[15]
-                      ) : (
-                        <span>{palavra[15]}</span>
-                      )}
-                    </li>
+                  </>
+                )}
+                {contador >= 7 && contador <= 12 && (
+                  <>
                     <li>
                       {contador === 7 ? (
                         palavra[12]
@@ -261,21 +259,17 @@ export default function Exercicio07(props) {
                         <span>{palavra[13]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 9 && contador <= 12 && (
-                  <>
                     <li>
-                      {contador === 9 ? (
-                        palavra[16]
+                      {contador === 8 ? (
+                        palavra[14]
                       ) : (
-                        <span>{palavra[16]}</span>
+                        <span>{palavra[14]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 9 ? (
-                        palavra[17]
+                      {contador === 8 ? (
+                        palavra[15]
                       ) : (
-                        <span>{palavra[17]}</span>
+                        <span>{palavra[15]}</span>
                       )}
                     </li>
                     <li>
@@ -292,16 +286,16 @@ export default function Exercicio07(props) {
                       )}
                     </li>
                     <li>
-                      {contador === 12 ? (
-                        palavra[22]
+                      {contador === 9 ? (
+                        palavra[16]
                       ) : (
-                        <span>{palavra[22]}</span>
+                        <span>{palavra[16]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 12 ? (
-                        palavra[23]
+                      {contador === 9 ? (
+                        palavra[17]
                       ) : (
-                        <span>{palavra[23]}</span>
+                        <span>{palavra[17]}</span>
                       )}
                     </li>
                     <li>
@@ -317,9 +311,22 @@ export default function Exercicio07(props) {
                         <span>{palavra[21]}</span>
                       )}
                     </li>
+                    <li>
+                      {contador === 12 ? (
+                        palavra[22]
+                      ) : (
+                        <span>{palavra[22]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 12 ? (
+                        palavra[23]
+                      ) : (
+                        <span>{palavra[23]}</span>
+                      )}
+                    </li>
                   </>
                 )}
-                {contador >= 13 && contador <= 16 && (
+                {contador >= 13 && contador <= 18 && (
                   <>
                     <li>
                       {contador === 13 ? (
@@ -373,10 +380,6 @@ export default function Exercicio07(props) {
                         <span>{palavra[29]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 17 && contador <= 20 && (
-                  <>
                     <li>
                       {contador === 17 ? (
                         palavra[32]
@@ -403,19 +406,10 @@ export default function Exercicio07(props) {
                         <span>{palavra[35]}</span>
                       )}
                     </li>
-                    <li>
-                      {contador === 20 ? (
-                        palavra[38]
-                      ) : (
-                        <span>{palavra[38]}</span>
-                      )}
-                      <strong>*</strong>
-                      {contador === 20 ? (
-                        palavra[39]
-                      ) : (
-                        <span>{palavra[39]}</span>
-                      )}
-                    </li>
+                  </>
+                )}
+                {contador >= 19 && contador <= 24 && (
+                  <>
                     <li>
                       {contador === 19 ? (
                         palavra[36]
@@ -429,21 +423,17 @@ export default function Exercicio07(props) {
                         <span>{palavra[37]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 21 && contador <= 24 && (
-                  <>
                     <li>
-                      {contador === 21 ? (
-                        palavra[40]
+                      {contador === 20 ? (
+                        palavra[38]
                       ) : (
-                        <span>{palavra[40]}</span>
+                        <span>{palavra[38]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 21 ? (
-                        palavra[41]
+                      {contador === 20 ? (
+                        palavra[39]
                       ) : (
-                        <span>{palavra[41]}</span>
+                        <span>{palavra[39]}</span>
                       )}
                     </li>
                     <li>
@@ -460,16 +450,16 @@ export default function Exercicio07(props) {
                       )}
                     </li>
                     <li>
-                      {contador === 24 ? (
-                        palavra[46]
+                      {contador === 21 ? (
+                        palavra[40]
                       ) : (
-                        <span>{palavra[46]}</span>
+                        <span>{palavra[40]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 24 ? (
-                        palavra[47]
+                      {contador === 21 ? (
+                        palavra[41]
                       ) : (
-                        <span>{palavra[47]}</span>
+                        <span>{palavra[41]}</span>
                       )}
                     </li>
                     <li>
@@ -485,9 +475,22 @@ export default function Exercicio07(props) {
                         <span>{palavra[45]}</span>
                       )}
                     </li>
+                    <li>
+                      {contador === 24 ? (
+                        palavra[46]
+                      ) : (
+                        <span>{palavra[46]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 24 ? (
+                        palavra[47]
+                      ) : (
+                        <span>{palavra[47]}</span>
+                      )}
+                    </li>
                   </>
                 )}
-                {contador >= 25 && contador <= 28 && (
+                {contador >= 25 && contador <= 30 && (
                   <>
                     <li>
                       {contador === 25 ? (
@@ -541,10 +544,6 @@ export default function Exercicio07(props) {
                         <span>{palavra[53]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 29 && contador <= 32 && (
-                  <>
                     <li>
                       {contador === 29 ? (
                         palavra[56]
@@ -571,19 +570,10 @@ export default function Exercicio07(props) {
                         <span>{palavra[59]}</span>
                       )}
                     </li>
-                    <li>
-                      {contador === 32 ? (
-                        palavra[62]
-                      ) : (
-                        <span>{palavra[62]}</span>
-                      )}
-                      <strong>*</strong>
-                      {contador === 32 ? (
-                        palavra[63]
-                      ) : (
-                        <span>{palavra[63]}</span>
-                      )}
-                    </li>
+                  </>
+                )}
+                {contador >= 31 && contador <= 36 && (
+                  <>
                     <li>
                       {contador === 31 ? (
                         palavra[60]
@@ -597,21 +587,17 @@ export default function Exercicio07(props) {
                         <span>{palavra[61]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 33 && contador <= 36 && (
-                  <>
                     <li>
-                      {contador === 33 ? (
-                        palavra[64]
+                      {contador === 32 ? (
+                        palavra[62]
                       ) : (
-                        <span>{palavra[64]}</span>
+                        <span>{palavra[62]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 33 ? (
-                        palavra[65]
+                      {contador === 32 ? (
+                        palavra[63]
                       ) : (
-                        <span>{palavra[65]}</span>
+                        <span>{palavra[63]}</span>
                       )}
                     </li>
                     <li>
@@ -628,16 +614,16 @@ export default function Exercicio07(props) {
                       )}
                     </li>
                     <li>
-                      {contador === 36 ? (
-                        palavra[70]
+                      {contador === 33 ? (
+                        palavra[64]
                       ) : (
-                        <span>{palavra[70]}</span>
+                        <span>{palavra[64]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 36 ? (
-                        palavra[71]
+                      {contador === 33 ? (
+                        palavra[65]
                       ) : (
-                        <span>{palavra[71]}</span>
+                        <span>{palavra[65]}</span>
                       )}
                     </li>
                     <li>
@@ -653,9 +639,22 @@ export default function Exercicio07(props) {
                         <span>{palavra[69]}</span>
                       )}
                     </li>
+                    <li>
+                      {contador === 36 ? (
+                        palavra[70]
+                      ) : (
+                        <span>{palavra[70]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 36 ? (
+                        palavra[71]
+                      ) : (
+                        <span>{palavra[71]}</span>
+                      )}
+                    </li>
                   </>
                 )}
-                {contador >= 37 && contador <= 40 && (
+                {contador >= 37 && contador <= 42 && (
                   <>
                     <li>
                       {contador === 37 ? (
@@ -709,11 +708,6 @@ export default function Exercicio07(props) {
                         <span>{palavra[77]}</span>
                       )}
                     </li>
-                  </>
-                )}
-
-                {contador >= 41 && contador <= 44 && (
-                  <>
                     <li>
                       {contador === 41 ? (
                         palavra[80]
@@ -740,19 +734,11 @@ export default function Exercicio07(props) {
                         <span>{palavra[83]}</span>
                       )}
                     </li>
-                    <li>
-                      {contador === 44 ? (
-                        palavra[86]
-                      ) : (
-                        <span>{palavra[86]}</span>
-                      )}
-                      <strong>*</strong>
-                      {contador === 44 ? (
-                        palavra[87]
-                      ) : (
-                        <span>{palavra[87]}</span>
-                      )}
-                    </li>
+                  </>
+                )}
+
+                {contador >= 43 && contador <= 48 && (
+                  <>
                     <li>
                       {contador === 43 ? (
                         palavra[84]
@@ -766,21 +752,17 @@ export default function Exercicio07(props) {
                         <span>{palavra[85]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 45 && contador <= 48 && (
-                  <>
                     <li>
-                      {contador === 45 ? (
-                        palavra[88]
+                      {contador === 44 ? (
+                        palavra[86]
                       ) : (
-                        <span>{palavra[88]}</span>
+                        <span>{palavra[86]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 45 ? (
-                        palavra[89]
+                      {contador === 44 ? (
+                        palavra[87]
                       ) : (
-                        <span>{palavra[89]}</span>
+                        <span>{palavra[87]}</span>
                       )}
                     </li>
                     <li>
@@ -797,16 +779,16 @@ export default function Exercicio07(props) {
                       )}
                     </li>
                     <li>
-                      {contador === 48 ? (
-                        palavra[94]
+                      {contador === 45 ? (
+                        palavra[88]
                       ) : (
-                        <span>{palavra[94]}</span>
+                        <span>{palavra[88]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 48 ? (
-                        palavra[95]
+                      {contador === 45 ? (
+                        palavra[89]
                       ) : (
-                        <span>{palavra[95]}</span>
+                        <span>{palavra[89]}</span>
                       )}
                     </li>
                     <li>
@@ -822,9 +804,22 @@ export default function Exercicio07(props) {
                         <span>{palavra[93]}</span>
                       )}
                     </li>
+                    <li>
+                      {contador === 48 ? (
+                        palavra[94]
+                      ) : (
+                        <span>{palavra[94]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 48 ? (
+                        palavra[95]
+                      ) : (
+                        <span>{palavra[95]}</span>
+                      )}
+                    </li>
                   </>
                 )}
-                {contador >= 49 && contador <= 52 && (
+                {contador >= 49 && contador <= 54 && (
                   <>
                     <li>
                       {contador === 49 ? (
@@ -878,10 +873,6 @@ export default function Exercicio07(props) {
                         <span>{palavra[101]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 53 && contador <= 56 && (
-                  <>
                     <li>
                       {contador === 53 ? (
                         palavra[104]
@@ -908,19 +899,10 @@ export default function Exercicio07(props) {
                         <span>{palavra[107]}</span>
                       )}
                     </li>
-                    <li>
-                      {contador === 56 ? (
-                        palavra[110]
-                      ) : (
-                        <span>{palavra[110]}</span>
-                      )}
-                      <strong>*</strong>
-                      {contador === 56 ? (
-                        palavra[111]
-                      ) : (
-                        <span>{palavra[111]}</span>
-                      )}
-                    </li>
+                  </>
+                )}
+                {contador >= 55 && contador <= 60 && (
+                  <>
                     <li>
                       {contador === 55 ? (
                         palavra[108]
@@ -934,21 +916,17 @@ export default function Exercicio07(props) {
                         <span>{palavra[109]}</span>
                       )}
                     </li>
-                  </>
-                )}
-                {contador >= 57 && contador <= 60 && (
-                  <>
                     <li>
-                      {contador === 57 ? (
-                        palavra[112]
+                      {contador === 56 ? (
+                        palavra[110]
                       ) : (
-                        <span>{palavra[112]}</span>
+                        <span>{palavra[110]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 57 ? (
-                        palavra[113]
+                      {contador === 56 ? (
+                        palavra[111]
                       ) : (
-                        <span>{palavra[113]}</span>
+                        <span>{palavra[111]}</span>
                       )}
                     </li>
                     <li>
@@ -965,16 +943,16 @@ export default function Exercicio07(props) {
                       )}
                     </li>
                     <li>
-                      {contador === 60 ? (
-                        palavra[118]
+                      {contador === 57 ? (
+                        palavra[112]
                       ) : (
-                        <span>{palavra[118]}</span>
+                        <span>{palavra[112]}</span>
                       )}
                       <strong>*</strong>
-                      {contador === 60 ? (
-                        palavra[119]
+                      {contador === 57 ? (
+                        palavra[113]
                       ) : (
-                        <span>{palavra[119]}</span>
+                        <span>{palavra[113]}</span>
                       )}
                     </li>
                     <li>
@@ -990,9 +968,22 @@ export default function Exercicio07(props) {
                         <span>{palavra[117]}</span>
                       )}
                     </li>
+                    <li>
+                      {contador === 60 ? (
+                        palavra[118]
+                      ) : (
+                        <span>{palavra[118]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 60 ? (
+                        palavra[119]
+                      ) : (
+                        <span>{palavra[119]}</span>
+                      )}
+                    </li>
                   </>
                 )}
-                {contador >= 61 && contador <= 64 && (
+                {contador >= 61 && contador <= 66 && (
                   <>
                     <li>
                       {contador === 61 ? (
@@ -1046,6 +1037,448 @@ export default function Exercicio07(props) {
                         <span>{palavra[125]}</span>
                       )}
                     </li>
+                    <li>
+                      {contador === 65 ? (
+                        palavra[108]
+                      ) : (
+                        <span>{palavra[108]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 65 ? (
+                        palavra[109]
+                      ) : (
+                        <span>{palavra[109]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 66 ? (
+                        palavra[110]
+                      ) : (
+                        <span>{palavra[110]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 66 ? (
+                        palavra[111]
+                      ) : (
+                        <span>{palavra[111]}</span>
+                      )}
+                    </li>
+                  </>
+                )}
+
+
+
+
+
+{contador >= 67 && contador <= 72 && (
+                  <>
+                    <li>
+                      {contador === 67 ? (
+                        palavra[72]
+                      ) : (
+                        <span>{palavra[72]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 67 ? (
+                        palavra[73]
+                      ) : (
+                        <span>{palavra[73]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 68 ? (
+                        palavra[74]
+                      ) : (
+                        <span>{palavra[74]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 68 ? (
+                        palavra[75]
+                      ) : (
+                        <span>{palavra[75]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 70 ? (
+                        palavra[78]
+                      ) : (
+                        <span>{palavra[78]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 70 ? (
+                        palavra[79]
+                      ) : (
+                        <span>{palavra[79]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 69 ? (
+                        palavra[76]
+                      ) : (
+                        <span>{palavra[76]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 69 ? (
+                        palavra[77]
+                      ) : (
+                        <span>{palavra[77]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 71 ? (
+                        palavra[80]
+                      ) : (
+                        <span>{palavra[80]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 71 ? (
+                        palavra[81]
+                      ) : (
+                        <span>{palavra[81]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 72 ? (
+                        palavra[82]
+                      ) : (
+                        <span>{palavra[82]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 72 ? (
+                        palavra[83]
+                      ) : (
+                        <span>{palavra[83]}</span>
+                      )}
+                    </li>
+                  </>
+                )}
+
+                {contador >= 73 && contador <= 78 && (
+                  <>
+                    <li>
+                      {contador === 73 ? (
+                        palavra[84]
+                      ) : (
+                        <span>{palavra[84]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 73 ? (
+                        palavra[85]
+                      ) : (
+                        <span>{palavra[85]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 74 ? (
+                        palavra[86]
+                      ) : (
+                        <span>{palavra[86]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 74 ? (
+                        palavra[87]
+                      ) : (
+                        <span>{palavra[87]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 76 ? (
+                        palavra[90]
+                      ) : (
+                        <span>{palavra[90]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 76 ? (
+                        palavra[91]
+                      ) : (
+                        <span>{palavra[91]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 75 ? (
+                        palavra[88]
+                      ) : (
+                        <span>{palavra[88]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 75 ? (
+                        palavra[89]
+                      ) : (
+                        <span>{palavra[89]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 77 ? (
+                        palavra[92]
+                      ) : (
+                        <span>{palavra[92]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 77 ? (
+                        palavra[93]
+                      ) : (
+                        <span>{palavra[93]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 78 ? (
+                        palavra[94]
+                      ) : (
+                        <span>{palavra[94]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 78 ? (
+                        palavra[95]
+                      ) : (
+                        <span>{palavra[95]}</span>
+                      )}
+                    </li>
+                  </>
+                )}
+                {contador >= 79 && contador <= 84 && (
+                  <>
+                    <li>
+                      {contador === 79 ? (
+                        palavra[96]
+                      ) : (
+                        <span>{palavra[96]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 79 ? (
+                        palavra[97]
+                      ) : (
+                        <span>{palavra[97]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 80 ? (
+                        palavra[98]
+                      ) : (
+                        <span>{palavra[98]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 80 ? (
+                        palavra[99]
+                      ) : (
+                        <span>{palavra[99]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 82 ? (
+                        palavra[102]
+                      ) : (
+                        <span>{palavra[102]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 82 ? (
+                        palavra[103]
+                      ) : (
+                        <span>{palavra[103]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 81 ? (
+                        palavra[100]
+                      ) : (
+                        <span>{palavra[100]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 81 ? (
+                        palavra[101]
+                      ) : (
+                        <span>{palavra[101]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 83 ? (
+                        palavra[104]
+                      ) : (
+                        <span>{palavra[104]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 83 ? (
+                        palavra[105]
+                      ) : (
+                        <span>{palavra[105]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 84 ? (
+                        palavra[106]
+                      ) : (
+                        <span>{palavra[106]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 84 ? (
+                        palavra[107]
+                      ) : (
+                        <span>{palavra[107]}</span>
+                      )}
+                    </li>
+                  </>
+                )}
+                {contador >= 85 && contador <= 90 && (
+                  <>
+                    <li>
+                      {contador === 85 ? (
+                        palavra[108]
+                      ) : (
+                        <span>{palavra[108]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 85 ? (
+                        palavra[109]
+                      ) : (
+                        <span>{palavra[109]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 86 ? (
+                        palavra[110]
+                      ) : (
+                        <span>{palavra[110]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 86 ? (
+                        palavra[111]
+                      ) : (
+                        <span>{palavra[111]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 88 ? (
+                        palavra[114]
+                      ) : (
+                        <span>{palavra[114]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 88 ? (
+                        palavra[115]
+                      ) : (
+                        <span>{palavra[115]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 87 ? (
+                        palavra[112]
+                      ) : (
+                        <span>{palavra[112]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 87 ? (
+                        palavra[113]
+                      ) : (
+                        <span>{palavra[113]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 89 ? (
+                        palavra[116]
+                      ) : (
+                        <span>{palavra[116]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 89 ? (
+                        palavra[117]
+                      ) : (
+                        <span>{palavra[117]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 90 ? (
+                        palavra[118]
+                      ) : (
+                        <span>{palavra[118]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 90 ? (
+                        palavra[119]
+                      ) : (
+                        <span>{palavra[119]}</span>
+                      )}
+                    </li>
+                  </>
+                )}
+                {contador >= 91 && contador <= 96 && (
+                  <>
+                    <li>
+                      {contador === 91 ? (
+                        palavra[120]
+                      ) : (
+                        <span>{palavra[120]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 91 ? (
+                        palavra[121]
+                      ) : (
+                        <span>{palavra[121]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 92 ? (
+                        palavra[122]
+                      ) : (
+                        <span>{palavra[122]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 92 ? (
+                        palavra[123]
+                      ) : (
+                        <span>{palavra[123]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 94 ? (
+                        palavra[126]
+                      ) : (
+                        <span>{palavra[126]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 94 ? (
+                        palavra[127]
+                      ) : (
+                        <span>{palavra[127]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 93 ? (
+                        palavra[124]
+                      ) : (
+                        <span>{palavra[124]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 93 ? (
+                        palavra[125]
+                      ) : (
+                        <span>{palavra[125]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 95 ? (
+                        palavra[108]
+                      ) : (
+                        <span>{palavra[108]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 95 ? (
+                        palavra[109]
+                      ) : (
+                        <span>{palavra[109]}</span>
+                      )}
+                    </li>
+                    <li>
+                      {contador === 96 ? (
+                        palavra[110]
+                      ) : (
+                        <span>{palavra[110]}</span>
+                      )}
+                      <strong>*</strong>
+                      {contador === 96 ? (
+                        palavra[111]
+                      ) : (
+                        <span>{palavra[111]}</span>
+                      )}
+                    </li>
                   </>
                 )}
               </ListaProdutos>
@@ -1053,26 +1486,13 @@ export default function Exercicio07(props) {
             {contador === 0 && (
               <button onClick={() => loadContador(1)}>Iniciar</button>
             )}
-            {/* {concluido && (
-              <Strong>
-                Concluído <img src={icoConcluido} alt="Exercício concluído" />
-              </Strong>
-            )} */}
-
-            {/* {!concluido && (
-              <small>
-                *A nota será contabilizada após a conclusão do exercício. <br />
-                ** Ao clicar em próximo sem responder, a questão será
-                contabilizada como errada.
-              </small>
-            )}
-            {concluido && (
-              <small>*A nota deste exercício já foi contabilizada.</small>
-            )} */}
 
             {concluido && !contagem && (
               <div>
-                <Link onClick={() => loadProximo()} to="/apostila/120">
+                <Link
+                  onClick={() => loadProximo()}
+                  to={`/apostila/120/aula/${aula}`}
+                >
                   Próximo &raquo;
                 </Link>
               </div>

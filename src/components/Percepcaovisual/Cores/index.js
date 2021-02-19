@@ -10,7 +10,7 @@ import {
 
 import Barra from '~/components/Barra';
 
-import { Prod, Strong, Strong2, ListaCores } from './styles';
+import { Prod, Strong, Strong2, ListaCores, Voltar } from './styles';
 
 import api from '~/services/api';
 
@@ -26,7 +26,7 @@ export default function Cores(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, cor } = props;
+  const { ex, exercicio, pergunta, cor, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -35,7 +35,7 @@ export default function Cores(props) {
   const resp = useSelector((state) => state.usuario);
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -57,13 +57,13 @@ export default function Cores(props) {
 
   async function loadResposta() {
     try {
-      await api.post('resposta', {
-        resposta: 0,
-        prova_id: prova.id,
-        exercicio_id,
-      });
+      // await api.post('resposta', {
+      //   resposta: 0,
+      //   prova_id: prova.id,
+      //   exercicio_id,
+      // });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -71,7 +71,7 @@ export default function Cores(props) {
 
       setContagem(true);
       setContador(null);
-      setConcluido(true);
+      if (exercicio_id === 241) setConcluido(true);
 
       // loadProva();
 
@@ -84,13 +84,13 @@ export default function Cores(props) {
 
   async function loadProximo() {
     try {
-      await api.post('resposta', {
-        resposta: 100,
-        prova_id: prova.id,
-        exercicio_id,
-      });
+      // await api.post('resposta', {
+      //   resposta: 100,
+      //   prova_id: prova.id,
+      //   exercicio_id,
+      // });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -98,7 +98,7 @@ export default function Cores(props) {
 
       setContagem(true);
 
-      loadProva();
+      // loadProva();
     } catch (error) {
       setContagem(true);
     }
@@ -157,7 +157,7 @@ export default function Cores(props) {
     setConcluido(false);
     setContador(0);
 
-    if (isMountedRef.current) loadProva();
+    // if (isMountedRef.current) loadProva();
 
     if (exercicio_id === 241) loadContador(cor.length);
 
@@ -168,12 +168,37 @@ export default function Cores(props) {
 
   return (
     <>
-      <Barra
+      <Voltar>
+        <ul>
+          <li>
+            <Link to="/dashboard">
+              <small>Home</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to="/basico">
+              <small>Módulo Básico</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
+        </ul>
+
+        <a href="javascript:history.back()">
+          <small>&laquo; Voltar</small>
+        </a>
+      </Voltar>
+      {/* <Barra
         categoria="Leitura Dinâmica"
         modulo="Exercícios de percepção visual"
         exercicio={exercicio_id}
         nota={prova && prova.nota}
-      />
+      /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
@@ -195,13 +220,13 @@ export default function Cores(props) {
             {exercicio_id === 207 && contador === 0 && (
               <button onClick={() => loadContador(cor.length)}>Iniciar</button>
             )}
-            {/* {concluido && (
+            {concluido && (
               <Strong>
-                Concluído <img src={icoConcluido} alt="Exercício concluído" />
+                Exercício Concluído <img src={icoConcluido} alt="Exercício concluído" />
               </Strong>
             )}
 
-            {!concluido && (
+            {/* {!concluido && (
               <small>
                 *A nota será contabilizada após a conclusão do exercício. <br />
                 ** Ao clicar em próximo sem responder, a questão será
@@ -217,7 +242,7 @@ export default function Cores(props) {
                   {exercicio === 207 && (
                     <Link
                       onClick={() => loadProximo()}
-                      to="/percepcaovisual/241"
+                      to={`/percepcaovisual/241/aula/${aula}`}
                     >
                       Próximo &raquo;
                     </Link>

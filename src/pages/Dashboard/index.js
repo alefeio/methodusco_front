@@ -11,7 +11,11 @@ import {
   updateFimProvaRequest,
 } from '~/store/modules/usuario/actions';
 
-import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
+import icoTeste from '~/assets/ico-teste.png';
+import icoPlay2 from '~/assets/ico-play2.png';
+import icoPlay3 from '~/assets/ico-play3.png';
+import icoGrafico from '~/assets/ico-grafico.png';
 
 import {
   Container,
@@ -21,6 +25,7 @@ import {
   Titulo,
   Titulo2,
   Titulo3,
+  Titulo4,
   Default,
   Danger,
   Ladodireito,
@@ -79,12 +84,6 @@ export default function Dashboard() {
     if (response.data) totalConcluido(response.data);
   }
 
-  // function fazerProva() {
-  //   dispatch(updateEmProvaRequest());
-
-  //   loadProvas();
-  // }
-
   async function totalConcluido(prova) {
     let pr = porcentagem;
 
@@ -118,6 +117,7 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
+    criarProva();
     loadProvas();
   }, []);
 
@@ -135,56 +135,90 @@ export default function Dashboard() {
     <Container>
       <Prod>
         <div>
-          <Titulo>CURSO LEITURA DINÂMICA ONLINE</Titulo>
-          <Titulo2>Teoria, Exercícios e Testes</Titulo2>
-          <Titulo3>Olá, {perfil && perfil.nome}.</Titulo3>
+          <Titulo>
+            Curso Leitura Dinâmica Online
+            <br />
+            Teoria, Exercícios e Testes
+          </Titulo>
+          {/* <Titulo3>Olá, {perfil && perfil.nome}.</Titulo3> */}
           <br />
-          <p>
-            Seja bem-vindo ao curso de Leitura Dinâmica mais completo do
-            mercado.
-          </p>
-          <br />
-          <p>
-            Para um melhor aproveitamento e aprendizado, é muito importante que
-            você siga rigorosamente o tempo estipulado para cada aula.
-          </p>
-          <br />
-          <p>Bons estudos!</p>
+          <Titulo2>
+            Olá, {perfil && perfil.nome}
+            <br />
+            Seja bem-vindo ao curso de Leitura Dinâmica Online
+          </Titulo2>
+          {/* <br />
+          <p>Bons estudos!</p> */}
 
           {prova && (
             <Box1>
               {/* <Titulo3>Sobre o Curso</Titulo3> */}
-              <Link to="/avaliacao">
-                <Titulo3>Avaliação da Minha Leitura</Titulo3>
-              </Link>
-              <Titulo3>Treinamentos Eficazes</Titulo3>
+              <Titulo4>
+                <Link to="/video/sobre">
+                  <img src={icoPlay} /> Sobre o Autor e Curso
+                </Link>
+              </Titulo4>
+              <Titulo4>
+                Avalie sua Leitura:
+                <ul>
+                  <li>
+                    <Link to="/video/avalie">
+                      <img src={icoPlay3} /> Vídeo explicativo
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/avaliacao">
+                      <img src={icoTeste} /> Faça o teste
+                    </Link>
+                  </li>
+                </ul>
+              </Titulo4>
+              <Titulo4>
+                <Link to="/video/treinamentoseficazes">
+                  <img src={icoPlay} /> Treinamentos Eficazes
+                </Link>
+              </Titulo4>
 
               <Link to="/basico">
-                <Titulo3>Módulo Básico</Titulo3>
-                <p>Mudando Paradigmas da Leitura</p>
-                <small>Duração recomendada: 1 mês</small>
+                <img src={icoPlay2} />
+                <div>
+                  <Titulo3>MÓDULO BÁSICO</Titulo3>
+                  <p>Mudando Paradigmas da Leitura</p>
+                  <small>Duração recomendada: 1 mês</small>
+                </div>
               </Link>
 
               <Link to="/intermediario">
-                <Titulo3>Módulo Intermediário</Titulo3>
-                <p>Sedimentando Paradigmas da Leitura</p>
-                <small>Duração recomendada: 2 meses</small>
+                <img src={icoPlay2} />
+                <div>
+                  <Titulo3>MÓDULO INTERMEDIÁRIO</Titulo3>
+                  <p>Sedimentando Paradigmas da Leitura</p>
+                  <small>Duração recomendada: 2 meses</small>
+                </div>
               </Link>
 
               <Link to="/avancado">
-                <Titulo3>Módulo Avançado</Titulo3>
-                <p>Automatizando Paradigmas da Leitura</p>
-                <small>Duração recomendada: 2 meses</small>
+                <img src={icoPlay2} />
+                <div>
+                  <Titulo3>MÓDULO AVANÇADO</Titulo3>
+                  <p>Automatizando Paradigmas da Leitura</p>
+                  <small>Duração recomendada: 2 meses</small>
+                </div>
               </Link>
 
-              <Link to={`/grafico/${prova.id}`}>
-                <Titulo3>Gráfico de Evolução</Titulo3>
-                <p>Avalie o seu desempenho.</p>
-              </Link>
+              <Titulo4>
+                <Link to={`/grafico/${prova.id}`}>
+                  <img src={icoGrafico} />
+                  <div>
+                    <Titulo3>Gráfico de Evolução</Titulo3>
+                    <p>Avalie o seu desempenho.</p>
+                  </div>
+                </Link>
+              </Titulo4>
             </Box1>
           )}
 
-          <Ladodireito>
+          {/* <Ladodireito>
             {!prova && <Default onClick={criarProva}>Iniciar teste</Default>}
             {prova && (
               <>
@@ -193,7 +227,7 @@ export default function Dashboard() {
             )}
           </Ladodireito>
 
-          {provafinalizada && (
+          {provafinalizada && provafinalizada.length && (
             <Ladodireito>
               <h3>Testes realizados</h3>
               <br />
@@ -205,7 +239,7 @@ export default function Dashboard() {
                 </p>
               ))}
             </Ladodireito>
-          )}
+          )} */}
         </div>
       </Prod>
     </Container>

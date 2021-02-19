@@ -87,6 +87,8 @@ export default function Comtimer(props) {
 
   const resp = useSelector((state) => state.usuario);
 
+  const aula = 0;
+
   async function loadResposta() {
     try {
       await api.post('resposta', {
@@ -95,7 +97,7 @@ export default function Comtimer(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -176,7 +178,7 @@ export default function Comtimer(props) {
     isMountedRef.current = true;
 
     async function loadProva() {
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));

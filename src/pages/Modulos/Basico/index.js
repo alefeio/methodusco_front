@@ -21,7 +21,9 @@ import {
   Titulo,
   Titulo2,
   Titulo3,
+  TituloVermelho,
   Default,
+  Default2,
   Danger,
   Ladodireito,
   Box1,
@@ -65,12 +67,6 @@ export default function Basico() {
 
     const prova_id = response.data ? response.data.id : null;
   }
-
-  // function fazerProva() {
-  //   dispatch(updateEmProvaRequest());
-
-  //   loadProvas();
-  // }
 
   useEffect(() => {
     async function loadPerfil() {

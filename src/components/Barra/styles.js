@@ -35,7 +35,7 @@ export const Bar = styled.div`
   }
 
   h3 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
     color: green !important;
   }
 `;

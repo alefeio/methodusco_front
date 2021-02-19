@@ -39,7 +39,7 @@ export default function Header() {
       <Content>
         <div>
           <Link to="/dashboard">
-            <img src={logo} alt="Methodus - Leitura Dinâmica e Memorização" />
+            <img src={logo} alt="Methodus - Curso Leitura Dinâmica OnlineDinâmica e Memorização" />
           </Link>
         </div>
         <Toggle />
@@ -50,11 +50,11 @@ export default function Header() {
                 INÍCIO
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/sobre" onClick={altChecked}>
                 SOBRE O CURSO
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/perfil" onClick={altChecked}>
                 Perfil

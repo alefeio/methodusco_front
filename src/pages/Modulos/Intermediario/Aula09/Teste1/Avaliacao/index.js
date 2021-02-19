@@ -34,6 +34,8 @@ import {
   Voltar,
 } from './styles';
 
+const aula = 9;
+
 const hrInicio = Date.now();
 
 const titulo = 'O Que é, Afinal, o Talento?';
@@ -230,7 +232,8 @@ export default function Teste1avaliacao() {
   const respCertas = ['b', 'a', 'b', 'a', 'a', 'd', 'b', 'a', 'c', 'a'];
 
   const settings = {
-    dots: false,
+    dots: true,
+    // fade: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -415,9 +418,9 @@ export default function Teste1avaliacao() {
           )} */}
         </ul>
 
-        {/* <a href="javascript:history.back()">
+        <a href="javascript:history.back()">
           <small>&laquo; Voltar</small>
-        </a> */}
+        </a>
       </Voltar>
       <Prod visivel={visiv}>
         {!plm && !testeconcluido && (
@@ -427,13 +430,8 @@ export default function Teste1avaliacao() {
             <h2>
               {titulo && titulo}
               <small>
-                {cred1 && (
-                  <>
-                    {cred1} <br />
-                  </>
-                )}
-
-                {cred2 && cred2}
+                {cred1 && <>{cred1} </>}
+                {cred2 && <> - {cred2}</>}
               </small>
             </h2>
             {textos.map((t, i) => t && <p>{t}</p>)}

@@ -30,7 +30,7 @@ export const Prod = styled.div`
     padding: 5rem;
 
     span {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
       margin-bottom: 5rem;
     }
@@ -38,20 +38,20 @@ export const Prod = styled.div`
     button {
       border: 0;
       padding: 1rem 2rem;
-      background: #004b85;
+      background: #135c58;
       border-radius: 4px;
       color: #fff;
       font-size: 2rem;
     }
 
     h1 {
-      font: 4rem Georgia, 'Times New Roman', Times, serif;
+      font: 4rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       text-transform: uppercase;
       color: green;
     }
 
     h2 {
-      font: 3rem Georgia, 'Times New Roman', Times, serif;
+      font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       color: green;
     }
 
@@ -68,7 +68,7 @@ export const Prod = styled.div`
         padding: 7px;
         margin: 3px;
         font-size: 18px;
-        font: 3rem Georgia, 'Times New Roman', Times, serif;
+        font: 3rem 'Trebuchet MS', 'Times New Roman', Times, serif;
       }
     }
 
@@ -89,7 +89,7 @@ export const Prod = styled.div`
       flex-direction: row;
 
       a {
-        background: #004b85;
+        background: #135c58;
         color: #fff;
         border: 0;
         border-radius: 4px;
@@ -98,7 +98,7 @@ export const Prod = styled.div`
         transition: background 0.2s;
 
         &:hover {
-          background: ${darken(0.07, '#004b85')};
+          background: ${darken(0.07, '#135c58')};
         }
       }
     }
@@ -126,7 +126,7 @@ export const ListaProdutos = styled.ul`
     }
 
     button {
-      background: #004b85;
+      background: #135c58;
       color: #fff;
       border: 0;
       border-radius: 4px;
@@ -134,7 +134,7 @@ export const ListaProdutos = styled.ul`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.07, '#004b85')};
+        background: ${darken(0.07, '#135c58')};
       }
     }
 
@@ -177,5 +177,26 @@ export const Strong = styled.strong`
 
   img {
     margin-left: 1rem;
+  }
+`;
+
+export const Voltar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #f0f1f4;
+
+  ul {
+    display: flex;
+  }
+
+  a {
+    color: #000;
+  }
+
+  small {
+    padding: 0.5rem 1rem;
+    color: #555;
   }
 `;

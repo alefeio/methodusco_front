@@ -30,7 +30,7 @@ export default function Exercicio03(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra, opcoes } = props;
+  const { ex, exercicio, pergunta, palavra, opcoes, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -46,7 +46,7 @@ export default function Exercicio03(props) {
   }
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -68,30 +68,30 @@ export default function Exercicio03(props) {
 
   async function loadResposta(res) {
     try {
-      // await api.post('resposta', {
-      //   resposta: res,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: res,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContagem(true);
       setContador(null);
 
       // loadProva();
 
-      history.push(`/apostila/${exercicio + 1}`);
+      history.push(`/apostila/${exercicio + 1}/aula/${aula}`);
 
       // toast.success('Exercício concluído com sucesso!');
     } catch (error) {
       setContagem(true);
       setContador(null);
-      history.push(`/apostila/${exercicio + 1}`);
+      history.push(`/apostila/${exercicio + 1}/aula/${aula}`);
     }
   }
 
@@ -114,17 +114,17 @@ export default function Exercicio03(props) {
 
   async function loadProximo() {
     try {
-      // await api.post('resposta', {
-      //   resposta: 100,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: 100,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       loadProva();
     } catch (error) {
@@ -172,8 +172,15 @@ export default function Exercicio03(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>

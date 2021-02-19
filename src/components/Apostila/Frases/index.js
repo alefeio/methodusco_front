@@ -25,7 +25,7 @@ export default function Frases(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra } = props;
+  const { ex, exercicio, pergunta, palavra, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -34,7 +34,7 @@ export default function Frases(props) {
   const resp = useSelector((state) => state.usuario);
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -44,17 +44,17 @@ export default function Frases(props) {
 
   async function loadResposta() {
     try {
-      // await api.post('resposta', {
-      //   resposta: 0,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: 0,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContador(null);
       setConcluido(true);
@@ -109,7 +109,11 @@ export default function Frases(props) {
     if (i >= 86) {
       const c4 = setInterval(() => {
         if (i === palavra.length + 1) {
-          if (isMountedRef.current) loadResposta();
+          if (isMountedRef.current) {
+            // loadResposta();
+            setContador(null);
+            setConcluido(true);
+          }
           setContagem(false);
           isMountedRef.current = false;
           return clearInterval(c4);
@@ -125,17 +129,17 @@ export default function Frases(props) {
 
   async function loadProximo() {
     try {
-      // await api.post('resposta', {
-      //   resposta: 100,
-      //   prova_id: prova.id,
-      //   exercicio_id,
-      // });
+      await api.post('resposta', {
+        resposta: 100,
+        prova_id: prova.id,
+        exercicio_id,
+      });
 
-      // const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
-      // setProva(response.data);
-      // dispatch(updateProvaRequest(response.data));
-      // dispatch(updateRespostaRequest(exercicio_id));
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+      dispatch(updateRespostaRequest(exercicio_id));
 
       setContagem(true);
 
@@ -176,17 +180,24 @@ export default function Frases(props) {
               <small>Módulo Básico</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
         </ul>
       </Voltar>
+      {/* <Barra exercicio={exercicio_id} nota={prova && prova.nota} /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
         </div>
-        {/* {apresentacao && (
+        {apresentacao && (
           <div>
             <h2>{pergunta}</h2>
           </div>
-        )} */}
+        )}
         {!apresentacao && (
           <div>
             {contagem && contador >= 1 && (
@@ -748,7 +759,10 @@ export default function Frases(props) {
 
             {!contador && !contagem && (
               <div>
-                <Link onClick={() => loadProximo()} to="/apostila/91">
+                <Link
+                  onClick={() => loadProximo()}
+                  to={`/apostila/91/aula/${aula}`}
+                >
                   Próximo &raquo;
                 </Link>
               </div>

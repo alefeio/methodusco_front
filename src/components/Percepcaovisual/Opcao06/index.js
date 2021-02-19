@@ -14,13 +14,13 @@ import {
 
 import Barra from '~/components/Barra';
 
-import { Prod, ListaProdutos, Strong } from './styles';
+import { Prod, ListaProdutos, Strong, Voltar } from './styles';
 
 import api from '~/services/api';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
 
-export default function Opcoes04(props) {
+export default function Opcoes06(props) {
   const [contador, setContador] = useState(0);
   const [contagem, setContagem] = useState(true);
   const [prova, setProva] = useState();
@@ -29,7 +29,7 @@ export default function Opcoes04(props) {
 
   const isMountedRef = useRef(null);
 
-  const { ex, exercicio, pergunta, palavra, opcoes } = props;
+  const { ex, exercicio, pergunta, palavra, opcoes, aula } = props;
 
   const exercicio_id = parseInt(exercicio);
 
@@ -55,7 +55,7 @@ export default function Opcoes04(props) {
   }
 
   async function loadProva() {
-    const response = await api.get(`provas`);
+    const response = await api.get(`provas2/${aula}`);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -83,7 +83,7 @@ export default function Opcoes04(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -97,8 +97,9 @@ export default function Opcoes04(props) {
       // loadProva();
 
       setTimeout(() => {
-        if (exercicio_id === 240) history.push('/percepcaovisual/242');
-        else history.push(`/percepcaovisual/${exercicio + 1}`);
+        if (exercicio_id === 240)
+          history.push(`/percepcaovisual/242/aula/${aula}`);
+        else history.push(`/percepcaovisual/${exercicio + 1}/aula/${aula}`);
       }, 300);
 
       // toast.success('Exercício concluído com sucesso!');
@@ -107,8 +108,9 @@ export default function Opcoes04(props) {
       setContador(null);
 
       setTimeout(() => {
-        if (exercicio_id === 240) history.push('/percepcaovisual/242');
-        else history.push(`/percepcaovisual/${exercicio + 1}`);
+        if (exercicio_id === 240)
+          history.push(`/percepcaovisual/242/aula/${aula}`);
+        else history.push(`/percepcaovisual/${exercicio + 1}/aula/${aula}`);
       }, 300);
     }
   }
@@ -121,7 +123,7 @@ export default function Opcoes04(props) {
         exercicio_id,
       });
 
-      const response = await api.get(`provas`);
+      const response = await api.get(`provas2/${aula}`);
 
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
@@ -157,12 +159,37 @@ export default function Opcoes04(props) {
 
   return (
     <>
-      <Barra
+      <Voltar>
+        <ul>
+          <li>
+            <Link to="/dashboard">
+              <small>Home</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to="/basico">
+              <small>Módulo Básico</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to={`/basico/aula0${aula}`}>
+              <small>Aula 0{aula}</small>
+            </Link>
+          </li>
+        </ul>
+
+        <a href="javascript:history.back()">
+          <small>&laquo; Voltar</small>
+        </a>
+      </Voltar>
+      {/* <Barra
         categoria="Leitura Dinâmica"
         modulo="Exercícios de percepção visual"
         exercicio={exercicio_id}
         nota={prova && prova.nota}
-      />
+      /> */}
       <Prod>
         <div>
           <h3>{ex}</h3>
