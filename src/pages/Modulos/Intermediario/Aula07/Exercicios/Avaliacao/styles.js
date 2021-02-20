@@ -275,3 +275,23 @@ export const Voltar = styled.div`
     color: #555;
   }
 `;
+
+export const Span = styled.span`
+  line-height: 3.5rem;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  strong {
+    color: red;
+    margin: 1rem !important;
+    padding: 0 !important;
+  }
+
+  small {
+    font-size: 1.5rem !important;
+    margin: 1rem !important;
+    padding: 0 !important;
+  }
+`;

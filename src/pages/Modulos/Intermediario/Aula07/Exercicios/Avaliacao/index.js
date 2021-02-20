@@ -31,6 +31,7 @@ import {
   Box1,
   Voltar,
   Asterisco,
+  Span,
 } from './styles';
 
 const hrInicio = Date.now();
@@ -1774,6 +1775,58 @@ export default function Exerciciosavaliacao(props) {
                   {tit1.cred1 && <>{tit1.cred1} </>}
                   {tit1.cred2 && <> - {tit1.cred2}</>}
                 </small>
+                {t1.map((t, i) => (
+                  <Span>
+                    {id === 1 &&
+                      texto1.map((t1, i) => {
+                        if (i === bloco) {
+                          return <strong>{i + 1}</strong>;
+                        } else {
+                          return <small>{i + 1}</small>;
+                        }
+                      })}
+                    {id === 2 &&
+                      texto2.map((t1, i) => {
+                        if (i === bloco) {
+                          return <strong>{i + 1}</strong>;
+                        } else {
+                          return <small>{i + 1}</small>;
+                        }
+                      })}
+                    {id === 3 &&
+                      texto3.map((t1, i) => {
+                        if (i === bloco) {
+                          return <strong>{i + 1}</strong>;
+                        } else {
+                          return <small>{i + 1}</small>;
+                        }
+                      })}
+                    {id === 4 &&
+                      texto4.map((t1, i) => {
+                        if (i === bloco) {
+                          return <strong>{i + 1}</strong>;
+                        } else {
+                          return <small>{i + 1}</small>;
+                        }
+                      })}
+                    {id === 5 &&
+                      texto5.map((t1, i) => {
+                        if (i === bloco) {
+                          return <strong>{i + 1}</strong>;
+                        } else {
+                          return <small>{i + 1}</small>;
+                        }
+                      })}
+                    {id === 6 &&
+                      texto6.map((t1, i) => {
+                        if (i === bloco) {
+                          return <strong>{i + 1}</strong>;
+                        } else {
+                          return <small>{i + 1}</small>;
+                        }
+                      })}
+                  </Span>
+                ))}
               </h2>
               <div>
                 <div>
@@ -1784,13 +1837,6 @@ export default function Exerciciosavaliacao(props) {
                   )}
                   {t1.map((t, i) => (
                     <>
-                      {/* {`${i + 1} de `}
-                      {id === 1 && texto1.length}
-                      {id === 2 && texto2.length}
-                      {id === 3 && texto3.length}
-                      {id === 4 && texto4.length}
-                      {id === 5 && texto5.length}
-                      {id === 6 && texto6.length} */}
                       {t.p1 && <p>{t.p1}</p>}
                       {t.p2 && <p>{t.p2}</p>}
                       {t.p3 && <p>{t.p3}</p>}
