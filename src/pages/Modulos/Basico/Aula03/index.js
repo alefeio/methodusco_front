@@ -197,7 +197,9 @@ export default function Aula03() {
               <strong>Prática</strong>
             </p>
             <p>
-              <img src={icoPlay} /> Explicando como realizar os exercícios
+              <Link to="/video/aula03pratica">
+                <img src={icoPlay} /> Explicando como realizar os exercícios
+              </Link>
             </p>
             <p>
               <strong>&raquo;</strong> Treinamentos curtos, intensos e
