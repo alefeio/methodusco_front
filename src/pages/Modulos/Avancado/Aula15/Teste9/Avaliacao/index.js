@@ -289,7 +289,7 @@ export default function Teste19avaliacao() {
         pcr: notaPcr,
         pcm: calcPcm,
         horas: calcHoras,
-        nivel_id: 5,
+        nivel_id: 4,
         prova_id: prova.id,
       });
 
@@ -392,9 +392,9 @@ export default function Teste19avaliacao() {
           )} */}
         </ul>
 
-        {/* <a href="javascript:history.back()">
+        <a href="javascript:history.back()">
           <small>&laquo; Voltar</small>
-        </a> */}
+        </a>
       </Voltar>
       <Prod visivel={visiv}>
         {!plm && !testeconcluido && (
@@ -761,13 +761,11 @@ export default function Teste19avaliacao() {
                 )}
               </>
             )}
-            {q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && (
               <div>
                 <Default>
                   <Link onClick={() => enviarTeste()}>Enviar Respostas</Link>
                 </Default>
               </div>
-            )}
           </div>
         )}
       </Prod>

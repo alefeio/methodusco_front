@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -111,6 +112,10 @@ export default function Aula14() {
               <small>Módulo Avançado</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 14</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -129,24 +134,28 @@ export default function Aula14() {
               <strong>Prática</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Paradigmas da leitura dinâmica x
-              paradigmas da leitura silábica/fonética.
+              <Link to="/video/aula14teoria">
+                <img src={icoPlay} /> Paradigmas da leitura dinâmica x
+              paradigmas da leitura silábica/fonética
+              </Link>
             </p>
             <p>
-              <strong>&raquo;</strong> Treinamentos intensos, curtos e
-              intercalados.
+              <Link to="/video/aula14pratica">
+                <img src={icoPlay} /> Treinamentos intensos, curtos e
+              intercalados
+              </Link>
             </p>
             <p>
               <strong>&raquo;</strong> Autoaceleração com timer
             </p>
             <p>
               do 1º dia ao 15º → 20” à 10”{' '}
-              <Link to="/autoaceleracao/326">&gt;</Link> e 15” à 10”{' '}
-              <Link to="/autoaceleracao/327">&gt;</Link>.
+              <Link to="/autoaceleracao/326/avancado/14"><span>&gt;</span></Link> e 15” à 10”{' '}
+              <Link to="/autoaceleracao/327/avancado/14"><span>&gt;</span></Link>.
             </p>
             <p>
               do 16º dia ao 30º → 10” à 5”{' '}
-              <Link to="/autoaceleracao/328">&gt;</Link>.
+              <Link to="/autoaceleracao/328/avancado/14"><span>&gt;</span></Link>.
             </p>
             <br />
             <p>
@@ -154,14 +163,14 @@ export default function Aula14() {
             </p>
             <p>
               <strong>&raquo;</strong> Automatizar paradigmas da leitura
-              dinâmica nos textos.
+              dinâmica nos textos
             </p>
             <br />
             <p>
               <strong>Duração</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> 30 dias.
+              <strong>&raquo;</strong> 30 dias
             </p>
           </Box1>
         </div>

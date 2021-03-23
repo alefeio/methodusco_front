@@ -29,7 +29,7 @@ import {
   Red,
 } from './styles';
 
-export default function Resultado() {
+export default function Resultado(props) {
   const [perfil, setPerfil] = useState();
   const [prova, setProva] = useState();
   const [provafinalizada, setProvafinalizada] = useState();
@@ -42,14 +42,16 @@ export default function Resultado() {
 
   // const dadosProva = useSelector((state) => state.usuario.prova);
 
+  const id = props.match.params.id;
+
   const perf = useSelector((state) => state.usuario);
 
   const aula = 0;
 
-  async function pegarResultado(prova) {
+  async function pegarResultado() {
     const response = await api.put('teste', {
       numero: 0,
-      prova_id: prova,
+      prova_id: id,
     });
 
     console.log(response.data);

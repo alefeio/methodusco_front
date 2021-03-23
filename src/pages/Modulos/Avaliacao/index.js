@@ -132,21 +132,24 @@ export default function Avaliacao() {
           <Titulo>AVALIAÇÃO DA MINHA LEITURA</Titulo>
           <br />
           <p>
-            A avaliação inicial da leitura que você fará agora tem por objetivo
-            medir a velocidade (Palavras Lidas por Minuto - PLM), o quanto
-            compreende (Percentual de Compreensão e Retenção - PCR) e quantas
-            (Palavras Compreende por Minuto - PCM).
+            A <strong>avaliação inicial da sua leitura</strong> que fará agora,
+            tem por <strong>objetivos</strong>:
           </p>
+          <ul>
+            <li>medir a velocidade <strong>(Palavras Lidas por Minuto – PLM)</strong></li>
+            <li>o quanto compreende e retém <strong>(Percentual de Compreensão e Retenção – PCR)</strong></li>
+            <li>e quantas <strong>(Palavras Compreende por Minuto – PCM)</strong></li>
+          </ul>
           <br />
           <p>
             Leia o texto como você sempre leu. Demore o tempo que precisar. Em
             seguida, <strong>clique em Finalizar</strong> e{' '}
-            <strong>responda a 10 perguntas</strong> sobre o conteúdo do texto.
+            <strong>responda as 10 perguntas</strong> sobre o conteúdo do texto.
           </p>
           <br />
           <p>
             Este será o seu referencial para avaliar a performance da sua
-            leitura ao conseguir ultrapassar os três Módulos.
+            leitura ao conseguir ultrapassar os <strong>3 Módulos</strong>.
           </p>
 
           <br />
@@ -155,7 +158,7 @@ export default function Avaliacao() {
               {!testeconcluido ? (
                 <Link to="/avaliacao/testeavaliacao">INICIAR</Link>
               ) : (
-                <Link to="/avaliacao/resultado">VER RESULTADO</Link>
+                <Link to={`/avaliacao/resultado/${prova.id}`}>VER RESULTADO</Link>
               )}
             </Default>
           </div>

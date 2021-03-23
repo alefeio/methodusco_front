@@ -119,6 +119,10 @@ export default function Exercicios(props) {
               <small>Aula 7</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Exercício {id}</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -139,7 +143,9 @@ export default function Exercicios(props) {
           </ul>
           <div>
             <Default>
-              <Link to={`/intermediario/exercicios/avaliacao/${id}`}>INICIAR</Link>
+              <Link to={`/intermediario/exercicios/avaliacao/${id}`}>
+                INICIAR
+              </Link>
             </Default>
           </div>
         </div>

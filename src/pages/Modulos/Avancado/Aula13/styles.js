@@ -28,6 +28,7 @@ export const ModUl2 = styled.ul`
 
 export const Prod = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   padding: 50px;
@@ -116,25 +117,29 @@ export const Prod = styled.div`
 export const Default = styled.small`
   border: 0;
   padding: 0.8rem;
+  /* border: 1px solid #ddd; */
   background: #135c58;
-  border-radius: 4px;
   color: #fff;
   padding: 1.5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
 
   a {
     color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
 
   @media (max-width: 720px) {
-    padding: 2rem;
-    width: 50%;
-    font-size: 2rem;
+    padding: 3rem;
+    width: 90%;
+
+    a {
+      flex-direction: row;
+    }
   }
 `;
 
@@ -176,10 +181,7 @@ export const Box1 = styled.div`
   margin: 2rem auto !important;
   max-width: 60%;
   text-align: center;
-  border: 1px solid #135c58;
-  border-radius: 5px;
   padding: 2rem !important;
-  background: #f0f1f4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -189,18 +191,28 @@ export const Box1 = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   p {
     margin: 0.5rem 0;
 
     a {
-      background: #135c58;
       padding: 0.3rem 0.7rem;
       margin: 0.2rem;
       border-radius: 3px;
-      color: #fff;
-      font-weight: bold;
+      color: #000;
+
+      img {
+        margin: 0 0.5rem 0 0;
+      }
+
+span {
+  background: #006699;
+  padding: 0.35rem 1.2rem;
+  color: #fff;
+  font-weight: bold;
+}
     }
   }
 
@@ -231,5 +243,51 @@ export const Voltar = styled.div`
   small {
     padding: 0.5rem 1rem;
     color: #555;
+  }
+`;
+
+export const Titulo4 = styled.div`
+  font: 20px Trebuchet, Arial, Verdana !important;
+  text-transform: none !important;
+  color: #333 !important;
+  /* margin: 1rem 0 0 !important; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+
+  img {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+  a {
+    border: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  ul {
+    margin: 0 !important;
+
+    li {
+      margin: 0 !important;
+    }
+  }
+
+  @media (max-width: 720px) {
+    margin: 0 0 0 2rem !important;
+
+    img {
+      width: 16px !important;
+    }
   }
 `;

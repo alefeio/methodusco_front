@@ -112,6 +112,10 @@ export default function Aula08() {
               <small>Módulo Intermediário</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 08</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -130,31 +134,42 @@ export default function Aula08() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <img src={icoPlay} /> Autoaceleração:
+              <Link to="/video/aula08teoria">
+                <img src={icoPlay} /> Autoaceleração: aplicando em textos com
+                timer
+              </Link>
             </p>
-            <ul>
-              <li>→ aplicando nos textos</li>
-              <li>→ com o timer</li>
-            </ul>
             <br />
             <p>
               <strong>Prática</strong>
             </p>
             <p>
-              <img src={icoPlay} /> Explicando como realizar os exercícios
+              <Link to="/video/aula08pratica">
+                <img src={icoPlay} /> Explicando como realizar os exercícios
+              </Link>
             </p>
             <p>
               <strong>&raquo;</strong> Treinamentos curtos, intensos e espaçados
             </p>
             <p>
               do 1º dia ao 10º → 45” à 20”{' '}
-              <Link to="/autoaceleracao/323">&gt;</Link> e 30” à 20”{' '}
-              <Link to="/autoaceleracao/324">&gt;</Link>
+              <Link to="/autoaceleracao/323/intermediario/08">
+                <span>&gt;</span>
+              </Link>{' '}
+              e 30” à 20”{' '}
+              <Link to="/autoaceleracao/324/intermediario/08">
+                <span>&gt;</span>
+              </Link>
             </p>
             <p>
               do 11º dia ao 20º → 25” à 18”{' '}
-              <Link to="/autoaceleracao/329">&gt;</Link> e 20” à 15”{' '}
-              <Link to="/autoaceleracao/325">&gt;</Link>
+              <Link to="/autoaceleracao/329/intermediario/08">
+                <span>&gt;</span>
+              </Link>{' '}
+              e 20” à 15”{' '}
+              <Link to="/autoaceleracao/325/intermediario/08">
+                <span>&gt;</span>
+              </Link>
             </p>
             <br />
             <p>

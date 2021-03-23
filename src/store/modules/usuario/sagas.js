@@ -10,6 +10,7 @@ import {
   updateEmProvaSucesso,
   updateRespostaSucesso,
   updateFimProvaSucesso,
+  updateTesteInicialSucesso,
 } from './actions';
 
 export function* updatePerfil({ payload }) {
@@ -50,10 +51,15 @@ export function* updateResposta({ payload }) {
   yield put(updateRespostaSucesso(payload.data));
 }
 
+export function* updateTesteInicial({ payload }) {
+  yield put(updateTesteInicialSucesso(payload.data));
+}
+
 export default all([
   takeLatest('@usuario/UPDATE_PERFIL_REQUEST', updatePerfil),
   takeLatest('@usuario/UPDATE_PROVA_REQUEST', updateProva),
   takeLatest('@usuario/UPDATE_EMPROVA_REQUEST', updateEmProva),
   takeLatest('@usuario/UPDATE_FIMPROVA_REQUEST', updateFimProva),
   takeLatest('@usuario/UPDATE_RESPOSTA_REQUEST', updateResposta),
+  takeLatest('@usuario/UPDATE_TESTE_INICIAL_REQUEST', updateTesteInicial),
 ]);

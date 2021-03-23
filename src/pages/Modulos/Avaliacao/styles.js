@@ -54,15 +54,11 @@ export const Prod = styled.div`
     }
 
     ul {
-      margin-bottom: 10px;
-      display: flex;
-      flex-wrap: wrap;
-
       li {
         padding: 7px;
-        margin: 3px;
-        font-size: 18px;
+        margin: 0 2rem;
         font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
+        list-style: disc;
 
         a {
           display: flex;

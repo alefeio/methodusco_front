@@ -12,6 +12,8 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
+import icoGrafico from '~/assets/ico-grafico.png';
 
 import {
   Container,
@@ -26,6 +28,7 @@ import {
   Ladodireito,
   Box1,
   Voltar,
+  Titulo4,
 } from './styles';
 
 export default function Aula15() {
@@ -111,6 +114,10 @@ export default function Aula15() {
               <small>Módulo Avançado</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 15</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -129,33 +136,49 @@ export default function Aula15() {
               <strong>Avaliação</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Quanto mudou os paradigmas da leitura.
+              <Link to="/video/aula15teoria">
+                <img src={icoPlay} /> Quanto mudaram os paradigmas da leitura
+              </Link>
             </p>
             <p>
               <strong>→ teste 16:</strong> P.L.M = 1250{' '}
-              <Link to="/avancado/teste6">&gt;</Link>
+              <Link to="/avancado/teste6"><span>&gt;</span></Link>
             </p>
             <p>
               <strong>→ teste 17:</strong> P.L.M = 1300{' '}
-              <Link to="/avancado/teste7">&gt;</Link>
+              <Link to="/avancado/teste7"><span>&gt;</span></Link>
             </p>
             <p>
               <strong>→ teste 18:</strong> P.L.M = 1350{' '}
-              <Link to="/avancado/teste8">&gt;</Link>
+              <Link to="/avancado/teste8"><span>&gt;</span></Link>
             </p>
             <p>
               <strong>→ teste 19:</strong> P.L.M = 1400{' '}
-              <Link to="/avancado/teste9">&gt;</Link>
+              <Link to="/avancado/teste9"><span>&gt;</span></Link>
             </p>
             <p>
               <strong>→ teste 20:</strong> P.L.M = 1450{' '}
-              <Link to="/avancado/teste10">&gt;</Link>
+              <Link to="/avancado/teste10"><span>&gt;</span></Link>
             </p>
             <p>
-              <strong>&raquo;</strong> Avaliando o seu desempenho.
+              <Link to="/video/aula15pratica">
+                <img src={icoPlay} /> Avaliando o seu desempenho
+              </Link>
             </p>
           </Box1>
         </div>
+
+        {prova && (
+          <Titulo4>
+            <Link to={`/grafico/${prova.id}`}>
+              <img src={icoGrafico} />
+              <div>
+                <Titulo3>Gráfico de Evolução</Titulo3>
+                <p>Avalie o seu desempenho</p>
+              </div>
+            </Link>
+          </Titulo4>
+        )}
       </Prod>
     </Container>
   );

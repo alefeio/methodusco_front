@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import proxima from '~/assets/bt_proxima.png';
+import anterior from '~/assets/bt_anterior.png';
 
 export const Container = styled.div`
   z-index: 999;
@@ -106,7 +107,7 @@ export const Prod = styled.div`
         background-size: cover !important;
         border-radius: 4px !important;
         position: absolute !important;
-        top: 100% !important;
+        top: 88% !important;
         right: 6% !important;
         margin: -33px;
 
@@ -117,8 +118,11 @@ export const Prod = styled.div`
       }
 
       button:first-child {
-        display: none !important;
-        visibility: hidden !important;
+        /* display: none !important;
+  visibility: hidden !important; */
+        background-image: url(${anterior}) !important;
+        top: 100% !important;
+        left: 94% !important;
       }
     }
 

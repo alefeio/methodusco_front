@@ -155,23 +155,24 @@ export default function Teste1() {
           ) : (
             <>
               <p>
-                Agora você irá fazer o Teste 1, para avaliar o seu progresso ao
+                Agora você irá fazer o <strong>Teste 1</strong> para avaliar o seu progresso ao
                 longo do curso.
               </p>
-              <p>Este teste tem por objetivo:</p>
+              <br />
+              <p>Os testes têm por objetivos:</p>
               <ul>
-                <li>medir a velocidade (Palavras Lidas por Minuto - PLM)</li>
+                <li>medir a velocidade <strong>(Palavras Lidas por Minuto - PLM)</strong></li>
                 <li>
-                  o quanto compreende (Percentual de Compreensão e Retenção -
-                  PCR)
+                  o quanto compreende <strong>(Percentual de Compreensão e Retenção -
+                  PCR)</strong>
                 </li>
-                <li>e quantas (Palavras Compreende por Minuto - PCM)</li>
+                <li>e quantas <strong>(Palavras Compreende por Minuto - PCM)</strong></li>
               </ul>
               <br />
               <p>
                 Ao clicar em <strong>Iniciar</strong>, você será direcionado ao
                 texto, e, após a sua leitura,{' '}
-                <strong>responda a 10 perguntas</strong> sobre o seu conteúdo.
+                <strong>responda as 10 perguntas</strong> sobre o seu conteúdo.
               </p>
             </>
           )}

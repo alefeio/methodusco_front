@@ -81,6 +81,8 @@ export default function Autoaceleracao(props) {
 
   const id = parseInt(props.match.params.id);
 
+  const {a, modulo} = props.match.params;
+
   const exercicio_id = id;
 
   const dispatch = useDispatch();
@@ -238,8 +240,16 @@ export default function Autoaceleracao(props) {
         </li>
         <li>|</li>
         <li>
-          <Link to="/intermediario">
-            <small>Módulo Intermediário</small>
+        <Link to={`/${modulo}`}>
+          {modulo === 'basico' && <small>Módulo Básico</small>}
+          {modulo === 'intermediario' && <small>Módulo Intermediário</small>}
+          {modulo === 'avancado' && <small>Módulo Avançado</small>}
+        </Link>
+        </li>
+        <li>|</li>
+        <li>
+          <Link to={`/${modulo}/aula${a}`}>
+            <small>Aula {a}</small>
           </Link>
         </li>
       </ul>

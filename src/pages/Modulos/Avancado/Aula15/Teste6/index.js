@@ -146,26 +146,33 @@ export default function Teste16() {
               </h2>
               <br />
               <p>
-                Clique no botão abaixo para ver o seu resultado. Este teste tem por objetivo medir a velocidade
-                (Palavras Lidas por Minuto - PLM), o quanto compreende
-                (Percentual de Compreensão e Retenção - PCR) e quantas (Palavras
-                Compreende por Minuto - PCM).
+                Clique no botão abaixo para ver o seu resultado. Este teste tem
+                por objetivo medir a velocidade (Palavras Lidas por Minuto -
+                PLM), o quanto compreende (Percentual de Compreensão e Retenção
+                - PCR) e quantas (Palavras Compreende por Minuto - PCM).
               </p>
             </>
           ) : (
             <>
               <p>
-                Agora você irá fazer o Teste 16, para avaliar o seu progresso ao
-                longo do curso. Este teste tem por objetivo medir a velocidade
-                (Palavras Lidas por Minuto - PLM), o quanto compreende
-                (Percentual de Compreensão e Retenção - PCR) e quantas (Palavras
-                Compreende por Minuto - PCM).
+                Agora você irá fazer o <strong>Teste 16</strong> para avaliar o seu progresso ao
+                longo do curso.
               </p>
+              <br />
+              <p>Os testes têm por objetivos:</p>
+              <ul>
+                <li>medir a velocidade <strong>(Palavras Lidas por Minuto - PLM)</strong></li>
+                <li>
+                  o quanto compreende <strong>(Percentual de Compreensão e Retenção -
+                  PCR)</strong>
+                </li>
+                <li>e quantas <strong>(Palavras Compreende por Minuto - PCM)</strong></li>
+              </ul>
               <br />
               <p>
                 Ao clicar em <strong>Iniciar</strong>, você será direcionado ao
                 texto, e, após a sua leitura,{' '}
-                <strong>responda a 10 perguntas</strong> sobre o seu conteúdo.
+                <strong>responda as 10 perguntas</strong> sobre o seu conteúdo.
               </p>
             </>
           )}

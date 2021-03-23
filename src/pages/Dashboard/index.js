@@ -37,12 +37,24 @@ export default function Dashboard() {
   const [prova, setProva] = useState();
   const [provafinalizada, setProvafinalizada] = useState();
   const [porcentagem, setPorcentagem] = useState(0);
+  const [testeinicial, setTesteinicial] = useState(0);
+  const [idtesteinicial, setIdtesteinicial] = useState(0);
 
   const dispatch = useDispatch();
 
   // const dadosProva = useSelector((state) => state.usuario.prova);
 
   const perf = useSelector((state) => state.usuario);
+
+  async function loadTesteInicial(id) {
+    const response = await api.put(`testealuno/${id}`);
+
+    console.log('Teste Inicial: ', response.data[0].pcm);
+
+    const tInicial = response.data[0].pcm;
+
+    setTesteinicial(tInicial);
+  }
 
   async function finalizarProva() {
     try {
@@ -71,6 +83,24 @@ export default function Dashboard() {
     // fazerProva();
   }
 
+  async function loadProvasFinalizadas(id) {
+    const response2 = await api.get(`provasfinalizadas`);
+
+    setProvafinalizada(response2.data);
+
+    let idTesteinicial = '';
+
+    if(response2.data.length) {
+      idTesteinicial = response2.data[0].id;
+
+      if (!testeinicial) loadTesteInicial(idTesteinicial);
+    } else {
+      idTesteinicial = id;
+    }
+
+    if(idTesteinicial) setIdtesteinicial(idTesteinicial);
+  }
+
   async function loadProvas() {
     const response = await api.get(`provas`);
 
@@ -82,6 +112,8 @@ export default function Dashboard() {
     const prova_id = response.data ? response.data.id : null;
 
     if (response.data) totalConcluido(response.data);
+
+    if(prova_id) loadProvasFinalizadas(prova_id);
   }
 
   async function totalConcluido(prova) {
@@ -121,16 +153,6 @@ export default function Dashboard() {
     loadProvas();
   }, []);
 
-  useEffect(() => {
-    async function loadProvasFinalizadas() {
-      const response2 = await api.get(`provasfinalizadas`);
-
-      setProvafinalizada(response2.data);
-    }
-
-    loadProvasFinalizadas();
-  }, []);
-
   return (
     <Container>
       <Prod>
@@ -166,11 +188,19 @@ export default function Dashboard() {
                       <img src={icoPlay3} /> Vídeo explicativo
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/avaliacao">
-                      <img src={icoTeste} /> Faça o teste
-                    </Link>
-                  </li>
+                  {!testeinicial ? (
+                    <li>
+                      <Link to="/avaliacao">
+                        <img src={icoTeste} /> Faça o teste
+                      </Link>
+                    </li>
+                  ) : (
+                    <li>
+                      <Link to={`/avaliacao/resultado/${idtesteinicial}`}>
+                        <img src={icoTeste} /> Ver resultado
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </Titulo4>
               <Titulo4>

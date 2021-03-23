@@ -107,7 +107,7 @@ export const Prod = styled.div`
         background-size: cover !important;
         border-radius: 4px !important;
         position: absolute !important;
-        top: 100% !important;
+        top: 88% !important;
         right: 6% !important;
         margin: -33px;
 
@@ -117,13 +117,13 @@ export const Prod = styled.div`
         }
       }
 
-button:first-child {
-  /* display: none !important;
+      button:first-child {
+        /* display: none !important;
   visibility: hidden !important; */
-  background-image: url(${anterior}) !important;
-  top: 100% !important;
-  left: 6% !important;
-}
+        background-image: url(${anterior}) !important;
+        top: 100% !important;
+        left: 94% !important;
+      }
     }
 
     div:first-child {

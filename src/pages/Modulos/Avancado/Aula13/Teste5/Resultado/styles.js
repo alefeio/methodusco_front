@@ -28,6 +28,7 @@ export const ModUl2 = styled.ul`
 
 export const Prod = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   padding: 50px;
@@ -162,10 +163,21 @@ export const Titulo2 = styled.h1`
 `;
 
 export const Titulo3 = styled.h1`
-  font: 18px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
+  font: 20px Trebuchet, Arial, Verdana !important;
   text-transform: none !important;
-  color: #135c58 !important;
-  margin: 2rem 0 0 !important;
+  color: #333 !important;
+  margin: 1rem 0 0 !important;
+  display: flex;
+
+  img {
+    margin: 0.5rem;
+  }
+
+  a {
+    border: 0 !important;
+    margin: 0 auto !important;
+    width: 65%;
+  }
 `;
 
 export const Box1 = styled.div`
@@ -202,4 +214,50 @@ export const Voltar = styled.div`
 export const Red = styled.span`
   color: red;
   font-weight: bold;
+`;
+
+export const Titulo4 = styled.div`
+  font: 20px Trebuchet, Arial, Verdana !important;
+  text-transform: none !important;
+  color: #333 !important;
+  /* margin: 1rem 0 0 !important; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0 !important;
+
+  img {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+  a {
+    border: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  ul {
+    margin: 0 !important;
+
+    li {
+      margin: 0 !important;
+    }
+  }
+
+  @media (max-width: 720px) {
+    margin: 0 0 0 2rem !important;
+
+    img {
+      width: 16px !important;
+    }
+  }
 `;

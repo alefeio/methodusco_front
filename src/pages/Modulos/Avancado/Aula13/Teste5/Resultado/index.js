@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoGrafico from '~/assets/ico-grafico.png';
 
 import {
   Container,
@@ -27,6 +28,7 @@ import {
   Box1,
   Voltar,
   Red,
+  Titulo4,
 } from './styles';
 
 export default function Teste15resultado() {
@@ -148,7 +150,7 @@ export default function Teste15resultado() {
       </Voltar>
       <Prod>
         <div>
-          <Titulo>TESTE 5 - RESULTADO</Titulo>
+          <Titulo>TESTE 15 - RESULTADO</Titulo>
           <br />
           <p>
             <strong>
@@ -182,6 +184,18 @@ export default function Teste15resultado() {
             <Red> {pcr}%</Red>.
           </p>
         </div>
+
+        {prova && (
+          <Titulo4>
+            <Link to={`/grafico/${prova.id}`}>
+              <img src={icoGrafico} />
+              <div>
+                <Titulo3>Gráfico de Evolução</Titulo3>
+                <p>Avalie o seu desempenho.</p>
+              </div>
+            </Link>
+          </Titulo4>
+        )}
       </Prod>
     </Container>
   );

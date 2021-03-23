@@ -28,6 +28,7 @@ export const ModUl2 = styled.ul`
 
 export const Prod = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   padding: 50px;
@@ -197,11 +198,21 @@ export const Box1 = styled.div`
     margin: 0.5rem 0;
 
     a {
-      background: #135c58;
       padding: 0.3rem 0.7rem;
       margin: 0.2rem;
       border-radius: 3px;
-      color: #fff;
+      color: #000;
+
+      img {
+        margin: 0 0.5rem 0 0;
+      }
+
+span {
+  background: #006699;
+  padding: 0.35rem 1.2rem;
+  color: #fff;
+  font-weight: bold;
+}
     }
   }
 
@@ -232,5 +243,51 @@ export const Voltar = styled.div`
   small {
     padding: 0.5rem 1rem;
     color: #555;
+  }
+`;
+
+export const Titulo4 = styled.div`
+  font: 20px Trebuchet, Arial, Verdana !important;
+  text-transform: none !important;
+  color: #333 !important;
+  /* margin: 1rem 0 0 !important; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+
+  img {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+  a {
+    border: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  ul {
+    margin: 0 !important;
+
+    li {
+      margin: 0 !important;
+    }
+  }
+
+  @media (max-width: 720px) {
+    margin: 0 0 0 2rem !important;
+
+    img {
+      width: 16px !important;
+    }
   }
 `;

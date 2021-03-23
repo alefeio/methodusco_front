@@ -31,6 +31,13 @@ export function updateRespostaRequest(data) {
   };
 }
 
+export function updateTesteInicialRequest(data) {
+  return {
+    type: '@usuario/UPDATE_TESTE_INICIAL_REQUEST',
+    payload: { data },
+  };
+}
+
 export function updatePerfilSucesso(perfil) {
   return {
     type: '@usuario/UPDATE_PERFIL_SUCESSO',
@@ -61,6 +68,13 @@ export function updateRespostaSucesso(resposta) {
   return {
     type: '@usuario/UPDATE_RESPOSTA_SUCESSO',
     payload: { resposta },
+  };
+}
+
+export function updateTesteInicialSucesso(data) {
+  return {
+    type: '@usuario/UPDATE_TESTE_INICIAL_SUCESSO',
+    payload: { data },
   };
 }
 

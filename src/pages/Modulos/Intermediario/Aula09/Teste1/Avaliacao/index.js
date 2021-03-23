@@ -232,8 +232,7 @@ export default function Teste1avaliacao() {
   const respCertas = ['b', 'a', 'b', 'a', 'a', 'd', 'b', 'a', 'c', 'a'];
 
   const settings = {
-    dots: true,
-    // fade: true,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -787,13 +786,11 @@ export default function Teste1avaliacao() {
                 )}
               </>
             )}
-            {q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && (
               <div>
                 <Default>
                   <Link onClick={() => enviarTeste()}>Enviar Respostas</Link>
                 </Default>
               </div>
-            )}
           </div>
         )}
       </Prod>

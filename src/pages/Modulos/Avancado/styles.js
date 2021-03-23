@@ -122,15 +122,16 @@ export const Prod = styled.div`
 export const Default = styled.small`
   border: 0;
   padding: 0.8rem;
-  border: 1px solid #ddd;
-  color: #333;
+  /* border: 1px solid #ddd; */
+  background: #135c58;
+  color: #fff;
   padding: 1.5rem;
   font-size: 2rem;
   margin: 1rem;
   cursor: pointer;
 
   a {
-    color: #333;
+    color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -26,11 +26,16 @@ export const ModUl2 = styled.ul`
   flex-direction: column;
 `;
 
+
+
 export const Prod = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 50px;
+  font-size: 1.8rem;
+  max-width: 80%;
+  margin: 0 auto;
 
   div {
     width: 100%;
@@ -62,20 +67,11 @@ export const Prod = styled.div`
     }
 
     ul {
-      margin-bottom: 10px;
-      display: flex;
-      flex-wrap: wrap;
+      margin: 1.8rem;
+      list-style: disc;
 
       li {
-        padding: 7px;
-        margin: 3px;
-        font-size: 18px;
-        font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
-
         a {
-          display: flex;
-          align-items: center;
-
           small {
             color: green;
             font-size: 1.1rem !important;

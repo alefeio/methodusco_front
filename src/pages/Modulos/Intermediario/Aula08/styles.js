@@ -197,11 +197,21 @@ export const Box1 = styled.div`
     margin: 0.5rem 0;
 
     a {
-      background: #135c58;
       padding: 0.3rem 0.7rem;
       margin: 0.2rem;
       border-radius: 3px;
-      color: #fff;
+      color: #000;
+
+      img {
+        margin: 0 0.5rem 0 0;
+      }
+
+      span {
+        background: #006699;
+        padding: 0.35rem 1.2rem;
+        color: #fff;
+        font-weight: bold;
+      }
     }
   }
 

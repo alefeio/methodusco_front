@@ -112,6 +112,10 @@ export default function Aula07() {
               <small>Módulo Intermediário</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 07</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -130,14 +134,19 @@ export default function Aula07() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <img src={icoPlay} /> Autoaceleração → aplicando nos textos
+              <Link to="/video/aula07teoria">
+                <img src={icoPlay} /> Autoaceleração: aplicando em textos no
+                monitor
+              </Link>
             </p>
             <br />
             <p>
               <strong>Prática</strong>
             </p>
             <p>
-              <img src={icoPlay} /> Explicando como realizar os exercícios
+              <Link to="/video/aula07pratica">
+                <img src={icoPlay} /> Explicando como realizar os exercícios
+              </Link>
             </p>
             <p>
               <strong>&raquo;</strong> Treinamentos curtos, intensos e espaçados

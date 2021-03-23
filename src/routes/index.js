@@ -115,7 +115,7 @@ export default function Routes() {
         isPrivate
       />
       <Route path="/apostila/:id/aula/:aula" component={Apostila} isPrivate />
-      <Route path="/autoaceleracao/:id" component={Autoaceleracao} isPrivate />
+      <Route path="/autoaceleracao/:id/:modulo/:a" component={Autoaceleracao} isPrivate />
       <Route path="/memorizacao/:id" component={Memorizacao} isPrivate />
       <Route path="/avaliacao" exact component={Avaliacao} isPrivate />
       <Route
@@ -123,7 +123,7 @@ export default function Routes() {
         component={Testeavaliacao}
         isPrivate
       />
-      <Route path="/avaliacao/resultado" component={Resultado} isPrivate />
+      <Route path="/avaliacao/resultado/:id" component={Resultado} isPrivate />
       <Route path="/intermediario/teste1" exact component={Teste1} isPrivate />
       <Route path="/intermediario/teste2" exact component={Teste2} isPrivate />
       <Route path="/intermediario/teste3" exact component={Teste3} isPrivate />

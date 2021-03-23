@@ -34,10 +34,12 @@ import {
 export default function Grafico(props) {
   const [perfil, setPerfil] = useState();
   const [prova, setProva] = useState();
-  const [provafinalizada, setProvafinalizada] = useState();
+  const [provafinalizada, setProvafinalizada] = useState([]);
   const [porcentagem, setPorcentagem] = useState(0);
   const [testes, setTestes] = useState([]);
   const [atual, setAtual] = useState();
+  const [evolucao, setEvolucao] = useState(0);
+  const [testeinicial, setTesteinicial] = useState(0);
 
   const id = parseInt(props.match.params.id);
 
@@ -71,6 +73,26 @@ export default function Grafico(props) {
     }
   }
 
+  async function loadProvasFinalizadas(id) {
+    const response2 = await api.get(`provasfinalizadas`);
+
+    setProvafinalizada(response2.data);
+
+    console.log(`Provas finalizadas:`, response2.data);
+
+    let idTesteinicial = '';
+
+    if(response2.data.length) {
+      idTesteinicial = response2.data[0].id;
+    } else {
+      idTesteinicial = id;
+    }
+
+    if (!testeinicial) loadTesteInicial(idTesteinicial);
+
+    setAtual(response2.data.length + 1);
+  }
+
   async function loadProvas() {
     const response = await api.get(`provas`);
 
@@ -82,6 +104,8 @@ export default function Grafico(props) {
     const prova_id = response.data ? response.data.id : null;
 
     if (response.data) totalConcluido(response.data);
+
+    loadProvasFinalizadas(prova_id);
   }
 
   async function totalConcluido(prova) {
@@ -108,12 +132,40 @@ export default function Grafico(props) {
     setPorcentagem(((pr / 17) * 100).toFixed(1));
   }
 
-  async function loadTestes() {
+  async function loadTestes(id) {
     const response = await api.put(`testealuno/${id}`);
 
     console.log('Testes: ', response.data);
 
+    const tests = response.data;
+
+    let media = 0;
+    let divisor = 0;
+
+    tests.map((t, i) => {
+      if (i > 0) {
+        media += t.pcm;
+        divisor++;
+      }
+    });
+
+    const med = media / divisor;
+
+    const med2 = med.toFixed(1) / testeinicial;
+
+    setEvolucao(med.toFixed(1) / testeinicial);
+
     setTestes(response.data);
+  }
+
+  async function loadTesteInicial(id) {
+    const response = await api.put(`testealuno/${id}`);
+
+    console.log('Teste Inicial: ', response.data[0].pcm);
+
+    const tInicial = response.data[0].pcm;
+
+    setTesteinicial(tInicial);
   }
 
   async function criarProva() {
@@ -138,20 +190,8 @@ export default function Grafico(props) {
   useEffect(() => {
     criarProva();
     loadProvas();
-    loadTestes();
-  }, [id]);
-
-  useEffect(() => {
-    async function loadProvasFinalizadas() {
-      const response2 = await api.get(`provasfinalizadas`);
-
-      setProvafinalizada(response2.data);
-
-      setAtual(response2.data.length + 1);
-    }
-
-    loadProvasFinalizadas();
-  }, []);
+    loadTestes(id);
+  }, [id, testeinicial]);
 
   return (
     <Container>
@@ -177,7 +217,15 @@ export default function Grafico(props) {
           <Titulo>AVALIANDO O SEU DESEMPENHO</Titulo>
           <Titulo2>
             <small>Gráfico demonstrativo da</small> Prova {atual}{' '}
-            <small>em relação aos resultados dos 3 módulos</small>
+            {/* <small>em relação ao seu Teste Inicial</small> */}
+            <br />
+            {evolucao > 0 && (
+              <>
+                <small>Você melhorou </small>
+                {evolucao.toFixed(1)}
+                <small> vezes em relação ao Teste Inicial</small>
+              </>
+            )}
           </Titulo2>
           {/* <Titulo2>Gráfico: Prova {atual}</Titulo2> */}
 
@@ -219,8 +267,21 @@ export default function Grafico(props) {
                 </Numeros>
                 <Numeros> </Numeros>
               </div>
-              {testes.map((t) => (
-                <Teste key={t.id} height={t.pcm / 2} bg="#135c58">
+              <Teste height={testeinicial / 2} bg="#135c58">
+                <span>
+                  <p>{testeinicial}</p>
+                </span>
+                <span>
+                  <p>
+                    Teste
+                    <br />
+                    Inicial
+                  </p>
+                </span>
+              </Teste>
+              {testes.map((t, i) => {
+                if(i > 0) {
+                return (<Teste key={t.id} height={t.pcm / 2} bg="#135c58">
                   <span>
                     <p>{t.pcm}</p>
                   </span>
@@ -234,7 +295,7 @@ export default function Grafico(props) {
                     </span>
                   )}
                 </Teste>
-              ))}
+              )}})}
               {testes.length < 21 && (
                 <>
                   {testes.length === 1 && (
@@ -1189,12 +1250,12 @@ export default function Grafico(props) {
                       }}
                     >
                       Prova {provafinalizada.length + 1}
-                      {porcentagem > 0 && (
+                      {/* {porcentagem > 0 && (
                         <small>
                           {' '}
                           (progresso: {porcentagem ? porcentagem : 0}%)
                         </small>
-                      )}
+                      )} */}
                     </Link>
                   )}
                   <button
@@ -1209,7 +1270,7 @@ export default function Grafico(props) {
               </>
             )}
 
-            {provafinalizada && provafinalizada.length && (
+            {provafinalizada.length > 0 && (
               <ul>
                 {provafinalizada.map((p, i) => {
                   return (

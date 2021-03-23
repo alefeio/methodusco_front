@@ -64,7 +64,7 @@ export const Prod = styled.div`
     ul {
       margin: 0 auto 1rem;
       list-style: disc;
-      max-width: 50%;
+      max-width: 60%;
       /* text-align: center; */
 
       li {
@@ -72,7 +72,6 @@ export const Prod = styled.div`
         margin: 3px;
         font-size: 18px;
         font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
-        list-style: none;
 
         a {
           display: flex;

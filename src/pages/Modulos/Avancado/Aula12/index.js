@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -111,6 +112,10 @@ export default function Aula12() {
               <small>Módulo Avançado</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 12</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -129,7 +134,9 @@ export default function Aula12() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Mecanismos físicos + mecanismos mentais
+              <Link to="/video/aula12teoria">
+                <img src={icoPlay} /> Mecanismos físicos + mecanismos mentais
+              </Link>
             </p>
             <p>
               <strong>&raquo;</strong> Leitura elaborativa → autoaceleração
@@ -139,20 +146,22 @@ export default function Aula12() {
               <strong>Prática</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Treinamentos intensos, curtos e
-              intercalados.
+              <Link to="/video/aula12pratica">
+                <img src={icoPlay} /> Treinamentos intensos, curtos e
+              intercalados
+              </Link>
             </p>
             <p>
               <strong>&raquo;</strong> Autoaceleração com timer
             </p>
             <p>
               do 1º dia ao 15º → 30” à 15”{' '}
-              <Link to="/autoaceleracao/322">&gt;</Link> e 20” à 15”{' '}
-              <Link to="/autoaceleracao/325">&gt;</Link>.
+              <Link to="/autoaceleracao/322/avancado/12"><span>&gt;</span></Link> e 20” à 15”{' '}
+              <Link to="/autoaceleracao/325/avancado/12"><span>&gt;</span></Link>.
             </p>
             <p>
               do 16º dia ao 30º → 20” à 10”{' '}
-              <Link to="/autoaceleracao/326">&gt;</Link>.
+              <Link to="/autoaceleracao/326/avancado/12"><span>&gt;</span></Link>.
             </p>
             <br />
             <p>
@@ -160,14 +169,14 @@ export default function Aula12() {
             </p>
             <p>
               <strong>&raquo;</strong> Automatizar paradigmas da leitura
-              dinâmica nos textos.
+              dinâmica nos textos
             </p>
             <br />
             <p>
               <strong>Duração</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> 30 dias.
+              <strong>&raquo;</strong> 30 dias
             </p>
           </Box1>
         </div>

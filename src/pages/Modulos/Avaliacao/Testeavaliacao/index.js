@@ -245,7 +245,7 @@ export default function Testeavaliacao() {
 
     if (response.data) {
       setTesteconcluido(true);
-      history.push('/avaliacao/resultado');
+      history.push(`/avaliacao/resultado/${prova}`);
     }
   }
 
@@ -286,7 +286,7 @@ export default function Testeavaliacao() {
       toast.success('Avaliação Parcial concluída com sucesso!');
       setTimeout(() => {
         setTesteconcluido(true);
-        history.push('/avaliacao/resultado');
+        history.push(`/avaliacao/resultado/${prova.id}`);
       }, 3000);
     } catch (error) {
       toast.error('A Avaliação Parcial já foi concluída!');

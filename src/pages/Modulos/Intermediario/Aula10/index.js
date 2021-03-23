@@ -112,6 +112,10 @@ export default function Aula10() {
               <small>Módulo Intermediário</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 10</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -130,14 +134,18 @@ export default function Aula10() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <img src={icoPlay} /> Subvocalização = cordas vocais
+              <Link to="/video/aula10teoria">
+                <img src={icoPlay} /> Subvocalização = cordas vocais/sonorização
+              </Link>
             </p>
             <br />
             <p>
               <strong>Prática</strong>
             </p>
             <p>
-              <img src={icoPlay} /> Explicando como realizar os exercícios
+              <Link to="/video/aula10pratica">
+                <img src={icoPlay} /> Explicando como realizar os exercícios
+              </Link>
             </p>
 
             <ul>
@@ -146,12 +154,19 @@ export default function Aula10() {
             </ul>
             <p>
               do 1º dia ao 15º → 30” à 20”{' '}
-              <Link to="/autoaceleracao/324">&gt;</Link> e 20” à 15”{' '}
-              <Link to="/autoaceleracao/325">&gt;</Link>
+              <Link to="/autoaceleracao/324/intermediario/10">
+                <span>&gt;</span>
+              </Link>{' '}
+              e 20” à 15”{' '}
+              <Link to="/autoaceleracao/325/intermediario/10">
+                <span>&gt;</span>
+              </Link>
             </p>
             <p>
               do 16º dia ao 30º → 20” à 10”{' '}
-              <Link to="/autoaceleracao/326">&gt;</Link>
+              <Link to="/autoaceleracao/326/intermediario/10">
+                <span>&gt;</span>
+              </Link>
             </p>
             <br />
             <p>

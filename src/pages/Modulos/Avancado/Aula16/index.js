@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoPlay from '~/assets/ico-play.png';
 
 import {
   Container,
@@ -111,6 +112,10 @@ export default function Aula16() {
               <small>Módulo Avançado</small>
             </Link>
           </li>
+          <li>|</li>
+          <li>
+            <small>Aula 16</small>
+          </li>
         </ul>
 
         <a href="javascript:history.back()">
@@ -129,10 +134,12 @@ export default function Aula16() {
               <strong>Teoria</strong>
             </p>
             <p>
-              <strong>&raquo;</strong> Fatores auxiliares da leitura.
+              <Link to="/video/aula16teoria">
+                <img src={icoPlay} /> Fatores auxiliares da leitura
+              </Link>
             </p>
             <p>
-              <strong>&raquo;</strong> Como continuar treinando.
+              <strong>&raquo;</strong> Como continuar treinando
             </p>
           </Box1>
         </div>

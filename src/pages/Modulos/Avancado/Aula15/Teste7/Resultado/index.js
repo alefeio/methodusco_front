@@ -148,7 +148,7 @@ export default function Teste17resultado() {
       </Voltar>
       <Prod>
         <div>
-          <Titulo>TESTE 7 - RESULTADO</Titulo>
+          <Titulo>TESTE 17 - RESULTADO</Titulo>
           <br />
           <p>
             <strong>
