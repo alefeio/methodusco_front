@@ -55,7 +55,7 @@ export const Prod = styled.div`
 
     ul {
       li {
-        padding: 7px;
+        padding: 2px;
         margin: 0 2rem;
         font-family: 'Trebuchet MS', 'Times New Roman', Times, serif;
         list-style: disc;

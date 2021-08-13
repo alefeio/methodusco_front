@@ -33,7 +33,7 @@ import {
 export default function Aula01() {
   const [perfil, setPerfil] = useState();
   const [prova, setProva] = useState();
-  const [provafinalizada, setProvafinalizada] = useState();
+  const [provafinalizada, setProvafinalizada] = useState([]);
   const [aproveitamento, setAproveitamento] = useState(0);
   const [divisor, setDivisor] = useState(0);
   const [total, setTotal] = useState(0);
@@ -82,27 +82,33 @@ export default function Aula01() {
 
     console.log('Prova: ', response.data);
 
-    setProva(response.data);
-    dispatch(updateProvaRequest(response.data));
+    if(response.data) {
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+    }
 
     const prova_id = response.data ? response.data.id : null;
 
     let apr = 0;
     let div = 0;
 
-    if (response.data.monitor03 > 0) {
-      apr += response.data.monitor03;
-      div += 1;
-    }
+    if(response.data.length) {
 
-    if (response.data.monitor04 > 0) {
-      apr += response.data.monitor04;
-      div += 1;
-    }
+      if (response.data.monitor03 > 0) {
+        apr += response.data.monitor03;
+        div += 1;
+      }
 
-    if (response.data.monitor05 > 0) {
-      apr += response.data.monitor05;
-      div += 1;
+      if (response.data.monitor04 > 0) {
+        apr += response.data.monitor04;
+        div += 1;
+      }
+
+      if (response.data.monitor05 > 0) {
+        apr += response.data.monitor05;
+        div += 1;
+      }
+
     }
 
     const tot = apr / div;
@@ -242,7 +248,8 @@ export default function Aula01() {
           )}
           {prova && (
             <Titulo3>
-              {`Id: ${prova.id}`}
+              {/* {`Id: ${prova.id}`} */}
+              {`Id: ${provafinalizada.length + 1}`}
               {total > 0 && ` | Aproveitamento: ${total.toFixed(1)}%`}
               <br />
               <br />
@@ -254,8 +261,9 @@ export default function Aula01() {
           <Titulo2>Treinamentos anteriores:</Titulo2>
           <ModUl>
             {provafinalizada &&
-              provafinalizada.map((p) => (
-                <li key={p.id}>{`Id: ${p.id} | Nota: ${(
+              provafinalizada.map((p, i) => (
+                // <li key={p.id}>{`Id: ${p.id} | Nota: ${(
+                <li key={p.id}>{`Id: ${i + 1} | Nota: ${(
                   (p.monitor03 + p.monitor04 + p.monitor05) /
                   3
                 ).toFixed(1)}%`}</li>

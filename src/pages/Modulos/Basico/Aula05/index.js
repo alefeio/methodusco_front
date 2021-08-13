@@ -33,7 +33,7 @@ import {
 export default function Aula05() {
   const [perfil, setPerfil] = useState();
   const [prova, setProva] = useState();
-  const [provafinalizada, setProvafinalizada] = useState();
+  const [provafinalizada, setProvafinalizada] = useState([]);
   const [total, setTotal] = useState(0);
 
   const dispatch = useDispatch();
@@ -80,62 +80,68 @@ export default function Aula05() {
 
     console.log('Prova: ', response.data);
 
-    setProva(response.data);
-    dispatch(updateProvaRequest(response.data));
+    if(response.data) {
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+    }
 
     const prova_id = response.data ? response.data.id : null;
 
     let apr = 0;
     let div = 0;
 
-    if (response.data.monitor03 > 0) {
-      apr += response.data.monitor03;
-      div += 1;
-    }
+    if(response.data.length) {
 
-    if (response.data.monitor04 > 0) {
-      apr += response.data.monitor04;
-      div += 1;
-    }
+      if (response.data.monitor03 > 0) {
+        apr += response.data.monitor03;
+        div += 1;
+      }
 
-    if (response.data.monitor05 > 0) {
-      apr += response.data.monitor05;
-      div += 1;
-    }
+      if (response.data.monitor04 > 0) {
+        apr += response.data.monitor04;
+        div += 1;
+      }
 
-    if (response.data.monitor06 > 0) {
-      apr += response.data.monitor06;
-      div += 1;
-    }
+      if (response.data.monitor05 > 0) {
+        apr += response.data.monitor05;
+        div += 1;
+      }
 
-    if (response.data.monitor07 > 0) {
-      apr += response.data.monitor07;
-      div += 1;
-    }
+      if (response.data.monitor06 > 0) {
+        apr += response.data.monitor06;
+        div += 1;
+      }
 
-    if (response.data.monitor08 > 0) {
-      apr += response.data.monitor08;
-      div += 1;
-    }
+      if (response.data.monitor07 > 0) {
+        apr += response.data.monitor07;
+        div += 1;
+      }
 
-    if (response.data.monitor09 > 0) {
-      apr += response.data.monitor09;
-      div += 1;
-    }
+      if (response.data.monitor08 > 0) {
+        apr += response.data.monitor08;
+        div += 1;
+      }
 
-    if (response.data.percepcao01 > 0) {
-      apr += response.data.percepcao01;
-      div += 1;
-    }
+      if (response.data.monitor09 > 0) {
+        apr += response.data.monitor09;
+        div += 1;
+      }
 
-    if (response.data.percepcao02 > 0) {
-      apr += response.data.percepcao02;
-      div += 1;
-    }
+      if (response.data.percepcao01 > 0) {
+        apr += response.data.percepcao01;
+        div += 1;
+      }
 
-    if (response.data.percepcao03 > 0) {
-      apr += response.data.percepcao03;
-      div += 1;
+      if (response.data.percepcao02 > 0) {
+        apr += response.data.percepcao02;
+        div += 1;
+      }
+
+      if (response.data.percepcao03 > 0) {
+        apr += response.data.percepcao03;
+        div += 1;
+      }
+
     }
 
     const tot = apr / div;
@@ -306,7 +312,7 @@ export default function Aula05() {
           )}
           {prova && (
             <Titulo3>
-              {`Id: ${prova.id}`}
+              {`Id: ${provafinalizada.length + 1}`}
               {total > 0 && ` | Aproveitamento: ${total.toFixed(1)}%`}
               <br />
               <br />
@@ -318,8 +324,8 @@ export default function Aula05() {
           <Titulo2>Treinamentos anteriores:</Titulo2>
           <ModUl>
             {provafinalizada &&
-              provafinalizada.map((p) => (
-                <li key={p.id}>{`Id: ${p.id} | Nota: ${(
+              provafinalizada.map((p,i ) => (
+                <li key={p.id}>{`Id: ${i + 1} | Nota: ${(
                   (p.monitor03 +
                     p.monitor04 +
                     p.monitor05 +

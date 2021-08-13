@@ -5,12 +5,7 @@ export const Container = styled.div`
 `;
 
 export const Ladodireito = styled.div`
-  margin: 2rem auto !important;
-  max-width: 60%;
   text-align: center;
-  border-radius: 5px;
-  padding: 2rem !important;
-  border: 1px solid #333;
 
   h2 {
     color: green;
@@ -24,18 +19,25 @@ export const Ladodireito = styled.div`
   }
 
   ul {
-    background: #efefef;
-    margin: 2rem !important;
     padding: 1rem !important;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  button {
-    margin: 1rem;
-    padding: 1rem;
-    background: red;
-    color: white;
-    border-radius: 4px;
-    border: 0;
+    li {
+      display: flex;
+      padding: 1rem;
+
+        button {
+          margin: 0 0 0 0.5rem;
+          padding: 0.5rem;
+          background: red;
+          color: white;
+          border-radius: 6px;
+          border: 0;
+          font-size: 1.5rem;
+        }
+    }
   }
 `;
 
@@ -180,6 +182,8 @@ export const Titulo2 = styled.h1`
   small {
     color: black;
   }
+
+
 `;
 
 export const Titulo3 = styled.h1`
@@ -222,6 +226,10 @@ export const Box1 = styled.div`
   div {
     margin: 0;
     padding: 0;
+
+    &.numeros {
+      max-width: 50px;
+    }
   }
 
   a {
@@ -273,6 +281,12 @@ export const Teste = styled.div`
     border-top: 1px solid #135c58;
     width: 100%;
     margin: 0 auto;
+
+    p {
+      p {
+        margin: 0;
+      }
+    }
   }
 
   span:first-child {
@@ -292,6 +306,12 @@ export const Teste = styled.div`
 
     span {
       align-items: center;
+
+      p {
+        p {
+          display: none;
+        }
+      }
     }
 
     span:first-child {
@@ -348,5 +368,53 @@ export const Voltar = styled.div`
   small {
     padding: 0.5rem 1rem;
     color: #555;
+  }
+`;
+
+export const BtModulos = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  table {
+    max-width: 100%;
+    overflow: scroll !important;
+
+    th {
+      text-align: center;
+      padding: 0.5rem !important;
+
+      span {
+        text-decoration: underline;
+        text-align: center;
+        font-size: 1.5rem !important;
+      }
+    }
+
+    td {
+      text-align: center;
+      padding: 0.5rem !important;
+
+      span {
+        text-decoration: underline;
+        text-align: center;
+        font-size: 1.5rem !important;
+      }
+
+      small {
+        width: 20%;
+        text-align: center;
+        font-size: 1.5rem !important;
+      }
+    }
+  }
+
+  button {
+    border: 0;
+    background: transparent;
+  }
+
+  @media(max-width: 720px) {
+    flex-direction: column;
   }
 `;

@@ -155,13 +155,13 @@ export default function Aula12() {
               <strong>&raquo;</strong> Autoaceleração com timer
             </p>
             <p>
-              do 1º dia ao 15º → 30” à 15”{' '}
-              <Link to="/autoaceleracao/322/avancado/12"><span>&gt;</span></Link> e 20” à 15”{' '}
-              <Link to="/autoaceleracao/325/avancado/12"><span>&gt;</span></Link>.
+              do 1º dia ao 15º → 20” à 15”{' '}
+              <Link to="/autoaceleracao/325/avancado/12"><span>&gt;</span></Link> e 18” à 12”{' '}
+              <Link to="/autoaceleracao/330/avancado/12"><span>&gt;</span></Link>.
             </p>
             <p>
-              do 16º dia ao 30º → 20” à 10”{' '}
-              <Link to="/autoaceleracao/326/avancado/12"><span>&gt;</span></Link>.
+              do 16º dia ao 30º → 15” à 10”{' '}
+              <Link to="/autoaceleracao/327/avancado/12"><span>&gt;</span></Link>.
             </p>
             <br />
             <p>

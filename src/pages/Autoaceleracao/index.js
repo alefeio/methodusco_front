@@ -223,6 +223,10 @@ export default function Autoaceleracao(props) {
       loadNumeros(18, 25);
       setContador(25);
     }
+    if (id === 330) {
+      loadNumeros(12, 18);
+      setContador(18);
+    }
 
     return () => {
       isMountedRef.current = false;

@@ -36,8 +36,6 @@ import {
 
 const aula = 0;
 
-const hrInicio = Date.now();
-
 const titulo = 'Do Ventre para o Cérebro';
 
 const cred1 = 'Scientific American. Charles Q. Choi';
@@ -182,6 +180,7 @@ export default function Testeavaliacao() {
   const [q9, setQ9] = useState();
   const [q10, setQ10] = useState();
   const [testeconcluido, setTesteconcluido] = useState(false);
+  const [hrInicio, setHrInicio] = useState();
 
   const dispatch = useDispatch();
 
@@ -319,7 +318,7 @@ export default function Testeavaliacao() {
 
     console.log('Tempo: ', dif);
 
-    const calculo = ((559 * 60) / dif).toFixed(0);
+    const calculo = (554 * 60 / dif).toFixed(0);
 
     setPlm(calculo);
   }
@@ -330,10 +329,10 @@ export default function Testeavaliacao() {
     }
 
     loadPerfil();
-  }, []);
 
-  useEffect(() => {
     loadProvas();
+
+    setHrInicio(Date.now());
   }, []);
 
   return (
@@ -488,7 +487,7 @@ export default function Testeavaliacao() {
               ))}
             </Slider>
             <>
-              <p>
+              <p className="questoes">
                 Questões respondidas: {plm}
                 {q1 && ` 1) ${q1}`}
                 {q2 && ` - 2) ${q2}`}

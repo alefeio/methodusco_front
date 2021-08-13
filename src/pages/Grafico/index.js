@@ -29,6 +29,7 @@ import {
   Teste,
   Numeros,
   Span,
+  BtModulos,
 } from './styles';
 
 export default function Grafico(props) {
@@ -40,6 +41,7 @@ export default function Grafico(props) {
   const [atual, setAtual] = useState();
   const [evolucao, setEvolucao] = useState(0);
   const [testeinicial, setTesteinicial] = useState(0);
+  const [modulografico, setModulografico] = useState(1);
 
   const id = parseInt(props.match.params.id);
 
@@ -67,9 +69,11 @@ export default function Grafico(props) {
       criarProva();
       loadProvas();
 
-      toast.success('Prova finalizada com sucesso!');
+      loadUltimaProva(id);
+
+      // toast.success('Prova finalizada com sucesso!');
     } catch (error) {
-      toast.error('Erro ao finalizar a prova. Tente novamente!');
+      // toast.error('Erro ao finalizar a prova. Tente novamente!');
     }
   }
 
@@ -82,15 +86,13 @@ export default function Grafico(props) {
 
     let idTesteinicial = '';
 
-    if(response2.data.length) {
+    if (response2.data.length) {
       idTesteinicial = response2.data[0].id;
     } else {
       idTesteinicial = id;
     }
 
     if (!testeinicial) loadTesteInicial(idTesteinicial);
-
-    setAtual(response2.data.length + 1);
   }
 
   async function loadProvas() {
@@ -133,39 +135,73 @@ export default function Grafico(props) {
   }
 
   async function loadTestes(id) {
+    setTestes([]);
+
     const response = await api.put(`testealuno/${id}`);
 
     console.log('Testes: ', response.data);
+
+    if (prova && provafinalizada.length && response.data.prova === prova.id) {
+      if (response.data.length >= 20) finalizarProva();
+    } else if (
+      prova &&
+      !provafinalizada.length &&
+      response.data.prova === prova.id
+    ) {
+      if (response.data.length >= 21) finalizarProva();
+    }
 
     const tests = response.data;
 
     let media = 0;
     let divisor = 0;
 
+    let test = [];
+
     tests.map((t, i) => {
-      if (i > 0) {
+      if (modulografico === 1 && t.numero > 0 && t.numero < 6) {
         media += t.pcm;
         divisor++;
+        test.push(t);
+        setTestes(test);
+      } else if (modulografico === 2 && t.numero > 5 && t.numero < 11) {
+        media += t.pcm;
+        divisor++;
+        test.push(t);
+        setTestes(test);
+      } else if (modulografico === 3 && t.numero > 10 && t.numero < 16) {
+        media += t.pcm;
+        divisor++;
+        test.push(t);
+        setTestes(test);
+      } else if (modulografico === 4 && t.numero > 15 && t.numero < 21) {
+        media += t.pcm;
+        divisor++;
+        test.push(t);
+        setTestes(test);
+      } else if (modulografico === 5 && t.numero > 0 && t.numero < 21) {
+        media += t.pcm;
+        divisor++;
+        test.push(t);
+        setTestes(test);
       }
     });
 
     const med = media / divisor;
 
-    const med2 = med.toFixed(1) / testeinicial;
-
     setEvolucao(med.toFixed(1) / testeinicial);
-
-    setTestes(response.data);
   }
 
   async function loadTesteInicial(id) {
     const response = await api.put(`testealuno/${id}`);
 
-    console.log('Teste Inicial: ', response.data[0].pcm);
+    if (response.data.length) {
+      console.log('Teste Inicial: ', response.data[0].pcm);
 
-    const tInicial = response.data[0].pcm;
+      const tInicial = response.data[0].pcm;
 
-    setTesteinicial(tInicial);
+      setTesteinicial(tInicial);
+    }
   }
 
   async function criarProva() {
@@ -179,19 +215,29 @@ export default function Grafico(props) {
     // fazerProva();
   }
 
+  async function loadUltimaProva(id) {
+    const response2 = await api.get(`provasfinalizadas`);
+
+    setAtual(response2.data.length + 1);
+  }
+
   useEffect(() => {
     async function loadPerfil() {
       setPerfil(perf.perfil);
     }
 
     loadPerfil();
+
+    loadUltimaProva(id);
   }, []);
 
   useEffect(() => {
     criarProva();
     loadProvas();
     loadTestes(id);
-  }, [id, testeinicial]);
+  }, [testeinicial, modulografico, id]);
+
+  const numT = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   return (
     <Container>
@@ -200,6 +246,18 @@ export default function Grafico(props) {
           <li>
             <Link to="/dashboard">
               <small>Home</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to="/intermediario">
+              <small>Módulo Intermediário</small>
+            </Link>
+          </li>
+          <li>|</li>
+          <li>
+            <Link to="/avancado">
+              <small>Módulo Avançado</small>
             </Link>
           </li>
           <li>|</li>
@@ -214,10 +272,284 @@ export default function Grafico(props) {
       </Voltar>
       <Prod>
         <div>
-          <Titulo>AVALIANDO O SEU DESEMPENHO</Titulo>
-          <Titulo2>
+          {/* <BtModulos>
+            <Link to="/intermediario">Módulo Intermediário</Link>
+            |
+            <Link to="/avancado">Módulo Avançado</Link>
+            |
+            <Link to="/avaliacao">Avaliando seu Desempenho</Link>
+          </BtModulos> */}
+          <Titulo>GRÁFICO DEMONSTRATIVO DO SEU DESEMPENHO</Titulo>
+
+          <Ladodireito>
+            {!prova && <Default onClick={criarProva}>Iniciar teste</Default>}
+            {/* {prova && provafinalizada && (
+              <>
+                <h2>
+                  {provafinalizada && (
+                    <Link
+                      to={`/grafico/${prova.id}`}
+                      onClick={() => {
+                        setModulografico(1);
+                        setPorcentagem(0);
+                        window.scrollTo(0, 0);
+                        setAtual(provafinalizada.length + 1);
+                      }}
+                    >
+                      Prova {provafinalizada.length + 1}
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => {
+                      finalizarProva();
+                      setPorcentagem(0);
+                    }}
+                  >
+                    Finalizar
+                  </button>
+                </h2>
+              </>
+            )} */}
+
+            <ul>
+              {/* {provafinalizada.length ? provafinalizada.map((p, i) => {
+                      return (
+                        <li key={p.id}>
+                          <Link
+                            to={`/grafico/${p.id}`}
+                            onClick={() => {
+                              setModulografico(1);
+                              setPorcentagem(0);
+                              window.scrollTo(0, 0);
+                              setAtual(i + 1);
+                            }}
+                          >
+                            Prova {i + 1}
+                          </Link>
+                        </li>
+                      );
+                    }) : ''} */}
+
+              {prova && (
+                <li>
+                  Prova em andamento: {provafinalizada.length + 1}
+                  {/* {porcentagem > 0 && (
+                          <small>
+                            {' '}
+                            (progresso: {porcentagem ? porcentagem : 0}%)
+                          </small>
+                        )} */}
+                  {/* {provafinalizada.length ? (
+                        <button
+                          onClick={() => {
+                            finalizarProva();
+                            setPorcentagem(0);
+                          }}
+                        >
+                          Finalizar
+                        </button>
+                        ) : ''} */}
+                </li>
+              )}
+            </ul>
+            <p>(Clique nos testes para acessar os gráficos)</p>
+          </Ladodireito>
+          <br />
+          <br />
+          {/* <Titulo2>
+            <br />
             <small>Gráfico demonstrativo da</small> Prova {atual}{' '}
-            {/* <small>em relação ao seu Teste Inicial</small> */}
+            <small>em relação ao seu Teste Inicial</small>
+          </Titulo2> */}
+          <BtModulos>
+            <table>
+              <thead>
+                <tr>
+                  <th> </th>
+                  <th>
+                    <span>Módulo Intermediário</span>
+                  </th>
+                  <th>
+                    <span>Módulo Intermediário</span>
+                  </th>
+                  <th>
+                    <span>Módulo Avançado</span>
+                  </th>
+                  <th>
+                    <span>Módulo Avançado</span>
+                  </th>
+                  <th>
+                    <span>Todos os módulos</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {provafinalizada.length
+                  ? provafinalizada.map((p, i) => {
+                      return (
+                        <tr>
+                          <td>Prova {i + 1}</td>
+                          <td>
+                            <Link
+                              to={`/grafico/${p.id}`}
+                              onClick={() => setModulografico(1)}
+                            >
+                              {modulografico === 1 && p.id === id ? (
+                                <span>Testes 1 a 5</span>
+                              ) : (
+                                <small>Testes 1 a 5</small>
+                              )}
+                            </Link>
+                          </td>
+                          <td>
+                            <Link
+                              to={`/grafico/${p.id}`}
+                              onClick={() => setModulografico(2)}
+                            >
+                              {modulografico === 2 && p.id === id ? (
+                                <span>Testes 6 a 10</span>
+                              ) : (
+                                <small>Testes 6 a 10</small>
+                              )}
+                            </Link>
+                          </td>
+                          <td>
+                            <Link
+                              to={`/grafico/${p.id}`}
+                              onClick={() => setModulografico(3)}
+                            >
+                              {modulografico === 3 && p.id === id ? (
+                                <span>Testes 11 a 15</span>
+                              ) : (
+                                <small>Testes 11 a 15</small>
+                              )}
+                            </Link>
+                          </td>
+                          <td>
+                            <Link
+                              to={`/grafico/${p.id}`}
+                              onClick={() => setModulografico(4)}
+                            >
+                              {modulografico === 4 && p.id === id ? (
+                                <span>Testes 16 a 20</span>
+                              ) : (
+                                <small>Testes 16 a 20</small>
+                              )}
+                            </Link>
+                          </td>
+                          <td>
+                            <Link
+                              to={`/grafico/${p.id}`}
+                              onClick={() => setModulografico(5)}
+                            >
+                              {modulografico === 5 && p.id === id ? (
+                                <span>Testes 1 a 20</span>
+                              ) : (
+                                <small>Testes 1 a 20</small>
+                              )}
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  : ''}
+                {prova && (
+                  <tr>
+                    <td>Prova atual</td>
+                    <td>
+                      <Link
+                        to={`/grafico/${prova.id}`}
+                        onClick={() => setModulografico(1)}
+                      >
+                        {modulografico === 1 && prova.id === id ? (
+                          <span>Testes 1 a 5</span>
+                        ) : (
+                          <small>Testes 1 a 5</small>
+                        )}
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/grafico/${prova.id}`}
+                        onClick={() => setModulografico(2)}
+                      >
+                        {modulografico === 2 && prova.id === id ? (
+                          <span>Testes 6 a 10</span>
+                        ) : (
+                          <small>Testes 6 a 10</small>
+                        )}
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/grafico/${prova.id}`}
+                        onClick={() => setModulografico(3)}
+                      >
+                        {modulografico === 3 && prova.id === id ? (
+                          <span>Testes 11 a 15</span>
+                        ) : (
+                          <small>Testes 11 a 15</small>
+                        )}
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/grafico/${prova.id}`}
+                        onClick={() => setModulografico(4)}
+                      >
+                        {modulografico === 4 && prova.id === id ? (
+                          <span>Testes 16 a 20</span>
+                        ) : (
+                          <small>Testes 16 a 20</small>
+                        )}
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/grafico/${prova.id}`}
+                        onClick={() => setModulografico(5)}
+                      >
+                        {modulografico === 5 && prova.id === id ? (
+                          <span>Testes 1 a 20</span>
+                        ) : (
+                          <small>Testes 1 a 20</small>
+                        )}
+                      </Link>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </BtModulos>
+
+          {/* <BtModulos>
+            <span>Módulo Intermediário</span>
+            <span>Módulo Intermediário</span>
+            <span>Módulo Avançado</span>
+            <span>Módulo Avançado</span>
+            <span>Todos os módulos</span>
+          </BtModulos>
+          {provafinalizada.length ? provafinalizada.map((p, i) => {
+            return (
+              <BtModulos>
+                <Link to={`/grafico/${p.id}`} onClick={() => setModulografico(1)}>{(modulografico === 1 && p.id === id) ? <span>Testes 1 a 5 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 1 a 5 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+                <Link to={`/grafico/${p.id}`} onClick={() => setModulografico(2)}>{(modulografico === 2 && p.id === id) ? <span>Testes 6 a 10 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 6 a 10 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+                <Link to={`/grafico/${p.id}`} onClick={() => setModulografico(3)}>{(modulografico === 3 && p.id === id) ? <span>Testes 11 a 15 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 11 a 15 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+                <Link to={`/grafico/${p.id}`} onClick={() => setModulografico(4)}>{(modulografico === 4 && p.id === id) ? <span>Testes 16 a 20 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 16 a 20 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+                <Link to={`/grafico/${p.id}`} onClick={() => setModulografico(5)}>{(modulografico === 5 && p.id === id) ? <span>Testes 1 a 20 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 1 a 20 {p.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+              </BtModulos>
+            );
+          }) : ''}
+          {prova && (
+            <BtModulos>
+              <Link to={`/grafico/${prova.id}`} onClick={() => setModulografico(1)}>{(modulografico === 1 && prova.id === id) ? <span>Testes 1 a 5 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 1 a 5 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+              <Link to={`/grafico/${prova.id}`} onClick={() => setModulografico(2)}>{(modulografico === 2 && prova.id === id) ? <span>Testes 6 a 10 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 6 a 10 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+              <Link to={`/grafico/${prova.id}`} onClick={() => setModulografico(3)}>{(modulografico === 3 && prova.id === id) ? <span>Testes 11 a 15 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 11 a 15 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+              <Link to={`/grafico/${prova.id}`} onClick={() => setModulografico(4)}>{(modulografico === 4 && prova.id === id) ? <span>Testes 16 a 20 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 16 a 20 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+              <Link to={`/grafico/${prova.id}`} onClick={() => setModulografico(5)}>{(modulografico === 5 && prova.id === id) ? <span>Testes 1 a 20 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</span> : <small>Testes 1 a 20 {prova.createdAt.split('T')[0].split('-').reverse().join('/')}</small>}</Link>
+            </BtModulos>
+          )} */}
+          <Titulo2>
             <br />
             {evolucao > 0 && (
               <>
@@ -227,14 +559,13 @@ export default function Grafico(props) {
               </>
             )}
           </Titulo2>
-          {/* <Titulo2>Gráfico: Prova {atual}</Titulo2> */}
 
-          {testes.length ? (
+          {testeinicial ? (
             <Box1>
               <strong>Testes</strong>
               <strong>PCMs</strong>
               <small>Meta = 640 PCMs</small>
-              <div>
+              <div className="numeros">
                 <Numeros>
                   <p>900</p>
                 </Numeros>
@@ -279,1018 +610,41 @@ export default function Grafico(props) {
                   </p>
                 </span>
               </Teste>
-              {testes.map((t, i) => {
-                if(i > 0) {
-                return (<Teste key={t.id} height={t.pcm / 2} bg="#135c58">
-                  <span>
-                    <p>{t.pcm}</p>
-                  </span>
-                  {t.numero === 0 ? (
-                    <span>
-                      <p>Inicial</p>
-                    </span>
-                  ) : (
-                    <span>
-                      <p>{t.numero}</p>
-                    </span>
-                  )}
-                </Teste>
-              )}})}
-              {testes.length < 21 && (
-                <>
-                  {testes.length === 1 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 2 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 3 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 4 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 5 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 6 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 7 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 8 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 9 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 10 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 11 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 12 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 13 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 14 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 15 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 16 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 17 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 18 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 19 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                  {testes.length === 20 && (
-                    <>
-                      <Teste>
-                        <span></span>
-                        <span></span>
-                      </Teste>
-                    </>
-                  )}
-                </>
+              {testes.map(
+                (t) =>
+                  t.numero > 0 && (
+                    <Teste key={t.id} height={t.pcm / 2} bg="#135c58">
+                      <span>
+                        <p>{t.pcm}</p>
+                        <h6>
+                          {t.createdAt
+                            .split('T')[0]
+                            .split('-')
+                            .reverse()
+                            .join('/')}
+                        </h6>
+                      </span>
+                      {t.numero === 0 ? (
+                        <span>
+                          <p>Inicial</p>
+                        </span>
+                      ) : (
+                        <span>
+                          <p>{t.numero}</p>
+                        </span>
+                      )}
+                    </Teste>
+                  )
               )}
 
-              <Span left="10">Módulo Intermediário: 1 a 10</Span>
-              <Span left="50">Módulo Avançado: 11 a 20</Span>
+              {/* <Span left="10">Módulo Intermediário: 1 a 10</Span>
+              <Span left="50">Módulo Avançado: 11 a 20</Span> */}
             </Box1>
           ) : (
             <Box1>
-              <h2>Você não realizou testes.</h2>
+              <h2>Você não realizou testes</h2>
             </Box1>
           )}
-
-          <Ladodireito>
-            <h2>Provas</h2>
-            <small>Clique nas provas para acessar o gráfico</small>
-            <br />
-            <br />
-
-            {!prova && <Default onClick={criarProva}>Iniciar teste</Default>}
-            {prova && provafinalizada && (
-              <>
-                <h2>
-                  {provafinalizada && (
-                    <Link
-                      to={`/grafico/${prova.id}`}
-                      onClick={() => {
-                        setPorcentagem(0);
-                        window.scrollTo(0, 0);
-                        setAtual(provafinalizada.length + 1);
-                      }}
-                    >
-                      Prova {provafinalizada.length + 1}
-                      {/* {porcentagem > 0 && (
-                        <small>
-                          {' '}
-                          (progresso: {porcentagem ? porcentagem : 0}%)
-                        </small>
-                      )} */}
-                    </Link>
-                  )}
-                  <button
-                    onClick={() => {
-                      finalizarProva();
-                      setPorcentagem(0);
-                    }}
-                  >
-                    Finalizar
-                  </button>
-                </h2>
-              </>
-            )}
-
-            {provafinalizada.length > 0 && (
-              <ul>
-                {provafinalizada.map((p, i) => {
-                  return (
-                    <li key={p.id}>
-                      <Link
-                        to={`/grafico/${p.id}`}
-                        onClick={() => {
-                          setPorcentagem(0);
-                          window.scrollTo(0, 0);
-                          setAtual(i + 1);
-                        }}
-                      >
-                        Prova {i + 1}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </Ladodireito>
         </div>
       </Prod>
     </Container>

@@ -184,18 +184,6 @@ export default function Teste4resultado() {
             <Red> {pcr}%</Red>.
           </p>
         </div>
-
-        {/* {prova && (
-          <Titulo4>
-            <Link to={`/grafico/${prova.id}`}>
-              <img src={icoGrafico} />
-              <div>
-                <Titulo3>Gráfico de Evolução</Titulo3>
-                <p>Avalie o seu desempenho.</p>
-              </div>
-            </Link>
-          </Titulo4>
-        )} */}
       </Prod>
     </Container>
   );

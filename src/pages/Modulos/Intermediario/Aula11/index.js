@@ -178,7 +178,7 @@ export default function Aula11() {
           </Box1>
         </div>
 
-        {prova && (
+        {/* {prova && (
           <Titulo4>
             <Link to={`/grafico/${prova.id}`}>
               <img src={icoGrafico} />
@@ -188,7 +188,7 @@ export default function Aula11() {
               </div>
             </Link>
           </Titulo4>
-        )}
+        )} */}
       </Prod>
     </Container>
   );

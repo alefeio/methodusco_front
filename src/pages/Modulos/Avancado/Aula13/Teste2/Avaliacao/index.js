@@ -409,7 +409,7 @@ export default function Teste12avaliacao() {
                 {cred2 && <> - {cred2}</>}
               </small>
             </h2>
-            {textos.map((t, i) => t && <p>{t}</p>)}
+            {textos.map((t, i) => t && <p key={i}>{t}</p>)}
             {/* <br />
             <div>
               <Default>
@@ -426,7 +426,7 @@ export default function Teste12avaliacao() {
             <br />
             <Slider {...settings}>
               {perguntas.map((p, i) => (
-                <div>
+                <div key={i}>
                   {p.p && (
                     <p>
                       {p.q}) {p.p}
@@ -502,7 +502,7 @@ export default function Teste12avaliacao() {
               ))}
             </Slider>
             <>
-              <p>
+              <p className="questoes">
                 Questões respondidas:
                 {q1 && ` 1) ${q1}`}
                 {q2 && ` - 2) ${q2}`}

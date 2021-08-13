@@ -12,6 +12,7 @@ import {
 } from '~/store/modules/usuario/actions';
 
 import icoConcluido from '~/assets/ico-concluido.jpg';
+import icoGrafico from '~/assets/ico-grafico.png';
 
 import {
   Container,
@@ -27,6 +28,7 @@ import {
   Box1,
   Voltar,
   Red,
+  Titulo4,
 } from './styles';
 
 export default function Resultado(props) {
@@ -183,11 +185,15 @@ export default function Resultado(props) {
           </p>
 
           {prova && (
-            <div>
-              <Default>
-                <Link to={`/grafico/${prova.id}`}>Gráfico de Evolução</Link>
-              </Default>
-            </div>
+            <Titulo4>
+              <Link to={`/grafico/${prova.id}`}>
+                <img src={icoGrafico} />
+                <div>
+                  <Titulo3>Gráfico de Evolução</Titulo3>
+                  <p>Avalie o seu desempenho.</p>
+                </div>
+              </Link>
+            </Titulo4>
           )}
         </div>
       </Prod>

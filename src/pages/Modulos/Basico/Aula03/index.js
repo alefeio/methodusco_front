@@ -33,7 +33,7 @@ import {
 export default function Aula03() {
   const [perfil, setPerfil] = useState();
   const [prova, setProva] = useState();
-  const [provafinalizada, setProvafinalizada] = useState();
+  const [provafinalizada, setProvafinalizada] = useState([]);
   const [total, setTotal] = useState(0);
 
   const dispatch = useDispatch();
@@ -80,8 +80,10 @@ export default function Aula03() {
 
     console.log('Prova: ', response.data);
 
-    setProva(response.data);
-    dispatch(updateProvaRequest(response.data));
+    if(response.data) {
+      setProva(response.data);
+      dispatch(updateProvaRequest(response.data));
+    }
 
     const prova_id = response.data ? response.data.id : null;
 
@@ -275,7 +277,7 @@ export default function Aula03() {
           )}
           {prova && (
             <Titulo3>
-              {`Id: ${prova.id}`}
+              {`Id: ${provafinalizada.length + 1}`}
               {total > 0 && ` | Aproveitamento: ${total.toFixed(1)}%`}
               <br />
               <br />
@@ -287,8 +289,8 @@ export default function Aula03() {
           <Titulo2>Treinamentos anteriores:</Titulo2>
           <ModUl>
             {provafinalizada &&
-              provafinalizada.map((p) => (
-                <li key={p.id}>{`Id: ${p.id} | Nota: ${(
+              provafinalizada.map((p, i) => (
+                <li key={p.id}>{`Id: ${i + 1} | Nota: ${(
                   (p.monitor03 +
                     p.monitor04 +
                     p.monitor05 +

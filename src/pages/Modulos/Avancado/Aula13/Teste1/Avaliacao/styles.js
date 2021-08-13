@@ -73,6 +73,10 @@ export const Prod = styled.div`
       line-height: 3.5rem;
       margin: 1rem auto !important;
       width: 45%;
+
+      &.questoes {
+        width: 70%;
+      }
     }
 
     div {

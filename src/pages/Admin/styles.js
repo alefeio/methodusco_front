@@ -38,8 +38,6 @@ export const Prod = styled.div`
 
     div {
       display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     h1 {
@@ -107,10 +105,6 @@ export const Prod = styled.div`
       padding: 0;
       margin: 0;
       border-left: 0;
-
-      img {
-        width: 50%;
-      }
     }
   }
 `;
@@ -118,11 +112,11 @@ export const Prod = styled.div`
 export const Default = styled.small`
   border: 0;
   padding: 0.8rem;
+  /* border: 1px solid #ddd; */
   background: #135c58;
-  border-radius: 4px;
   color: #fff;
   padding: 1.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 1rem;
   cursor: pointer;
 
@@ -132,6 +126,44 @@ export const Default = styled.small`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  @media (max-width: 720px) {
+    padding: 3rem;
+    width: 90%;
+
+    a {
+      flex-direction: row;
+    }
+  }
+`;
+
+export const Default2 = styled.small`
+  border: 0;
+  /* border: 1px solid #ddd; */
+  background: #135c58;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-radius: 4px;
+  margin: 1rem;
+  cursor: pointer;
+
+  a {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 720px) {
+    padding: 3rem;
+    width: 90%;
+
+    a {
+      flex-direction: row;
+    }
   }
 `;
 
@@ -145,6 +177,8 @@ export const Danger = styled.small`
   cursor: pointer;
 `;
 
+
+
 export const Titulo = styled.h1`
   font: 24px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
@@ -157,25 +191,73 @@ export const Titulo2 = styled.h1`
   font: 20px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
   color: #135c58 !important;
-  margin: 0 auto 3rem !important;
+  margin: 2rem auto 0 !important;
+  text-align: center;
+`;
+
+export const TituloVermelho = styled.h1`
+  font: 16px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
+  text-transform: none !important;
+  background: red;
+  color: #fff !important;
+  width: 50%;
+  margin: 0 auto !important;
+  padding: 1rem;
+  border-radius: 4px;
   text-align: center;
 `;
 
 export const Titulo3 = styled.h1`
   font: 18px 'Trebuchet MS', 'Times New Roman', Times, serif !important;
   text-transform: none !important;
-  color: #135c58 !important;
-  margin: 2rem 0 0 !important;
+  color: #000 !important;
+  margin: 2rem auto !important;
+  text-align: center;
 `;
 
 export const Box1 = styled.div`
   margin: 2rem auto !important;
   max-width: 60%;
   text-align: center;
-  border: 1px solid #135c58;
-  border-radius: 5px;
   padding: 2rem !important;
-  background: #f0f1f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    text-align: left;
+
+    a {
+      padding: 0.3rem 0.7rem;
+      margin: 0.2rem;
+      border-radius: 3px;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        margin: 0 0.5rem 0 0;
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+    max-width: 90%;
+
+    div {
+      flex-direction: column;
+    }
+  }
 `;
 
 export const Voltar = styled.div`
@@ -196,57 +278,5 @@ export const Voltar = styled.div`
   small {
     padding: 0.5rem 1rem;
     color: #555;
-  }
-`;
-
-export const Red = styled.span`
-  color: red;
-  font-weight: bold;
-`;
-
-
-export const Titulo4 = styled.div`
-  font: 20px Trebuchet, Arial, Verdana !important;
-  text-transform: none !important;
-  color: #333 !important;
-  /* margin: 1rem 0 0 !important; */
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  margin: 4rem 0 !important;
-
-  img {
-    margin: 0.5rem 0.5rem 0.5rem 0;
-  }
-
-  a {
-    border: 0 !important;
-    margin: 0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    div {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
-
-  ul {
-    margin: 0 !important;
-
-    li {
-      margin: 0 !important;
-    }
-  }
-
-  @media (max-width: 720px) {
-    margin: 0 0 0 2rem !important;
-
-    img {
-      width: 16px !important;
-    }
   }
 `;
