@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   emProva: false,
   resposta: [],
   testeinicial: 0,
+  qtdTestes: 0,
 };
 
 export default function usuario(state = INITIAL_STATE, action) {
@@ -48,6 +49,10 @@ export default function usuario(state = INITIAL_STATE, action) {
       }
       case '@usuario/UPDATE_TESTE_INICIAL_SUCESSO': {
         draft.testeinicial = action.payload.data;
+        break;
+      }
+      case '@usuario/UPDATE_QTD_TESTES_SUCESSO': {
+        draft.qtdTestes = action.payload.data;
         break;
       }
       default:

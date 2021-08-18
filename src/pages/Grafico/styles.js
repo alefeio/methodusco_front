@@ -226,6 +226,7 @@ export const Box1 = styled.div`
   div {
     margin: 0;
     padding: 0;
+    overflow: auto;
 
     &.numeros {
       max-width: 50px;

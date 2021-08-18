@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
+import Verificatestes from '~/components/Verificatestes';
+
 import api from '~/services/api';
 
 import {
@@ -92,13 +94,9 @@ export default function Teste1() {
     }
 
     loadPerfil();
-  }, []);
 
-  useEffect(() => {
     loadProvas();
-  }, []);
 
-  useEffect(() => {
     async function loadProvasFinalizadas() {
       const response2 = await api.get(`provasfinalizadas`);
 
@@ -106,6 +104,8 @@ export default function Teste1() {
     }
 
     loadProvasFinalizadas();
+
+    Verificatestes();
   }, []);
 
   return (
@@ -164,7 +164,7 @@ export default function Teste1() {
                 <li>medir a velocidade <strong>(Palavras Lidas por Minuto - PLM)</strong></li>
                 <li>
                   o quanto compreende <strong>(Percentual de Compreensão e Retenção -
-                  PCR)</strong>
+                    PCR)</strong>
                 </li>
                 <li>e quantas <strong>(Palavras Compreende por Minuto - PCM)</strong></li>
               </ul>

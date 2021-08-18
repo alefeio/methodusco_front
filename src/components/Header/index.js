@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import api from '~/services/api';
+
 import { logout } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.png';
@@ -12,11 +14,13 @@ import { Container, Content, Img, Nav } from './styles';
 
 import { store } from '~/store';
 
-export default function Header() {
+export default function Header(props) {
   const dispatch = useDispatch();
 
   const [checked, setChecked] = useState(false);
   const [perfil, setPerfil] = useState();
+
+  // const pagina = parseInt(props.match.params.id);
 
   const perf = useSelector((state) => state.usuario);
 
@@ -36,6 +40,19 @@ export default function Header() {
     dispatch(logout());
   }
 
+  async function loadTestes() {
+    const prova = await api.get(`provas`);
+
+    console.log('Prova: ', prova.data);
+
+    const response = await api.put(`testealuno/${prova.data.id}`);
+    console.log('Qtd Testes: ', response.data.length);
+
+    if (response.data.length >= 20) {
+      await api.delete(`provasaluno/${prova.data.id}`);
+    };
+  }
+
   useEffect(() => {
     async function loadPerfil() {
       setPerfil(perf.perfil);
@@ -49,7 +66,7 @@ export default function Header() {
       <Content>
         <div>
           <Link to="/dashboard">
-            <img src={logo} alt="Methodus - Curso Leitura Dinâmica OnlineDinâmica e Memorização" />
+            <img src={logo} alt="Methodus - Curso Leitura Dinâmica Online" />
           </Link>
         </div>
         <Toggle />
@@ -71,11 +88,11 @@ export default function Header() {
               </Link>
             </li>
             {perfil && perfil.admin && (
-            <li>
-              <Link to="/admin" onClick={altChecked}>
-                ADMIN
-              </Link>
-            </li>
+              <li>
+                <Link to="/admin" onClick={altChecked}>
+                  ADMIN
+                </Link>
+              </li>
             )}
             <li>
               <Link to="/suporte" onClick={altChecked}>

@@ -41,6 +41,7 @@ export default function Grafico(props) {
   const [atual, setAtual] = useState();
   const [evolucao, setEvolucao] = useState(0);
   const [testeinicial, setTesteinicial] = useState(0);
+  const [dataTesteinicial, setDataTesteinicial] = useState('00/00/0000');
   const [modulografico, setModulografico] = useState(1);
 
   const id = parseInt(props.match.params.id);
@@ -140,16 +141,9 @@ export default function Grafico(props) {
     const response = await api.put(`testealuno/${id}`);
 
     console.log('Testes: ', response.data);
+    console.log('Qtd Testes: ', response.data.length);
 
-    if (prova && provafinalizada.length && response.data.prova === prova.id) {
-      if (response.data.length >= 20) finalizarProva();
-    } else if (
-      prova &&
-      !provafinalizada.length &&
-      response.data.prova === prova.id
-    ) {
-      if (response.data.length >= 21) finalizarProva();
-    }
+    if (prova && prova.id === id && response.data.length >= 20) finalizarProva();
 
     const tests = response.data;
 
@@ -196,11 +190,13 @@ export default function Grafico(props) {
     const response = await api.put(`testealuno/${id}`);
 
     if (response.data.length) {
-      console.log('Teste Inicial: ', response.data[0].pcm);
+      console.log('Teste Inicial: ', response.data[0]);
 
       const tInicial = response.data[0].pcm;
+      const datatInicial = response.data[0].createdAt;
 
       setTesteinicial(tInicial);
+      setDataTesteinicial(datatInicial);
     }
   }
 
@@ -235,7 +231,7 @@ export default function Grafico(props) {
     criarProva();
     loadProvas();
     loadTestes(id);
-  }, [testeinicial, modulografico, id]);
+  }, [testeinicial, dataTesteinicial, modulografico, id]);
 
   const numT = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
@@ -386,76 +382,76 @@ export default function Grafico(props) {
               <tbody>
                 {provafinalizada.length
                   ? provafinalizada.map((p, i) => {
-                      return (
-                        <tr>
-                          <td>Prova {i + 1}</td>
-                          <td>
-                            <Link
-                              to={`/grafico/${p.id}`}
-                              onClick={() => setModulografico(1)}
-                            >
-                              {modulografico === 1 && p.id === id ? (
-                                <span>Testes 1 a 5</span>
-                              ) : (
-                                <small>Testes 1 a 5</small>
-                              )}
-                            </Link>
-                          </td>
-                          <td>
-                            <Link
-                              to={`/grafico/${p.id}`}
-                              onClick={() => setModulografico(2)}
-                            >
-                              {modulografico === 2 && p.id === id ? (
-                                <span>Testes 6 a 10</span>
-                              ) : (
-                                <small>Testes 6 a 10</small>
-                              )}
-                            </Link>
-                          </td>
-                          <td>
-                            <Link
-                              to={`/grafico/${p.id}`}
-                              onClick={() => setModulografico(3)}
-                            >
-                              {modulografico === 3 && p.id === id ? (
-                                <span>Testes 11 a 15</span>
-                              ) : (
-                                <small>Testes 11 a 15</small>
-                              )}
-                            </Link>
-                          </td>
-                          <td>
-                            <Link
-                              to={`/grafico/${p.id}`}
-                              onClick={() => setModulografico(4)}
-                            >
-                              {modulografico === 4 && p.id === id ? (
-                                <span>Testes 16 a 20</span>
-                              ) : (
-                                <small>Testes 16 a 20</small>
-                              )}
-                            </Link>
-                          </td>
-                          <td>
-                            <Link
-                              to={`/grafico/${p.id}`}
-                              onClick={() => setModulografico(5)}
-                            >
-                              {modulografico === 5 && p.id === id ? (
-                                <span>Testes 1 a 20</span>
-                              ) : (
-                                <small>Testes 1 a 20</small>
-                              )}
-                            </Link>
-                          </td>
-                        </tr>
-                      );
-                    })
+                    return (
+                      <tr>
+                        <td>Prova {i + 1}</td>
+                        <td>
+                          <Link
+                            to={`/grafico/${p.id}`}
+                            onClick={() => setModulografico(1)}
+                          >
+                            {modulografico === 1 && p.id === id ? (
+                              <span>Testes 1 a 5</span>
+                            ) : (
+                              <small>Testes 1 a 5</small>
+                            )}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={`/grafico/${p.id}`}
+                            onClick={() => setModulografico(2)}
+                          >
+                            {modulografico === 2 && p.id === id ? (
+                              <span>Testes 6 a 10</span>
+                            ) : (
+                              <small>Testes 6 a 10</small>
+                            )}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={`/grafico/${p.id}`}
+                            onClick={() => setModulografico(3)}
+                          >
+                            {modulografico === 3 && p.id === id ? (
+                              <span>Testes 11 a 15</span>
+                            ) : (
+                              <small>Testes 11 a 15</small>
+                            )}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={`/grafico/${p.id}`}
+                            onClick={() => setModulografico(4)}
+                          >
+                            {modulografico === 4 && p.id === id ? (
+                              <span>Testes 16 a 20</span>
+                            ) : (
+                              <small>Testes 16 a 20</small>
+                            )}
+                          </Link>
+                        </td>
+                        <td>
+                          <Link
+                            to={`/grafico/${p.id}`}
+                            onClick={() => setModulografico(5)}
+                          >
+                            {modulografico === 5 && p.id === id ? (
+                              <span>Testes 1 a 20</span>
+                            ) : (
+                              <small>Testes 1 a 20</small>
+                            )}
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })
                   : ''}
                 {prova && (
                   <tr>
-                    <td>Prova atual</td>
+                    <td>Prova {provafinalizada.length + 1}</td>
                     <td>
                       <Link
                         to={`/grafico/${prova.id}`}
@@ -600,13 +596,19 @@ export default function Grafico(props) {
               </div>
               <Teste height={testeinicial / 2} bg="#135c58">
                 <span>
-                  <p>{testeinicial}</p>
+                  <p>{testeinicial}
+                  </p>
                 </span>
                 <span>
                   <p>
-                    Teste
-                    <br />
                     Inicial
+                    <br />
+                    <h6>{dataTesteinicial && dataTesteinicial
+                      .split('T')[0]
+                      .split('-')
+                      .reverse()
+                      .join('/')}
+                    </h6>
                   </p>
                 </span>
               </Teste>
@@ -616,23 +618,17 @@ export default function Grafico(props) {
                     <Teste key={t.id} height={t.pcm / 2} bg="#135c58">
                       <span>
                         <p>{t.pcm}</p>
-                        <h6>
-                          {t.createdAt
+                      </span>
+                      <span>
+                        <p>{t.numero}<br />
+                          <h6>{t.createdAt
                             .split('T')[0]
                             .split('-')
                             .reverse()
                             .join('/')}
-                        </h6>
+                          </h6>
+                        </p>
                       </span>
-                      {t.numero === 0 ? (
-                        <span>
-                          <p>Inicial</p>
-                        </span>
-                      ) : (
-                        <span>
-                          <p>{t.numero}</p>
-                        </span>
-                      )}
                     </Teste>
                   )
               )}

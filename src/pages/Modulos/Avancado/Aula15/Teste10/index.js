@@ -92,13 +92,9 @@ export default function Teste20() {
     }
 
     loadPerfil();
-  }, []);
-
-  useEffect(() => {
+    
     loadProvas();
-  }, []);
 
-  useEffect(() => {
     async function loadProvasFinalizadas() {
       const response2 = await api.get(`provasfinalizadas`);
 

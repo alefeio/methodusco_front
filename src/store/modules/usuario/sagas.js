@@ -11,6 +11,7 @@ import {
   updateRespostaSucesso,
   updateFimProvaSucesso,
   updateTesteInicialSucesso,
+  updateQtdTestesSucesso,
 } from './actions';
 
 export function* updatePerfil({ payload }) {
@@ -55,6 +56,21 @@ export function* updateTesteInicial({ payload }) {
   yield put(updateTesteInicialSucesso(payload.data));
 }
 
+export function* updateQtdTestes() {
+  const prova = yield call(api.put, 'provas');
+  const response = yield call(api.put, 'testealuno', prova.id);
+
+  console.log('teste sagas');
+
+  if (response.data.length >= 19) {
+    yield call(api.delete, 'provasaluno', prova.id);
+    yield put(updateQtdTestesSucesso(0));
+  } else {
+    yield put(updateQtdTestesSucesso(response.data.length));
+  }
+
+}
+
 export default all([
   takeLatest('@usuario/UPDATE_PERFIL_REQUEST', updatePerfil),
   takeLatest('@usuario/UPDATE_PROVA_REQUEST', updateProva),
@@ -62,4 +78,5 @@ export default all([
   takeLatest('@usuario/UPDATE_FIMPROVA_REQUEST', updateFimProva),
   takeLatest('@usuario/UPDATE_RESPOSTA_REQUEST', updateResposta),
   takeLatest('@usuario/UPDATE_TESTE_INICIAL_REQUEST', updateTesteInicial),
+  takeLatest('@usuario/UPDATE_QTD_TESTES_REQUEST', updateQtdTestes),
 ]);

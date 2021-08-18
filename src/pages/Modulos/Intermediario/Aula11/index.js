@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 import api from '~/services/api';
 
+import Verificatestes from '~/components/Verificatestes';
+
 import {
   updateProvaRequest,
   // updateEmProvaRequest,
@@ -78,18 +80,16 @@ export default function Aula11() {
   // }
 
   useEffect(() => {
+    Verificatestes();
+    
     async function loadPerfil() {
       setPerfil(perf.perfil);
     }
 
     loadPerfil();
-  }, []);
-
-  useEffect(() => {
+    
     loadProvas();
-  }, []);
 
-  useEffect(() => {
     async function loadProvasFinalizadas() {
       const response2 = await api.get(`provasfinalizadas`);
 

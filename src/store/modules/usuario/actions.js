@@ -38,6 +38,12 @@ export function updateTesteInicialRequest(data) {
   };
 }
 
+export function updateQtdTestesRequest() {
+  return {
+    type: '@usuario/UPDATE_QTD_TESTES_REQUEST',
+  };
+}
+
 export function updatePerfilSucesso(perfil) {
   return {
     type: '@usuario/UPDATE_PERFIL_SUCESSO',
@@ -74,6 +80,13 @@ export function updateRespostaSucesso(resposta) {
 export function updateTesteInicialSucesso(data) {
   return {
     type: '@usuario/UPDATE_TESTE_INICIAL_SUCESSO',
+    payload: { data },
+  };
+}
+
+export function updateQtdTestesSucesso(data) {
+  return {
+    type: '@usuario/UPDATE_QTD_TESTES_SUCESSO',
     payload: { data },
   };
 }
