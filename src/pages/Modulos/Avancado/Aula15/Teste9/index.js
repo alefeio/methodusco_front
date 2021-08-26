@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 import api from '~/services/api';
 
+import Testerealizado from '~/components/Testerealizado';
+
 import {
   updateProvaRequest,
   // updateEmProvaRequest,
@@ -140,18 +142,7 @@ export default function Teste19() {
           <Titulo>TESTE 19</Titulo>
           <br />
           {testeconcluido ? (
-            <>
-              <h2>
-                Teste Concluído! <img src={icoConcluido} />
-              </h2>
-              <br />
-              <p>
-                Clique no botão abaixo para ver o seu resultado. Este teste tem
-                por objetivo medir a velocidade (Palavras Lidas por Minuto -
-                PLM), o quanto compreende (Percentual de Compreensão e Retenção
-                - PCR) e quantas (Palavras Compreende por Minuto - PCM).
-              </p>
-            </>
+            <Testerealizado />
           ) : (
             <>
               <p>
@@ -164,7 +155,7 @@ export default function Teste19() {
                 <li>medir a velocidade <strong>(Palavras Lidas por Minuto - PLM)</strong></li>
                 <li>
                   o quanto compreende <strong>(Percentual de Compreensão e Retenção -
-                  PCR)</strong>
+                    PCR)</strong>
                 </li>
                 <li>e quantas <strong>(Palavras Compreende por Minuto - PCM)</strong></li>
               </ul>

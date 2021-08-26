@@ -114,6 +114,7 @@ export default function Autoaceleracao(props) {
   function loadContador(maxi, mini) {
     let i = maxi;
     let max = maxi;
+    setAudio(true);
     const interval = setInterval(() => {
       if (i === 0) setAudio(true);
       else setAudio(false);

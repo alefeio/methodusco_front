@@ -13,7 +13,7 @@ async function Verificatestes() {
         const response = await api.put(`testealuno/${prova.data.id}`);
         console.log('Qtd Testes: ', response.data.length);
 
-        if (response.data.length >= 2) {
+        if (response.data.length >= 20) {
             await api.delete(`provasaluno/${prova.data.id}`);
             await api.post(`provas`);
         };

@@ -335,7 +335,7 @@ export default function Grafico(props) {
                             (progresso: {porcentagem ? porcentagem : 0}%)
                           </small>
                         )} */}
-                  {/* {provafinalizada.length ? (
+                  {provafinalizada.length ? (
                         <button
                           onClick={() => {
                             finalizarProva();
@@ -344,7 +344,7 @@ export default function Grafico(props) {
                         >
                           Finalizar
                         </button>
-                        ) : ''} */}
+                        ) : ''}
                 </li>
               )}
             </ul>
@@ -560,7 +560,7 @@ export default function Grafico(props) {
             <Box1>
               <strong>Testes</strong>
               <strong>PCMs</strong>
-              <small>Meta = 640 PCMs</small>
+              <small>Meta:<br />640 PCMs</small>
               <div className="numeros">
                 <Numeros>
                   <p>900</p>

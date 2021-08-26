@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 
 import api from '~/services/api';
 
+import Testerealizado from '~/components/Testerealizado';
+
 import {
   updateProvaRequest,
   // updateEmProvaRequest,
   updateFimProvaRequest,
 } from '~/store/modules/usuario/actions';
-
-import icoConcluido from '~/assets/ico-concluido.jpg';
 
 import {
   Container,
@@ -92,7 +92,7 @@ export default function Teste20() {
     }
 
     loadPerfil();
-    
+
     loadProvas();
 
     async function loadProvasFinalizadas() {
@@ -136,18 +136,7 @@ export default function Teste20() {
           <Titulo>TESTE 20</Titulo>
           <br />
           {testeconcluido ? (
-            <>
-              <h2>
-                Teste Concluído! <img src={icoConcluido} />
-              </h2>
-              <br />
-              <p>
-                Clique no botão abaixo para ver o seu resultado. Este teste tem
-                por objetivo medir a velocidade (Palavras Lidas por Minuto -
-                PLM), o quanto compreende (Percentual de Compreensão e Retenção
-                - PCR) e quantas (Palavras Compreende por Minuto - PCM).
-              </p>
-            </>
+            <Testerealizado />
           ) : (
             <>
               <p>
@@ -160,7 +149,7 @@ export default function Teste20() {
                 <li>medir a velocidade <strong>(Palavras Lidas por Minuto - PLM)</strong></li>
                 <li>
                   o quanto compreende <strong>(Percentual de Compreensão e Retenção -
-                  PCR)</strong>
+                    PCR)</strong>
                 </li>
                 <li>e quantas <strong>(Palavras Compreende por Minuto - PCM)</strong></li>
               </ul>

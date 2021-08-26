@@ -158,7 +158,7 @@ export default function Dashboard() {
       <Prod>
         <div>
           <Titulo>
-            Curso Leitura Dinâmica Online
+            Curso Leitura Dinâmica 4.0 Online
             <br />
             Teoria, Exercícios e Testes
           </Titulo>

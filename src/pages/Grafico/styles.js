@@ -221,6 +221,11 @@ export const Box1 = styled.div`
   small {
     position: absolute;
     top: 30%;
+    background: #fff;
+    padding: 0.7rem;
+    border-radius: 4px;
+    opacity: 0.7;
+    font-weight: bold;
   }
 
   div {
