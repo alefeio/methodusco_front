@@ -40,11 +40,16 @@ export default function Alunos() {
 
     console.log('alunos: ', response.data);
 
-    setAlunos(response.data);
+    let objAlunos = [];
+
+    response.data.map(a => {
+      if(a.nome) objAlunos.push(a);
+    });
+    setAlunos(objAlunos);
   }
 
   async function excluirAluno(id) {
-    await api.delete(`usuarios/${id}`);
+    await api.put(`usuariosdel/${id}`);
 
     alert('Usuário removido com sucesso!');
 
@@ -64,13 +69,13 @@ export default function Alunos() {
           </Titulo>
 
           <Box1>
-            {alunos.map((aluno) => (
+            {alunos && alunos.map((aluno) => (
               <span key={aluno.id}>
                 <img src={icoPlay2} />
                 <div>
                   <Titulo3>{aluno.id} - {aluno.nome}</Titulo3>
                   <p>{aluno.email}</p>
-                  <small>Criado em: {aluno.updated_at.split('T')[0].split('-').reverse().join('/')}</small>
+                  {/* <small>Criado em: {aluno.updated_at.split('T')[0].split('-').reverse().join('/')}</small> */}
                 </div>
                 <Link onClick={() => excluirAluno(aluno.id)}>x</Link>
               </span>

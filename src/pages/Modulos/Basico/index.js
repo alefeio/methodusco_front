@@ -84,6 +84,8 @@ export default function Basico() {
     async function loadProvasFinalizadas() {
       const response2 = await api.get(`provasfinalizadas`);
 
+      console.log('response2: ', response2.data)
+
       setProvafinalizada(response2.data);
     }
 
@@ -121,34 +123,34 @@ export default function Basico() {
           <br />
           <div>
             <Default>
-              <Link to="/basico/aula01">
+              {provafinalizada && prova && prova.avaliacao ? <Link to="/basico/aula01">
                 Aula <span>01</span>
-              </Link>
+              </Link> : <p>Aula <span>01</span></p>}
             </Default>
             <Default>
-              <Link to="/basico/aula02">
+              {provafinalizada && prova && prova.aula01 ? <Link to="/basico/aula02">
                 Aula <span>02</span>
-              </Link>
+              </Link> : <p>Aula <span>02</span></p>}
             </Default>
             <Default>
-              <Link to="/basico/aula03">
+              {provafinalizada && prova && prova.aula02 ? <Link to="/basico/aula03">
                 Aula <span>03</span>
-              </Link>
+              </Link> : <p>Aula <span>03</span></p>}
             </Default>
             <Default>
-              <Link to="/basico/aula04">
+              {provafinalizada && prova && prova.aula03 ? <Link to="/basico/aula04">
                 Aula <span>04</span>
-              </Link>
+              </Link> : <p>Aula <span>04</span></p>}
             </Default>
             <Default>
-              <Link to="/basico/aula05">
+              {provafinalizada && prova && prova.aula04 ? <Link to="/basico/aula05">
                 Aula <span>05</span>
-              </Link>
+              </Link> : <p>Aula <span>05</span></p>}
             </Default>
             <Default>
-              <Link to="/basico/aula06">
+              {provafinalizada && prova && prova.aula05 ? <Link to="/basico/aula06">
                 Aula <span>06</span>
-              </Link>
+              </Link> : <p>Aula <span>06</span></p>}
             </Default>
           </div>
         </div>

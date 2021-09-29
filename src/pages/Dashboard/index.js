@@ -90,7 +90,7 @@ export default function Dashboard() {
 
     let idTesteinicial = '';
 
-    if(response2.data.length) {
+    if (response2.data.length) {
       idTesteinicial = response2.data[0].id;
 
       if (!testeinicial) loadTesteInicial(idTesteinicial);
@@ -98,7 +98,7 @@ export default function Dashboard() {
       idTesteinicial = id;
     }
 
-    if(idTesteinicial) setIdtesteinicial(idTesteinicial);
+    if (idTesteinicial) setIdtesteinicial(idTesteinicial);
   }
 
   async function loadProvas() {
@@ -113,7 +113,7 @@ export default function Dashboard() {
 
     if (response.data) totalConcluido(response.data);
 
-    if(prova_id) loadProvasFinalizadas(prova_id);
+    if (prova_id) loadProvasFinalizadas(prova_id);
   }
 
   async function totalConcluido(prova) {
@@ -140,18 +140,29 @@ export default function Dashboard() {
     setPorcentagem(((pr / 17) * 100).toFixed(1));
   }
 
+  async function atualizaAvaliacao() {
+    console.log(`provaID: ${prova.id}`);
+    
+    await api.put(`provasaluno/${prova.id}`, {
+      avaliacao: true
+    });
+  }
+
   useEffect(() => {
     async function loadPerfil() {
       setPerfil(perf.perfil);
     }
 
     loadPerfil();
-  }, []);
 
-  useEffect(() => {
     criarProva();
     loadProvas();
-  }, []);
+
+    if (prova && testeinicial) {
+      atualizaAvaliacao();
+      loadProvas();
+    }
+  }, [testeinicial]);
 
   return (
     <Container>
