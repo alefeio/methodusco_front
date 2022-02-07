@@ -49,7 +49,7 @@ export default function Dashboard() {
   async function loadTesteInicial(id) {
     const response = await api.put(`testealuno/${id}`);
 
-    console.log('Teste Inicial: ', response.data[0].pcm);
+    // console.log('Teste Inicial: ', response.data[0].pcm);
 
     const tInicial = response.data[0].pcm;
 
@@ -104,7 +104,7 @@ export default function Dashboard() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -141,7 +141,7 @@ export default function Dashboard() {
   }
 
   async function atualizaAvaliacao() {
-    console.log(`provaID: ${prova.id}`);
+    // console.log(`provaID: ${prova.id}`);
     
     await api.put(`provasaluno/${prova.id}`, {
       avaliacao: true

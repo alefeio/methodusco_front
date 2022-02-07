@@ -242,6 +242,10 @@ export const Box1 = styled.div`
       color: red;
       font-size: 3rem;
       font-weight: bold;
+
+      img {
+        width: 25px;
+      }
     }
   }
 

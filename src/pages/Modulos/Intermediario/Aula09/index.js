@@ -13,6 +13,8 @@ import {
   updateFimProvaRequest,
 } from '~/store/modules/usuario/actions';
 
+import { loadAulas } from '~/components/Atualizaaula';
+
 import icoConcluido from '~/assets/ico-concluido.jpg';
 import icoPlay from '~/assets/ico-play.png';
 import icoGrafico from '~/assets/ico-grafico.png';
@@ -65,19 +67,13 @@ export default function Aula09() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
 
     const prova_id = response.data ? response.data.id : null;
   }
-
-  // function fazerProva() {
-  //   dispatch(updateEmProvaRequest());
-
-  //   loadProvas();
-  // }
 
   useEffect(() => {
     Verificatestes();
@@ -87,8 +83,8 @@ export default function Aula09() {
     }
 
     loadPerfil();
-    
     loadProvas();
+    loadAulas(9);
 
     async function loadProvasFinalizadas() {
       const response2 = await api.get(`provasfinalizadas`);

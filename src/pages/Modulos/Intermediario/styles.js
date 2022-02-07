@@ -121,11 +121,8 @@ export const Prod = styled.div`
 
 export const Default = styled.small`
   border: 0;
-  padding: 0.8rem;
   /* border: 1px solid #ddd; */
-  background: #135c58;
   color: #fff;
-  padding: 1.5rem;
   font-size: 2rem;
   margin: 1rem;
   cursor: pointer;
@@ -136,6 +133,18 @@ export const Default = styled.small`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: #135c58;
+    padding: 1.5rem;
+  }
+
+  p {
+    color: #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #999;
+    padding: 1.5rem;
   }
 
   @media (max-width: 720px) {

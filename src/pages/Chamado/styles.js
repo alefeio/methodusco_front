@@ -190,6 +190,7 @@ export const Msgs = styled.p`
     border: 1px solid #a9d18e;
     border-radius: 4px;
     font-weight: ${(props) => props.bold};
+    line-height: 4rem;
   }
 
   strong {

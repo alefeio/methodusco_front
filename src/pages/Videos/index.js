@@ -15,7 +15,7 @@ export default function Videos(props) {
   async function loadVideo() {
     const response = await api.get(`videos/${urlVideo}`);
 
-    console.log('video: ', response.data);
+    // console.log('video: ', response.data);
 
     setVideo(response.data);
   }

@@ -307,7 +307,7 @@ export default function Teste3avaliacao() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -316,7 +316,7 @@ export default function Teste3avaliacao() {
 
     verificarTeste(prova_id);
 
-    console.log('testeconcluido: ', testeconcluido);
+    // console.log('testeconcluido: ', testeconcluido);
   }
 
   // function fazerProva() {

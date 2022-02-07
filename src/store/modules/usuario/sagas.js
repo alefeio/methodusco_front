@@ -60,7 +60,7 @@ export function* updateQtdTestes() {
   const prova = yield call(api.put, 'provas');
   const response = yield call(api.put, 'testealuno', prova.id);
 
-  console.log('teste sagas');
+  // console.log('teste sagas');
 
   if (response.data.length >= 19) {
     yield call(api.delete, 'provasaluno', prova.id);

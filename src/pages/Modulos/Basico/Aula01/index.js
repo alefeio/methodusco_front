@@ -11,6 +11,8 @@ import {
   updateFimProvaRequest,
 } from '~/store/modules/usuario/actions';
 
+import { loadAulas } from '~/components/Atualizaaula';
+
 import icoConcluido from '~/assets/ico-concluido.jpg';
 import icoPlay from '~/assets/ico-play.png';
 
@@ -49,7 +51,7 @@ export default function Aula01() {
   async function criarProva() {
     const provas2 = await api.post(`provas2/${aula}`);
 
-    console.log('provas2 > ', provas2);
+    // console.log('provas2 > ', provas2);
 
     const response = await api.get(`provas2/${aula}`);
 
@@ -80,9 +82,9 @@ export default function Aula01() {
   async function loadProvas() {
     const response = await api.get(`provas2/${aula}`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
-    if(response.data) {
+    if (response.data) {
       setProva(response.data);
       dispatch(updateProvaRequest(response.data));
     }
@@ -92,7 +94,7 @@ export default function Aula01() {
     let apr = 0;
     let div = 0;
 
-    if(response.data.length) {
+    if (response.data) {
 
       if (response.data.monitor03 > 0) {
         apr += response.data.monitor03;
@@ -127,7 +129,8 @@ export default function Aula01() {
   useEffect(() => {
     criarProva();
     loadProvas();
-  }, []);
+    loadAulas(1);
+  }, [total]);
 
   useEffect(() => {
     async function loadProvasFinalizadas() {

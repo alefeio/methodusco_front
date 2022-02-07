@@ -11,7 +11,7 @@ export default function Testerealizado() {
     async function loadProvas() {
         const response = await api.get(`provas`);
 
-        console.log('Prova: ', response.data);
+        // console.log('Prova: ', response.data);
 
         setProva(response.data);
     }

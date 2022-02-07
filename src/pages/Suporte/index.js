@@ -17,8 +17,9 @@ const schema = Yup.object().shape({
   mensagem: Yup.string().required('Campo obrigatório!'),
 });
 
-export default function Suporte() {
+export default function Suporte(props) {
   const [perfil, setPerfil] = useState();
+  const [filtro, setFiltro] = useState(false);
   const [chamados, setChamado] = useState([]);
   const [chamadosnaolidos, setChamadosnaolidos] = useState([]);
 
@@ -54,10 +55,16 @@ export default function Suporte() {
     }
   }
 
-  async function loadChamados() {
+  async function loadChamados(usuario_id = null) {
     let response = '';
     if (perf.perfil.admin) {
-      response = await api.get('chamadosadmin');
+      if(!usuario_id) {
+        setFiltro(false);
+        response = await api.get('chamadosadmin');
+      } else {
+        setFiltro(true);
+        response = await api.get(`chamadosadminfiltro/${usuario_id}`);
+      }
     } else {
       response = await api.get('chamados');
     }
@@ -125,6 +132,9 @@ export default function Suporte() {
           <Titulo>Suporte Técnico</Titulo>
         </div>
         <div>
+          {filtro && <Link onClick={() => loadChamados()}>Retirar filtro</Link>}
+        </div>
+        <div>
           <div>
             <br />
             <div>
@@ -134,6 +144,7 @@ export default function Suporte() {
                   (c) =>
                     c.concluido === false && (
                       <li key={c.id}>
+                        {perfil && perfil.admin && <Link onClick={() => loadChamados(c.usuario_id)}>{c.usuario.nome} - </Link>} 
                         <Link to={`/chamado/${c.id}`}>{c.assunto}</Link>
                         {chamadosnaolidos.map((nl) => {
                           if (nl === c.id) i = true;
@@ -156,6 +167,7 @@ export default function Suporte() {
                   (c) =>
                     c.concluido === true && (
                       <li key={c.id}>
+                        {perfil && perfil.admin && <Link onClick={() => loadChamados(c.usuario_id)}>{c.usuario.nome} - </Link>}
                         <Link to={`/chamado/${c.id}`}>{c.assunto}</Link>
                       </li>
                     )

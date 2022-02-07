@@ -11,6 +11,8 @@ import {
   updateFimProvaRequest,
 } from '~/store/modules/usuario/actions';
 
+import { loadAulas } from '~/components/Atualizaaula';
+
 import icoConcluido from '~/assets/ico-concluido.jpg';
 import icoPlay from '~/assets/ico-play.png';
 
@@ -61,7 +63,7 @@ export default function Aula14() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -85,6 +87,7 @@ export default function Aula14() {
 
   useEffect(() => {
     loadProvas();
+    loadAulas(14);
   }, []);
 
   useEffect(() => {

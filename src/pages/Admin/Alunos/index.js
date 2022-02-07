@@ -11,11 +11,9 @@ import {
   updateFimProvaRequest,
 } from '~/store/modules/usuario/actions';
 
-import icoPlay from '~/assets/ico-play.png';
-import icoTeste from '~/assets/ico-teste.png';
-import icoPlay2 from '~/assets/ico-play2.png';
-import icoPlay3 from '~/assets/ico-play3.png';
-import icoGrafico from '~/assets/ico-grafico.png';
+import icoEdit from '~/assets/edit.png';
+import icoDelete from '~/assets/delete.png';
+import icoCheck from '~/assets/check.png';
 
 import {
   Container,
@@ -25,25 +23,25 @@ import {
   Titulo,
   Titulo2,
   Titulo3,
-  Titulo4,
-  Default,
-  Danger,
-  Ladodireito,
+  Voltar,
   Box1,
 } from './styles';
 
 export default function Alunos() {
   const [alunos, setAlunos] = useState([]);
+  const [ativos, setAtivos] = useState(true);
 
   async function loadAlunos() {
-    const response = await api.get("alunos");
+    let response = '';
+    if (ativos) response = await api.get("alunos");
+    else response = await api.get("alunosinativos");
 
     console.log('alunos: ', response.data);
 
     let objAlunos = [];
 
     response.data.map(a => {
-      if(a.nome) objAlunos.push(a);
+      if (a.nome) objAlunos.push(a);
     });
     setAlunos(objAlunos);
   }
@@ -56,32 +54,58 @@ export default function Alunos() {
     loadAlunos();
   }
 
+  async function ativarAluno(id) {
+    await api.put(`usuarios/${id}`, {
+      ativo: true,
+    });
+
+    alert('Usuário ativado com sucesso!');
+  }
+
+  function alternarAtivos() {
+    setAtivos(true);
+  }
+
+  function alternarInativos() {
+    setAtivos(false);
+  }
+
   useEffect(() => {
     loadAlunos();
-  }, []);
+  }, [alunos, ativos]);
 
   return (
     <Container>
       <Prod>
         <div>
           <Titulo>
-            Administrar Alunos
+            Administrar Alunos {ativos ? 'Ativos' : 'Inativos'}
           </Titulo>
 
           <Box1>
             {alunos && alunos.map((aluno) => (
               <span key={aluno.id}>
-                <img src={icoPlay2} />
+                {/* <img src={icoPlay2} /> */}
                 <div>
                   <Titulo3>{aluno.id} - {aluno.nome}</Titulo3>
                   <p>{aluno.email}</p>
+                  <small>{aluno.password_hash}</small>
                   {/* <small>Criado em: {aluno.updated_at.split('T')[0].split('-').reverse().join('/')}</small> */}
                 </div>
-                <Link onClick={() => excluirAluno(aluno.id)}>x</Link>
+                {ativos ? <>
+                  <Link to={`alunos/editar/${aluno.id}`}><img src={icoEdit} /></Link>
+                  <Link onClick={() => excluirAluno(aluno.id)}><img src={icoDelete} /></Link>
+                </>
+                  : <Link onClick={() => ativarAluno(aluno.id)}><img src={icoCheck} /></Link>
+                }
               </span>
             ))}
           </Box1>
-
+          <p>
+            {ativos ? <Link onClick={() => alternarInativos()}>Ver usuários inativos</Link>
+              : <Link onClick={() => alternarAtivos()}>Ver usuários ativos</Link>
+            }
+          </p>
         </div>
       </Prod>
     </Container>

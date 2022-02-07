@@ -70,7 +70,7 @@ export default function Teste20() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -155,9 +155,8 @@ export default function Teste20() {
               </ul>
               <br />
               <p>
-                Ao clicar em <strong>Iniciar</strong>, você será direcionado ao
-                texto, e, após a sua leitura,{' '}
-                <strong>responda as 10 perguntas</strong> sobre o seu conteúdo.
+                Leia o texto como você sempre leu. Demore o tempo que precisar. Em
+            seguida, clique em <strong>Responder as Perguntas</strong> sobre o conteúdo do texto.
               </p>
             </>
           )}

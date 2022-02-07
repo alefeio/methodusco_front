@@ -43,10 +43,10 @@ export default function Header(props) {
   async function loadTestes() {
     const prova = await api.get(`provas`);
 
-    console.log('Prova: ', prova.data);
+    // console.log('Prova: ', prova.data);
 
     const response = await api.put(`testealuno/${prova.data.id}`);
-    console.log('Qtd Testes: ', response.data.length);
+    // console.log('Qtd Testes: ', response.data.length);
 
     if (response.data.length >= 20) {
       await api.delete(`provasaluno/${prova.data.id}`);

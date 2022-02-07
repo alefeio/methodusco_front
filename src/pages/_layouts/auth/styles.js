@@ -87,5 +87,13 @@ export const Content = styled.div`
         opacity: 1;
       }
     }
+
+    img {
+      width: 20px;
+      margin-left: auto;
+      margin-top: -40px;
+      margin-right: 10px;
+      margin-bottom: 25px;
+    }
   }
 `;

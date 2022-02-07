@@ -121,7 +121,7 @@ export default function Numeros(props) {
     if (i >= 81) {
       const c4 = setInterval(() => {
         if (i === palavra.length + 1) {
-          console.log('cheguei aqui.');
+          // console.log('cheguei aqui.');
           if (isMountedRef.current) {
             // loadResposta();
             setContador(null);

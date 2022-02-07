@@ -39,13 +39,13 @@ export default function AdminVideos() {
   async function loadVideos() {
     const response = await api.get("videos");
 
-    console.log('videos: ', response.data);
+    // console.log('videos: ', response.data);
 
     setVideos(response.data);
   }
 
   async function editarVideo(nVideo) {
-    console.log(nVideo);
+    // console.log(nVideo);
 
     await api.put(`videos/${nVideo}`, {
       video

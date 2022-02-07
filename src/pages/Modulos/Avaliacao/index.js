@@ -70,7 +70,7 @@ export default function Avaliacao() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -143,8 +143,7 @@ export default function Avaliacao() {
           <br />
           <p>
             Leia o texto como você sempre leu. Demore o tempo que precisar. Em
-            seguida, <strong>clique em Finalizar</strong> e{' '}
-            <strong>responda as 10 perguntas</strong> sobre o conteúdo do texto.
+            seguida, clique em <strong>Responder as Perguntas</strong> sobre o conteúdo do texto.
           </p>
           <br />
           <p>

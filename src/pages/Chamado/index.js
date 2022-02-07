@@ -20,6 +20,7 @@ export default function Chamado(props) {
   const [chamado, setChamado] = useState([]);
   const [respostas, setResposta] = useState([]);
   const [digitando, setDigitando] = useState(false);
+  const [inputText, setInputtext] = useState('');
 
   const id = props.match.params.id;
 
@@ -45,6 +46,8 @@ export default function Chamado(props) {
 
       loadRespostas();
 
+      setInputtext('');
+
       // toast.success(
       //   'Obrigado! Seu chamado foi criado com sucesso. Em breve retornaremos.'
       // );
@@ -56,7 +59,7 @@ export default function Chamado(props) {
   async function loadChamado() {
     const response = await api.get(`chamados/${id}`);
 
-    console.log('chamado: ', response.data);
+    // console.log('chamado: ', response.data);
 
     setChamado(response.data);
   }
@@ -66,7 +69,7 @@ export default function Chamado(props) {
       chamado_id: id,
     });
 
-    console.log('respostaschamados: ', response.data);
+    // console.log('respostaschamados: ', response.data);
 
     setResposta(response.data);
   }
@@ -89,6 +92,10 @@ export default function Chamado(props) {
     } catch (error) {
       toast.error('Erro ao criar seu chamado. Tente novamente!');
     }
+  }
+
+  function altTexto(e) {
+    setInputtext(e.target.value);
   }
 
   useEffect(() => {
@@ -149,7 +156,7 @@ export default function Chamado(props) {
               {respostas.map((r) =>
                 r.usuario_id === perfil.id ? (
                   <Msgs align="right" bg="a9d18e" color="fff" bold="bold">
-                    <small>Você em {r.data}:</small>
+                    <small>Você em {r.data.split('às')[0]} às {Number(r.data.split('às')[1].split(':')[0] - 3)}:{r.data.split('às')[1].split(':')[1]}:</small>
                     <br />
                     <br />
                     <span>{r.mensagem}</span>
@@ -160,7 +167,7 @@ export default function Chamado(props) {
                 ) : (
                   <Msgs align="left" bg="fff" color="000" bold="normal">
                     <small>
-                      {r.usuario.nome} em {r.data}:
+                      {r.usuario.nome} em {r.data.split('às')[0]} às {Number(r.data.split('às')[1].split(':')[0] - 3)}:{r.data.split('às')[1].split(':')[1]}:
                     </small>
                     <br />
                     <br />
@@ -178,7 +185,9 @@ export default function Chamado(props) {
               {!chamado.concluido && (
                 <div onMouseOut={() => loadRespostas()}>
                   <Form schema={schema} onSubmit={handleSubmit}>
-                    <Textarea name="mensagem" placeholder="Mensagem" />
+                    <Textarea name="mensagem" placeholder="Mensagem" onChange={altTexto}>
+                      {inputText}
+                    </Textarea>
                     <button type="submit">Responder</button>
                   </Form>
                 </div>

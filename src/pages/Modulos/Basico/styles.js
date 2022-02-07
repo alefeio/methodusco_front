@@ -212,6 +212,11 @@ export const Titulo2 = styled.h1`
   color: #135c58 !important;
   margin: 2rem auto 0 !important;
   text-align: center;
+
+  span {
+    color: red;
+    font-size: 1.5rem;
+  }
 `;
 
 export const TituloVermelho = styled.h1`

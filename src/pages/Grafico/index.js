@@ -56,7 +56,9 @@ export default function Grafico(props) {
 
   async function finalizarProva() {
     try {
-      await api.delete(`provasaluno/${prova.id}`);
+      await api.put(`provasaluno/${prova.id}`, {
+        finalizada: true,
+      });
 
       const response = await api.get(`provasfinalizadas`);
 
@@ -83,7 +85,7 @@ export default function Grafico(props) {
 
     setProvafinalizada(response2.data);
 
-    console.log(`Provas finalizadas:`, response2.data);
+    // console.log(`Provas finalizadas:`, response2.data);
 
     let idTesteinicial = '';
 
@@ -99,7 +101,7 @@ export default function Grafico(props) {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -140,10 +142,10 @@ export default function Grafico(props) {
 
     const response = await api.put(`testealuno/${id}`);
 
-    console.log('Testes: ', response.data);
-    console.log('Qtd Testes: ', response.data.length);
+    // console.log('Testes: ', response.data);
+    // console.log('Qtd Testes: ', response.data.length);
 
-    if (prova && prova.id === id && response.data.length >= 20) finalizarProva();
+    if (prova && prova.id === id && prova.inicioa1 && prova.inicioa2 && prova.inicioa3 && prova.inicioa4 && prova.inicioa5 && prova.inicioa6 && prova.inicioa7 && prova.inicioa8 && prova.inicioa9 && prova.inicioa10 && prova.inicioa11 && prova.inicioa12 && prova.inicioa13 && prova.inicioa14 && prova.inicioa15 && prova.inicioa16 && response.data.length >= 20) finalizarProva();
 
     const tests = response.data;
 
@@ -190,7 +192,7 @@ export default function Grafico(props) {
     const response = await api.put(`testealuno/${id}`);
 
     if (response.data.length) {
-      console.log('Teste Inicial: ', response.data[0]);
+      // console.log('Teste Inicial: ', response.data[0]);
 
       const tInicial = response.data[0].pcm;
       const datatInicial = response.data[0].createdAt;
@@ -336,15 +338,15 @@ export default function Grafico(props) {
                           </small>
                         )} */}
                   {provafinalizada.length ? (
-                        <button
-                          onClick={() => {
-                            finalizarProva();
-                            setPorcentagem(0);
-                          }}
-                        >
-                          Finalizar
-                        </button>
-                        ) : ''}
+                    <button
+                      onClick={() => {
+                        finalizarProva();
+                        setPorcentagem(0);
+                      }}
+                    >
+                      Finalizar
+                    </button>
+                  ) : ''}
                 </li>
               )}
             </ul>

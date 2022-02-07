@@ -103,6 +103,7 @@ import Chamado from '../pages/Chamado';
 import Videos from '../pages/Videos';
 import Admin from '../pages/Admin';
 import Alunos from '../pages/Admin/Alunos';
+import Editaraluno from '../pages/Admin/Alunos/Editar';
 import AdminVideos from '../pages/Admin/Videos';
 
 export default function Routes() {
@@ -388,7 +389,8 @@ export default function Routes() {
       <Route path="/chamado/:id" component={Chamado} isPrivate />
       <Route path="/video/:id" component={Videos} isPrivate />
       <Route path="/admin" exact component={Admin} isPrivate />
-      <Route path="/admin/alunos" component={Alunos} isPrivate />
+      <Route path="/admin/alunos" exact component={Alunos} isPrivate />
+      <Route path="/admin/alunos/editar/:id" component={Editaraluno} isPrivate />
       <Route path="/admin/videos" component={AdminVideos} isPrivate />
     </Switch>
   );

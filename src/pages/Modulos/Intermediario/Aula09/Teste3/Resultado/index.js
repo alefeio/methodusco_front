@@ -54,7 +54,7 @@ export default function Teste3resultado() {
       prova_id: prova,
     });
 
-    console.log(response.data);
+    // console.log(response.data);
 
     if (response.data) {
       setPlm(response.data.plm);
@@ -83,7 +83,7 @@ export default function Teste3resultado() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));

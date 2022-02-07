@@ -295,7 +295,7 @@ export default function Testeavaliacao() {
   async function loadProvas() {
     const response = await api.get(`provas`);
 
-    console.log('Prova: ', response.data);
+    // console.log('Prova: ', response.data);
 
     setProva(response.data);
     dispatch(updateProvaRequest(response.data));
@@ -304,7 +304,7 @@ export default function Testeavaliacao() {
 
     verificarTeste(prova_id);
 
-    console.log('testeconcluido: ', testeconcluido);
+    // console.log('testeconcluido: ', testeconcluido);
   }
 
   // function fazerProva() {
@@ -316,7 +316,7 @@ export default function Testeavaliacao() {
   async function calcPlm() {
     const dif = ((Date.now() - hrInicio) / 1000).toFixed(0);
 
-    console.log('Tempo: ', dif);
+    // console.log('Tempo: ', dif);
 
     const calculo = (554 * 60 / dif).toFixed(0);
 
