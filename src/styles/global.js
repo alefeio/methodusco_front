@@ -43,6 +43,10 @@ export default createGlobalStyle`
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
+
+    > iframe[style*='2147483647']{
+      display: none;
+    }
   }
 
   body, input, button {
