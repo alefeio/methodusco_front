@@ -409,15 +409,13 @@ export default function Testeavaliacao() {
             <br />
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />
-            <Slider {...settings}>
               {perguntas.map((p, i) => (
-                <div>
+                <aside>
                   {p.p && (
                     <p>
                       {p.q}) {p.p}
                     </p>
                   )}
-                  <br />{' '}
                   {p.a && (
                     <p>
                       {p.r === 'a' ? (
@@ -478,17 +476,17 @@ export default function Testeavaliacao() {
                       <label for={`d${i}`}>d) {p.d}</label>
                     </p>
                   )}
-                  <div>
+                  {/* <div>
                     <small>
                       {i + 1} de {perguntas.length}
                     </small>
-                  </div>
-                </div>
+                  </div> */}
+                </aside>
               ))}
-            </Slider>
             <>
               <p className="questoes">
-                Questões respondidas: {plm}
+                Questões respondidas: 
+                {/* {plm} */}
                 {q1 && ` 1) ${q1}`}
                 {q2 && ` - 2) ${q2}`}
                 {q3 && ` - 3) ${q3}`}

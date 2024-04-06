@@ -79,6 +79,19 @@ export const Prod = styled.div`
       }
     }
 
+    aside {
+      margin-bottom: 5rem;
+
+      p {
+        display: flex;
+        align-items: center;
+
+        input, img {
+          margin: 0 1rem;
+        }
+      }
+    }
+
     div {
       width: 100%;
       display: flex;
