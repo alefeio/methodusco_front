@@ -28,7 +28,7 @@ export default function Suporte(props) {
   const socket = useMemo(
     () =>
       // socketio('http://localhost:3333', {
-      socketio('http://104.131.87.127', {
+      socketio('http://157.245.215.207', {
         query: {
           usuario_id: perf.perfil.id,
         },

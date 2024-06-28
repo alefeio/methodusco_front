@@ -57,6 +57,7 @@ export default function Cadastro() {
         <Input name="nome" placeholder="Nome" />
         <Input name="email" type="email" placeholder="E-mail" />
         <Input name="password" type={olho1.type} placeholder="Senha" />
+        <Input name="admin" type="hidden" value={true} />
         <img src={olho1.src} alt="" onClick={() => handleSenha()} />
         <button type="submit">Criar conta</button>
         <Link to="/">Já tenho conta</Link>
