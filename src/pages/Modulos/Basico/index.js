@@ -174,69 +174,81 @@ export default function Basico() {
 
           <Titulo2>
             {prova && !prova.avaliacao && <span>Atenção: Para acessar o Módulo Básico, você precisa realizar o seu Teste Inicial</span>}
-            {prova 
-            && prova.avaliacao 
-            && !aula1 
-            && <span>Atenção: Para acessar a Aula 02, você precisa finalizar a Aula 01</span>}
-            {prova 
-            && prova.avaliacao 
-            && aula1 
-            && !aula2 
-            && <span>Atenção: Para acessar a Aula 03, você precisa finalizar a Aula 02</span>}
-            {prova 
-            && prova.avaliacao 
-            && aula1 
-            && aula2 
-            && !aula3 
-            && <span>Atenção: Para acessar a Aula 04, você precisa finalizar a Aula 03</span>}
-            {prova 
-            && prova.avaliacao 
-            && aula1 
-            && aula2 
-            && aula3 
-            && !aula4
-            && <span>Atenção: Para acessar a Aula 05, você precisa finalizar a Aula 04</span>}
-            {prova 
-            && prova.avaliacao 
-            && aula1 
-            && aula2 
-            && aula3 
-            && aula4
-            && !aula5
-            && <span>Atenção: Para acessar a Aula 06, você precisa finalizar a Aula 05</span>}
+            {prova
+              && prova.avaliacao
+              && !aula1
+              && <span>Atenção: Para acessar a Aula 02, você precisa finalizar a Aula 01</span>}
+            {prova
+              && prova.avaliacao
+              && aula1
+              && !aula2
+              && <span>Atenção: Para acessar a Aula 03, você precisa finalizar a Aula 02</span>}
+            {prova
+              && prova.avaliacao
+              && aula1
+              && aula2
+              && !aula3
+              && <span>Atenção: Para acessar a Aula 04, você precisa finalizar a Aula 03</span>}
+            {prova
+              && prova.avaliacao
+              && aula1
+              && aula2
+              && aula3
+              && !aula4
+              && <span>Atenção: Para acessar a Aula 05, você precisa finalizar a Aula 04</span>}
+            {prova
+              && prova.avaliacao
+              && aula1
+              && aula2
+              && aula3
+              && aula4
+              && !aula5
+              && <span>Atenção: Para acessar a Aula 06, você precisa finalizar a Aula 05</span>}
           </Titulo2>
 
           <br />
           {!provafinalizada.length ? <div>
             <Default>
-              {prova && prova.avaliacao ? <Link to="/basico/aula01">
-                Aula <span>01</span>
-              </Link> : <p>Aula <span>01</span></p>}
+              {prova && prova.avaliacao ?
+                <Link to="/basico/aula01">
+                  Aula <span>01</span>
+                </Link>
+                : <p>Aula <span>01</span></p>}
             </Default>
             <Default>
-              {prova && aula1 ? <Link to="/basico/aula02">
-                Aula <span>02</span>
-              </Link> : <p>Aula <span>02</span></p>}
+              {/* {prova && aula1 ? */}
+                <Link to="/basico/aula02">
+                  Aula <span>02</span>
+                </Link>
+                {/* : <p>Aula <span>02</span></p>} */}
             </Default>
             <Default>
-              {prova && aula2 ? <Link to="/basico/aula03">
-                Aula <span>03</span>
-              </Link> : <p>Aula <span>03</span></p>}
+              {/* {prova && aula2 ? */}
+                <Link to="/basico/aula03">
+                  Aula <span>03</span>
+                </Link>
+                {/* : <p>Aula <span>03</span></p>} */}
             </Default>
             <Default>
-              {prova && aula3 ? <Link to="/basico/aula04">
-                Aula <span>04</span>
-              </Link> : <p>Aula <span>04</span></p>}
+              {/* {prova && aula3 */}
+                ? <Link to="/basico/aula04">
+                  Aula <span>04</span>
+                </Link>
+                {/* : <p>Aula <span>04</span></p>} */}
             </Default>
             <Default>
-              {prova && aula4 ? <Link to="/basico/aula05">
-                Aula <span>05</span>
-              </Link> : <p>Aula <span>05</span></p>}
+              {/* {prova && aula4 ? */}
+                <Link to="/basico/aula05">
+                  Aula <span>05</span>
+                </Link>
+                {/* : <p>Aula <span>05</span></p>} */}
             </Default>
             <Default>
-              {prova && aula5 ? <Link to="/basico/aula06">
-                Aula <span>06</span>
-              </Link> : <p>Aula <span>06</span></p>}
+              {/* {prova && aula5 ? */}
+                <Link to="/basico/aula06">
+                  Aula <span>06</span>
+                </Link>
+                {/* : <p>Aula <span>06</span></p>} */}
             </Default>
           </div> : <div>
             <Default>
