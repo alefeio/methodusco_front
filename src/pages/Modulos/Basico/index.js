@@ -217,38 +217,38 @@ export default function Basico() {
             </Default>
             <Default>
               {/* {prova && aula1 ? */}
-                <Link to="/basico/aula02">
-                  Aula <span>02</span>
-                </Link>
-                {/* : <p>Aula <span>02</span></p>} */}
+              <Link to="/basico/aula02">
+                Aula <span>02</span>
+              </Link>
+              {/* : <p>Aula <span>02</span></p>} */}
             </Default>
             <Default>
               {/* {prova && aula2 ? */}
-                <Link to="/basico/aula03">
-                  Aula <span>03</span>
-                </Link>
-                {/* : <p>Aula <span>03</span></p>} */}
+              <Link to="/basico/aula03">
+                Aula <span>03</span>
+              </Link>
+              {/* : <p>Aula <span>03</span></p>} */}
             </Default>
             <Default>
-              {/* {prova && aula3 */}
-                ? <Link to="/basico/aula04">
-                  Aula <span>04</span>
-                </Link>
-                {/* : <p>Aula <span>04</span></p>} */}
+              {/* {prova && aula3 ? */}
+              <Link to="/basico/aula04">
+                Aula <span>04</span>
+              </Link>
+              {/* : <p>Aula <span>04</span></p>} */}
             </Default>
             <Default>
               {/* {prova && aula4 ? */}
-                <Link to="/basico/aula05">
-                  Aula <span>05</span>
-                </Link>
-                {/* : <p>Aula <span>05</span></p>} */}
+              <Link to="/basico/aula05">
+                Aula <span>05</span>
+              </Link>
+              {/* : <p>Aula <span>05</span></p>} */}
             </Default>
             <Default>
               {/* {prova && aula5 ? */}
-                <Link to="/basico/aula06">
-                  Aula <span>06</span>
-                </Link>
-                {/* : <p>Aula <span>06</span></p>} */}
+              <Link to="/basico/aula06">
+                Aula <span>06</span>
+              </Link>
+              {/* : <p>Aula <span>06</span></p>} */}
             </Default>
           </div> : <div>
             <Default>
