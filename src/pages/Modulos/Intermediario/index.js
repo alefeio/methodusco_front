@@ -188,29 +188,39 @@ export default function Intermediario() {
           <br />
           {!provafinalizada.length ? <div>
             <Default>
-              {provafinalizada && prova && aula6 ? <Link to="/intermediario/aula07">
-                Aula <span>07</span>
-              </Link> : <p>Aula <span>07</span></p>}
+              {/* {provafinalizada && prova && aula6 ? */}
+                <Link to="/intermediario/aula07">
+                  Aula <span>07</span>
+                </Link>
+                {/* : <p>Aula <span>07</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && aula7 ? <Link to="/intermediario/aula08">
-                Aula <span>08</span>
-              </Link> : <p>Aula <span>08</span></p>}
+              {/* {provafinalizada && prova && aula7 ? */}
+                <Link to="/intermediario/aula08">
+                  Aula <span>08</span>
+                </Link>
+                {/* : <p>Aula <span>08</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && aula8 ? <Link to="/intermediario/aula09">
-                Aula <span>09</span>
-              </Link> : <p>Aula <span>09</span></p>}
+              {/* {provafinalizada && prova && aula8 ? */}
+                <Link to="/intermediario/aula09">
+                  Aula <span>09</span>
+                </Link>
+                {/* : <p>Aula <span>09</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && teste1 && teste2 && teste3 && teste4 && teste5 ? <Link to="/intermediario/aula10">
-                Aula <span>10</span>
-              </Link> : <p>Aula <span>10</span></p>}
+              {/* {provafinalizada && prova && teste1 && teste2 && teste3 && teste4 && teste5 ? */}
+                <Link to="/intermediario/aula10">
+                  Aula <span>10</span>
+                </Link>
+                {/* : <p>Aula <span>10</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && aula10 ? <Link to="/intermediario/aula11">
-                Aula <span>11</span>
-              </Link> : <p>Aula <span>11</span></p>}
+              {/* {provafinalizada && prova && aula10 ? */}
+                <Link to="/intermediario/aula11">
+                  Aula <span>11</span>
+                </Link>
+                {/* : <p>Aula <span>11</span></p>} */}
             </Default>
           </div> : <div>
             <Default>

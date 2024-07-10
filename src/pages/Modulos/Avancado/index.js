@@ -226,29 +226,39 @@ export default function Intermediario() {
           <br />
           {!provafinalizada.length ? <div>
             <Default>
-              {provafinalizada && prova && teste6 && teste7 && teste8 && teste9 && teste10 ? <Link to="/avancado/aula12">
-                Aula <span>12</span>
-              </Link> : <p>Aula <span>12</span></p>}
+              {/* {provafinalizada && prova && teste6 && teste7 && teste8 && teste9 && teste10 ? */}
+                <Link to="/avancado/aula12">
+                  Aula <span>12</span>
+                </Link>
+                {/* : <p>Aula <span>12</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && aula12 ? <Link to="/avancado/aula13">
-                Aula <span>13</span>
-              </Link> : <p>Aula <span>13</span></p>}
+              {/* {provafinalizada && prova && aula12 ? */}
+                <Link to="/avancado/aula13">
+                  Aula <span>13</span>
+                </Link>
+                {/* : <p>Aula <span>13</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && teste11 && teste12 && teste13 && teste14 && teste15 ? <Link to="/avancado/aula14">
-                Aula <span>14</span>
-              </Link> : <p>Aula <span>14</span></p>}
+              {/* {provafinalizada && prova && teste11 && teste12 && teste13 && teste14 && teste15 ? */}
+                <Link to="/avancado/aula14">
+                  Aula <span>14</span>
+                </Link>
+                {/* : <p>Aula <span>14</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && aula14 ? <Link to="/avancado/aula15">
-                Aula <span>15</span>
-              </Link> : <p>Aula <span>15</span></p>}
+              {/* {provafinalizada && prova && aula14 ? */}
+                <Link to="/avancado/aula15">
+                  Aula <span>15</span>
+                </Link>
+                {/* : <p>Aula <span>15</span></p>} */}
             </Default>
             <Default>
-              {provafinalizada && prova && teste16 && teste17 && teste18 && teste19 && teste20 ? <Link to="/avancado/aula16">
-                Aula <span>16</span>
-              </Link> : <p>Aula <span>16</span></p>}
+              {/* {provafinalizada && prova && teste16 && teste17 && teste18 && teste19 && teste20 ? */}
+                <Link to="/avancado/aula16">
+                  Aula <span>16</span>
+                </Link>
+                {/* : <p>Aula <span>16</span></p>} */}
             </Default>
           </div> : <div>
             <Default>
