@@ -445,83 +445,81 @@ export default function Teste10avaliacao() {
             <br />
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />
-            <Slider {...settings}>
-              {perguntas.map((p, i) => (
-                <div key={i}>
-                  {p.p && (
-                    <p>
-                      {p.q}) {p.p}
-                    </p>
-                  )}
-                  <br />{' '}
-                  {p.a && (
-                    <p>
-                      {p.r === 'a' ? (
-                        <img src={checked} />
-                      ) : (
-                        <input
-                          type="radio"
-                          name={`opcao${i}`}
-                          id={`a${i}`}
-                          onClick={() => envioResposta(i, 'a')}
-                        />
-                      )}
-                      <label for={`a${i}`}>a) {p.a}</label>
-                    </p>
-                  )}{' '}
-                  {p.b && (
-                    <p>
-                      {p.r === 'b' ? (
-                        <img src={checked} />
-                      ) : (
-                        <input
-                          type="radio"
-                          name={`opcao${i}`}
-                          id={`b${i}`}
-                          onClick={() => envioResposta(i, 'b')}
-                        />
-                      )}
-                      <label for={`b${i}`}>b) {p.b}</label>
-                    </p>
-                  )}{' '}
-                  {p.c && (
-                    <p>
-                      {p.r === 'c' ? (
-                        <img src={checked} />
-                      ) : (
-                        <input
-                          type="radio"
-                          name={`opcao${i}`}
-                          id={`c${i}`}
-                          onClick={() => envioResposta(i, 'c')}
-                        />
-                      )}
-                      <label for={`c${i}`}>c) {p.c}</label>
-                    </p>
-                  )}{' '}
-                  {p.d && (
-                    <p>
-                      {p.r === 'd' ? (
-                        <img src={checked} />
-                      ) : (
-                        <input
-                          type="radio"
-                          name={`opcao${i}`}
-                          id={`d${i}`}
-                          onClick={() => envioResposta(i, 'd')}
-                        />
-                      )}
-                      <label for={`d${i}`}>d) {p.d}</label>
-                    </p>
-                  )}
-                  <div>
-                    <small>
-                      {i + 1} de {perguntas.length}
-                    </small>
-                  </div>
+            {perguntas.map((p, i) => (
+              <div key={i}>
+                {p.p && (
+                  <p>
+                    {p.q}) {p.p}
+                  </p>
+                )}
+                <br />{' '}
+                {p.a && (
+                  <p>
+                    {p.r === 'a' ? (
+                      <img src={checked} />
+                    ) : (
+                      <input
+                        type="radio"
+                        name={`opcao${i}`}
+                        id={`a${i}`}
+                        onClick={() => envioResposta(i, 'a')}
+                      />
+                    )}
+                    <label for={`a${i}`}>a) {p.a}</label>
+                  </p>
+                )}{' '}
+                {p.b && (
+                  <p>
+                    {p.r === 'b' ? (
+                      <img src={checked} />
+                    ) : (
+                      <input
+                        type="radio"
+                        name={`opcao${i}`}
+                        id={`b${i}`}
+                        onClick={() => envioResposta(i, 'b')}
+                      />
+                    )}
+                    <label for={`b${i}`}>b) {p.b}</label>
+                  </p>
+                )}{' '}
+                {p.c && (
+                  <p>
+                    {p.r === 'c' ? (
+                      <img src={checked} />
+                    ) : (
+                      <input
+                        type="radio"
+                        name={`opcao${i}`}
+                        id={`c${i}`}
+                        onClick={() => envioResposta(i, 'c')}
+                      />
+                    )}
+                    <label for={`c${i}`}>c) {p.c}</label>
+                  </p>
+                )}{' '}
+                {p.d && (
+                  <p>
+                    {p.r === 'd' ? (
+                      <img src={checked} />
+                    ) : (
+                      <input
+                        type="radio"
+                        name={`opcao${i}`}
+                        id={`d${i}`}
+                        onClick={() => envioResposta(i, 'd')}
+                      />
+                    )}
+                    <label for={`d${i}`}>d) {p.d}</label>
+                  </p>
+                )}
+                <div>
+                  <small>
+                    {i + 1} de {perguntas.length}
+                  </small>
                 </div>
-              ))}
-            </Slider>
+              </div>
+            ))}
             <>
               <p className="questoes">
                 Questões respondidas:
@@ -783,11 +781,11 @@ export default function Teste10avaliacao() {
                 )}
               </>
             )}
-              <div>
-                {q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && <Default>
+            <div>
+              {q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && <Default>
                 <Link onClick={() => enviarTeste()}>Enviar Respostas</Link>
               </Default>}
-              </div>
+            </div>
           </div>
         )}
       </Prod>
