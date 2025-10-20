@@ -458,7 +458,7 @@ export default function Teste11avaliacao() {
             <h2>Avaliando a Compreensão e a Retenção</h2>
             <br />
             {perguntas.map((p, i) => (
-              <div key={i}>
+              <aside key={i}>
                 {p.p && (
                   <p>
                     {p.q}) {p.p}
@@ -525,12 +525,12 @@ export default function Teste11avaliacao() {
                     <label for={`d${i}`}>d) {p.d}</label>
                   </p>
                 )}
-                <div>
+                {/* <div>
                   <small>
                     {i + 1} de {perguntas.length}
                   </small>
-                </div>
-              </div>
+                </div> */}
+              </aside>
             ))}
             <>
               <p className="questoes">

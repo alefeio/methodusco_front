@@ -35,7 +35,7 @@ export const ModUl2 = styled.ul`
   display: flex;
   flex-direction: column;
 `;
-
+ 
 export const Prod = styled.div`
   display: flex;
   justify-content: space-between;

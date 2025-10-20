@@ -35,7 +35,7 @@ export const ModUl2 = styled.ul`
   display: flex;
   flex-direction: column;
 `;
-
+ 
 export const Prod = styled.div`
   display: flex;
   justify-content: space-between;
@@ -76,6 +76,19 @@ export const Prod = styled.div`
 
       &.questoes {
         width: 70%;
+      }
+    }
+
+    aside {
+      margin-bottom: 5rem;
+
+      p {
+        display: flex;
+        align-items: center;
+
+        input, img {
+          margin: 0 1rem;
+        }
       }
     }
 
